@@ -120,8 +120,8 @@
       <change afterPath="$PROJECT_DIR$/frontend/src/images/thumbnail/thumbnail8.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/images/thumbnail/thumbnail9.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Controller/FAQController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Controller/FAQController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/FAQController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/FAQController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Config/SecurityConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />

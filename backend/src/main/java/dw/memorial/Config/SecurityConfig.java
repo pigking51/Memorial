@@ -51,7 +51,7 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/post/getallposts/**"),
                                 new AntPathRequestMatcher("/post/getallpostsparts"),
                                 new AntPathRequestMatcher("/post/getallpostsparts/**"),
-                                new AntPathRequestMatcher("/csat/survey"),
+                                new AntPathRequestMatcher("/api/authenticate"),
                                 new AntPathRequestMatcher("/user/login"),
                                 new AntPathRequestMatcher("/user/signup"),
                                 new AntPathRequestMatcher("/user/show"),
@@ -64,6 +64,7 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/lectureDetail"),
                                 new AntPathRequestMatcher("/faq"),
 //                                // ↑ WAS까지 가서 통과해야되는 것들
+                                new AntPathRequestMatcher("/authenticate"),
                                 new AntPathRequestMatcher("/login"),
                                 new AntPathRequestMatcher("/css/**"),
                                 new AntPathRequestMatcher("/js/**"),
@@ -71,7 +72,7 @@ public class SecurityConfig {
                                 // ↑ TOMCAT까지 가서 통과해야되는 것들
                         ).permitAll()
                         .anyRequest().authenticated())
-                .formLogin(form->form.loginPage("/memorial/login.html").defaultSuccessUrl("/articles"))
+                .formLogin(form->form.loginPage("/memorial/login.html").defaultSuccessUrl("/memorial/mainpage"))
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .csrf(AbstractHttpConfigurer::disable)
