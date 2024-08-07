@@ -1,7 +1,13 @@
 package dw.memorial.Config;
 
+import dw.memorial.Jwt.JwtFilter;
 import dw.memorial.Exception.MyAccessDeniedHandler;
 import dw.memorial.Exception.MyAuthenticationEntryPoint;
+import dw.memorial.Service.UserDetailService;
+import dw.memorial.Exception.MyAccessDeniedHandler;
+import dw.memorial.Exception.MyAuthenticationEntryPoint;
+import dw.memorial.Jwt.JwtFilter;
+import dw.memorial.Jwt.TokenProvider;
 import dw.memorial.Service.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -9,19 +15,25 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
     @Autowired
     private UserDetailService userDetailService;
+
+    @Autowired
+    private TokenProvider tokenProvider;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -33,7 +45,6 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/products/**"),
                                 new AntPathRequestMatcher("/memorial/**"),
                                 new AntPathRequestMatcher("/memorial/signup"),
-                                new AntPathRequestMatcher("/memorial/survey"),
                                 new AntPathRequestMatcher("/memorial/user/show"),
                                 new AntPathRequestMatcher("/memorial/api/**"),
                                 new AntPathRequestMatcher("/memorial/api/products/**"),
@@ -48,7 +59,6 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/user/login"),
                                 new AntPathRequestMatcher("/user/signup"),
                                 new AntPathRequestMatcher("/user/show"),
-                                new AntPathRequestMatcher("/survey"),
                                 new AntPathRequestMatcher("/signup"),
                                 new AntPathRequestMatcher("/index"),
                                 new AntPathRequestMatcher("/reviews"),
@@ -56,22 +66,26 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/postDetail"),
                                 new AntPathRequestMatcher("/lecture"),
                                 new AntPathRequestMatcher("/lectureDetail"),
+                                new AntPathRequestMatcher("/faq"),
 //                                // ↑ WAS까지 가서 통과해야되는 것들
                                 new AntPathRequestMatcher("/login"),
                                 new AntPathRequestMatcher("/css/**"),
                                 new AntPathRequestMatcher("/js/**"),
                                 new AntPathRequestMatcher("/images/**")
-
                                 // ↑ TOMCAT까지 가서 통과해야되는 것들
                         ).permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form->form.loginPage("/memorial/login.html").defaultSuccessUrl("/articles"))
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling(exception -> exception
                         .authenticationEntryPoint(new MyAuthenticationEntryPoint())
                         .accessDeniedHandler(new MyAccessDeniedHandler()))
+                .addFilterBefore(
+                        new JwtFilter(tokenProvider),
+                        UsernamePasswordAuthenticationFilter.class
+                )
                 .build();
     }
 

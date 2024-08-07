@@ -11,7 +11,7 @@
 	<groupId>dw</groupId>
 	<artifactId>memorial</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>movieDic</name>
+	<name>memorial</name>
 	<description>project1</description>
 	<properties>
 		<java.version>21</java.version>
@@ -41,6 +41,11 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.12.6</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -53,6 +58,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 	</dependencies>
 
