@@ -74,8 +74,8 @@ export function MainPage() {
 
           <footer>
             <div className="information">
-              <h4>MOVIE DIC</h4>
-              <span>© 2024 MOVIEDIC. All rights reserved.</span>
+              <h4>Memorial</h4>
+              <span>© 2024 MEMORIAL. All rights reserved.</span>
             </div>
           </footer>
         </Container>

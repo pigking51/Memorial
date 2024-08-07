@@ -66,7 +66,13 @@ export function Intro() {
         <Contents>
           <Logo>
             <a href="#">
-              <img src="./images/logo/logo2.png" alt="로고2" />
+              {/* <img src="./images/logo/logo2.png" alt="로고2" /> */}
+              <img
+                src="./images/logo/Memorial.png"
+                width="390"
+                height="390"
+                alt="로고2"
+              />
             </a>
           </Logo>
           <Aside>

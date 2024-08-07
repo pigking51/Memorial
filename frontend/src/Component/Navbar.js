@@ -28,7 +28,13 @@ export function Navbar() {
     <>
       <Container>
         <StyledLink to="/">
-          <img src="/images/logo/logo.png" alt="상단로고" />
+          {/* <img src="/images/logo/logo.png" alt="상단로고" /> */}
+          <img
+            src="/images/logo/Memorial.png"
+            width="80"
+            height="80"
+            alt="상단로고"
+          />
         </StyledLink>
         <StyledLink to="/intro">
           <NavItem icon="ti ti-home" name="INTRO"></NavItem>
