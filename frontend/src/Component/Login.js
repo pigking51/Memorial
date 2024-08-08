@@ -89,8 +89,8 @@ const SignupBtn = styled.button`
 `;
 
 export function Login() {
-  // const urlLogin = "http://localhost:8080/api/authenticate";
-  const urlLogin = "http://localhost:8080/user/login";
+  const urlLogin = "http://localhost:8080/api/authenticate";
+  // const urlLogin = "http://localhost:8080/user/login";
   const urlsignUp = "http://localhost:8080/user/signup";
   const urlShow = "http://localhost:8080/user/show";
 
@@ -116,8 +116,8 @@ export function Login() {
   // LoginBtn.addEventListener('click', IDIsNull());
   async function InfoCheck() {
     const loginData = {
-      userId: IDRef.current.value,
-      password: PWRef.current.value,
+      userId: "pepe",
+      password: "1",
     };
 
     console.log(loginData);
@@ -141,8 +141,9 @@ export function Login() {
         const response = await axios.post(urlLogin, {
           loginData,
         });
-        
-        console.log(response.data);
+        if (response.data.resultCode == "SUCCESS") {
+          console.log(response.data);
+        }
       }
     } catch (error) {
       console.log("아이디 비번체크 오류", error);

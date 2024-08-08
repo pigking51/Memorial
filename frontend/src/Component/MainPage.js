@@ -13,6 +13,7 @@ import { Lecture } from "./Lecture";
 import { LectureWrapper } from "./LectureWrapper";
 import { FAQ } from "./FAQ";
 import { Mypage } from "./Mypage";
+import { Footer } from "./Footer";
 
 const Container = styled.div`
   width: 100vw;
@@ -71,13 +72,7 @@ export function MainPage() {
             </ContentBox>
           </Section>
           {/* 푸터 html 시작  */}
-
-          <footer>
-            <div className="information">
-              <h4>Memorial</h4>
-              <span>© 2024 MEMORIAL. All rights reserved.</span>
-            </div>
-          </footer>
+          <Footer />
         </Container>
       </BrowserRouter>
     </>

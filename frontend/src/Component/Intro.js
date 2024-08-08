@@ -24,7 +24,7 @@ const Logo = styled.div`
 `;
 const Aside = styled.div`
   margin-left: 50px;
-  height: 400px;
+  height: 500px;
   width: 740px;
 `;
 const Top = styled.div`
@@ -36,7 +36,7 @@ const Top = styled.div`
 `;
 const Middle = styled.div`
   height: 130px;
-  line-height: 30px;
+  line-height: 20px;
   span {
     font-size: 20px;
   }
@@ -44,10 +44,15 @@ const Middle = styled.div`
 const Bottom = styled.div`
   height: 130px;
   margin-top: 30px;
+  line-height: 40px;
   p {
     font-size: 20px;
     line-height: 30px;
     height: 30px;
+  }
+  h5 {
+    font-weight: 200;
+    text-indent: 8px;
   }
   span {
     font-size: 20px;
@@ -85,24 +90,28 @@ export function Intro() {
             </Top>
             <Middle>
               <span>
-                무비딕은 거대한 향유고래 모비딕(Moby Dick)에서 따온 말 입니다.
+                메모리얼의 사전적인 의미는 기념비, 기념비적인 것이라는 뜻으로
+                통하지만
                 <br />
-                영화를 뜻하는 <strong>Movie</strong>와 <strong>사전</strong>을
-                뜻하는 <strong>Dictionary</strong>의 <strong>DIC</strong>의
-                합성어로,
+                오늘날 메모리얼의 의미는
+                <strong>기억과 참여, 소통이 이루어지는 공간적인 의미</strong>
+                를 부여하고 있습니다.
                 <br />
-                향유고래 모비딕처럼 거대한 영화사전을 모두가 함께 만들어 나가며
+                이곳에 오신 모두가 함께 소통하고 참여하며
                 <br />
-                영화같은 모두 이야기를 담아내고자 하는 의미가 담겨있습니다.
+                언젠가 이 순간을 다시 떠올렸을 때 추억이라 생각할 수 있는 공간이
+                되길 바랍니다.
               </span>
             </Middle>
 
             <Bottom>
-              <p>“사진이 진실이라면 영화는 초당 24번의 진실이다.”</p>
-              <span>
-                장뤽 고다르 (1954~2024) /<br />
-                영화 감독, 영화 평론가
-              </span>
+              <p>
+                <strong>“순간이여 멈추어라! 너는 정말로 아름답구나!”</strong>
+                <br />
+                <h5>Verweile doch! Du bist so schön!</h5>
+              </p>
+              <br />
+              <span>요한 볼프강 폰 괴테, 『파우스트』, 1828</span>
             </Bottom>
           </Aside>
         </Contents>
