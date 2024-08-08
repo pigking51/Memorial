@@ -1,7 +1,9 @@
 package dw.memorial.Controller;
 
+import dw.memorial.Dto.BaseResponse;
 import dw.memorial.Dto.SessionDto;
 import dw.memorial.Dto.UserDto;
+import dw.memorial.Enumstatus.ResultCode;
 import dw.memorial.Model.User;
 import dw.memorial.Service.UserDetailService;
 import dw.memorial.Service.UserService;
@@ -46,9 +48,24 @@ public class UserController {
                 HttpStatus.CREATED);
     }
 
+//    @PostMapping("login")
+//    public ResponseEntity<String> login(@RequestBody UserDto userDto,
+//                                        HttpServletRequest request){
+//        Authentication authentication = authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(userDto.getUserId(), userDto.getPassword())
+//        );
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        // 세션 생성
+//        HttpSession session = request.getSession(true); // true: 세션이 없으면 새로 생성
+//        // 세션에 인증 객체 저장
+//        session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
+//                SecurityContextHolder.getContext());
+//
+//        return ResponseEntity.ok("Success");
+//    }
     @PostMapping("login")
-    public ResponseEntity<String> login(@RequestBody UserDto userDto,
-                                        HttpServletRequest request){
+    public ResponseEntity<BaseResponse<Void>> login(@RequestBody UserDto userDto,
+                                                    HttpServletRequest request){
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(userDto.getUserId(), userDto.getPassword())
         );
@@ -59,16 +76,33 @@ public class UserController {
         session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
                 SecurityContextHolder.getContext());
 
-        return ResponseEntity.ok("Success");
+        return new ResponseEntity<>(
+                new BaseResponse(ResultCode.SUCCESS.name(),
+                        null,
+                        ResultCode.SUCCESS.getMsg())
+                , HttpStatus.OK);
     }
 
+//    @PostMapping("logout")
+//    public String logout(HttpServletRequest request, HttpServletResponse response){
+//        HttpSession session = request.getSession(false);
+//        if(session != null){
+//            session.invalidate();
+//        }
+//        return "You have been logged out!!";
+//    }
+
     @PostMapping("logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response){
+    public ResponseEntity<BaseResponse<String>> logout(HttpServletRequest request, HttpServletResponse response){
         HttpSession session = request.getSession(false);
         if(session != null){
             session.invalidate();
         }
-        return "You have been logged out!!";
+        return new ResponseEntity<>(
+                new BaseResponse<>(ResultCode.SUCCESS.name(),
+                        "You have been logged out!",
+                        ResultCode.SUCCESS.getMsg()),
+                HttpStatus.OK);
     }
 
     @PatchMapping("/modify/{id}")
@@ -78,16 +112,33 @@ public class UserController {
                 HttpStatus.OK);
     }
 
+//    @GetMapping("current")
+//    public SessionDto getCurrentUser(){
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if(authentication == null || !authentication.isAuthenticated()){
+//            throw new IllegalStateException("User is not authenticated");
+//        }
+//        SessionDto sessionDto = new SessionDto();
+//        sessionDto.setUserId(authentication.getName());
+//        sessionDto.setAuthority(authentication.getAuthorities());
+//        return sessionDto;
+//    }
+
     @GetMapping("current")
-    public SessionDto getCurrentUser(){
+    public ResponseEntity<BaseResponse<SessionDto>> getCurrentUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication == null || !authentication.isAuthenticated()){
-            throw new IllegalStateException("User is not authenticated");
+        if(authentication == null || !authentication.isAuthenticated()) {
+            throw new IllegalStateException("User is not authenticated!");
         }
         SessionDto sessionDto = new SessionDto();
         sessionDto.setUserId(authentication.getName());
         sessionDto.setAuthority(authentication.getAuthorities());
-        return sessionDto;
+
+        return new ResponseEntity<>(
+                new BaseResponse(ResultCode.SUCCESS.name(),
+                        sessionDto,
+                        ResultCode.SUCCESS.getMsg())
+                , HttpStatus.OK);
     }
 
     // 대시보드 사용자 관리를 위한 유저 정보 불러오기

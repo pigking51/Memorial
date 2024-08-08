@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { NavItem } from "./NavItem";
 import styled from "styled-components";
+import { userLogout } from "./api";
 
 const Container = styled.div`
   width: 60%;
@@ -22,8 +23,27 @@ const StyledLink = styled(Link)`
     background-color: darkblue;
   }
 `;
+const Logout = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  padding: 5px;
+  background-color: dodgerblue;
+  cursor: pointer;
+  &:hover {
+    background-color: blue;
+  }
+  &:active {
+    background-color: darkblue;
+  }
+`;
 
 export function Navbar() {
+  console.log(sessionStorage.length);
   return (
     <>
       <Container>
@@ -54,9 +74,16 @@ export function Navbar() {
         <StyledLink to="/mypage">
           <NavItem icon="ti ti-user" name="MYPAGE"></NavItem>
         </StyledLink>
-        <StyledLink to="/login">
-          <NavItem icon="ti ti-login" name="LOGIN"></NavItem>
-        </StyledLink>
+
+        {sessionStorage.length != 0 ? (
+          <Logout onClick={userLogout}>
+            <span>LOGOUT</span>
+          </Logout>
+        ) : (
+          <StyledLink to="/login">
+            <NavItem icon="ti ti-login" name="LOGIN"></NavItem>
+          </StyledLink>
+        )}
       </Container>
     </>
   );

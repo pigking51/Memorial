@@ -63,6 +63,7 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/lecture"),
                                 new AntPathRequestMatcher("/lectureDetail"),
                                 new AntPathRequestMatcher("/faq"),
+                                new AntPathRequestMatcher("/*"),
 //                                // ↑ WAS까지 가서 통과해야되는 것들
                                 new AntPathRequestMatcher("/authenticate"),
                                 new AntPathRequestMatcher("/login"),

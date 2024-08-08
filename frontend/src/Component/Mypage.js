@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getNowUser, getMyLecture } from "./api";
+import { getNowUser, getMyLecture, showAllUser } from "./api";
 
 // 강의정보
 const Found = styled.div`
@@ -131,10 +131,10 @@ const Gender = styled.div``;
 const Btnwrap = styled.div``;
 
 export function Mypage() {
-  // 로그인 구현 후 사용할 예정
+  let userRName = "";
 
-  // const [userData, setUserData] = useState(null);
-  // const [data, setData] = useState(null);
+  const [userData, setUserData] = useState(null);
+  const [data, setData] = useState(null);
 
   // useEffect(() => {
   //   const response = getNowUser();
@@ -144,13 +144,37 @@ export function Mypage() {
   //   setUserData(uData);
   // }, []);
 
-  // useEffect(() => {
-  //   const response = getMyLecture(id);
-  //   const Mylecture = response.data;
-  //   console.log(Mylecture);
+  useEffect(() => {
+    const response = getMyLecture(userData.userId);
+    const Mylecture = response.data;
+    console.log(Mylecture);
 
-  //   setData(Mylecture);
-  // }, []);
+    setData(Mylecture);
+  }, []);
+
+  useEffect(() => {
+    mypageContent();
+  }, []);
+
+  async function mypageContent() {
+    try {
+      const allResponse = await showAllUser();
+      const allData = allResponse.data;
+      const currentResponse = await getNowUser();
+      const CRData = currentResponse.data;
+
+      let i = 0;
+      for (i = 0; i < allData.length; i++) {
+        if (allData[i].userId == CRData.userId) {
+          setUserData(allData[i]);
+          userRName = allData[i].realName;
+          break;
+        }
+      }
+    } catch (error) {
+      console.log("데이터 호출 실패", error);
+    }
+  }
 
   return (
     <>
@@ -164,7 +188,7 @@ export function Mypage() {
       <User>
         <UserInfo>
           <ul href="#">
-            <li>최건</li>
+            <li>{userRName}</li>
             <Myclass>
               <a href="#">내 강의 보기</a>
             </Myclass>
@@ -184,12 +208,12 @@ export function Mypage() {
               <LectureBox>강의1</LectureBox>
               <LectureBox>강의2</LectureBox>
             </LectureWrap>
-            {/* {data &&
+            {data &&
               data.map((dat) => (
                 <LectureWrap>
                   <LectureBox>{dat.lecture}</LectureBox>
                 </LectureWrap>
-              ))} */}
+              ))}
             <h2>☆ MOVIE DIC이 추천하는 BEST 강좌 ☆</h2>
             <BestLecture>
               <BestLectureList>

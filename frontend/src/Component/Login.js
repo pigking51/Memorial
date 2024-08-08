@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import "./Login.css";
 import { Modal, IDIsNull } from "./Modal";
-import axios from "axios";
 import { useState, useRef } from "react";
+import { userLogin, getNowUser, showAllUser } from "./api";
+import { Navigate } from "react-router-dom";
 
 const Logins = styled.div`
   height: auto;
@@ -100,6 +101,7 @@ export function Login() {
   let userEmail = "";
 
   const [data, setData] = useState(null);
+  const [nowUserName, setNowUserName] = useState("");
 
   const IDRef = useRef();
   const PWRef = useRef();
@@ -116,8 +118,8 @@ export function Login() {
   // LoginBtn.addEventListener('click', IDIsNull());
   async function InfoCheck() {
     const loginData = {
-      userId: "pepe",
-      password: "1",
+      userId: IDRef.current.value,
+      password: PWRef.current.value,
     };
 
     console.log(loginData);
@@ -138,11 +140,33 @@ export function Login() {
         const ModalText = "PW를 잘못입력했습니다.";
         Modal(ModalTitle, ModalText);
       } else {
-        const response = await axios.post(urlLogin, {
-          loginData,
-        });
+        const response = await userLogin(loginData);
         if (response.data.resultCode == "SUCCESS") {
-          console.log(response.data);
+          sessionStorage.setItem("JWT-token", response.data.data.token);
+          console.log(sessionStorage.getItem("JWT-token"));
+          // getNowToken(sessionStorage.getItem("JWT-token"));
+
+          // 현재 세션호출
+          const currentResponse = await getNowUser();
+          const CRData = currentResponse.data;
+          // 정보 추출을 위한 유저정보 호출
+          const allResponse = await showAllUser();
+          const allData = allResponse.data;
+
+          let i = 0;
+          let yourName = "";
+          for (i = 0; i < allData.length; i++) {
+            if (allData[i].userId === CRData.data.userId) {
+              console.log(allData[i].realName);
+              yourName = allData[i].realName;
+              break;
+            } else {
+              console.log("이름찾기 오류");
+            }
+          }
+          if (window.confirm(`${yourName}님 환영합니다`)) {
+            window.location.href = `/home`;
+          }
         }
       }
     } catch (error) {
