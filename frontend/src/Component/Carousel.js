@@ -6,9 +6,9 @@ export function Carousel() {
     $jQ(".image a:first-child")
       .fadeOut(1000)
       .next("a")
-      .fadeIn(1000)
+      .fadeIn(2000)
       .end()
       .appendTo(".image");
-  }, 3000);
+  }, 4000);
   return () => clearInterval(intervals);
 }

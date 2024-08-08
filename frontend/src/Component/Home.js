@@ -32,7 +32,7 @@ export function Home() {
         </a>
       </div>
       <div className="greetings">
-        <span> 안녕하세요, MOVIE DIC 입니다 :) </span>
+        <span> 안녕하세요, MEMORIAL입니다 :) </span>
       </div>
     </>
   );
