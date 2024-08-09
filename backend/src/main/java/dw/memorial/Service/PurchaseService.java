@@ -1,5 +1,6 @@
 package dw.memorial.Service;
 
+import dw.memorial.Dto.LectureCounterDto;
 import dw.memorial.Exception.ResourceNotFoundException;
 import dw.memorial.Model.Purchase;
 import dw.memorial.Model.User;
@@ -63,4 +64,9 @@ public List<Purchase> getPurchaseListByCurrentUser(){
     }
 return purchaseRepository.findByUser(userOptional.get());
 }
+
+public List<LectureCounterDto> getLectureTop4(){
+        return purchaseRepository.getLectureTop4();
+}
+
 }

@@ -80,6 +80,7 @@ const Question = styled.div`
 let isHidden = true;
 export function FAQ() {
   const [FAQ_Item, setFAQ_Item] = useState(null);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     fetchFAQs();
@@ -116,10 +117,14 @@ export function FAQ() {
           {FAQ_Item &&
             FAQ_Item.map((item) => (
               <div key={item.faqId}>
-                <Question onClick={revealHidden}>{item.question}</Question>
-                <div className={`answer ${isHidden ? "hidden" : ""}`}>
-                  {item.answer}
-                </div>
+                <Question
+                  onClick={() => {
+                    setVisible(!visible);
+                  }}
+                >
+                  {item.question}
+                </Question>
+                {visible && <div className="answer">{item.answer} </div>}
               </div>
             ))}
         </FAQWrap>

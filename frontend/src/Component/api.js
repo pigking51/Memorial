@@ -64,8 +64,14 @@ export function getLectureDetailById(id) {
 
 // 마이페이지 관련 api
 export function getMyLecture(id) {
-  const url = `http://localhost:8080/products/purchase/${id}`;
+  const url = `http://localhost:8080/api/products/purchase/${id}`;
+  console.log(headers);
+  return axios.get(url, headers);
+}
 
+// 인기강의
+export function getLectureTop4() {
+  const url = `http://localhost:8080/api/products/purchase/top4`;
   return axios.get(url, headers);
 }
 

@@ -43,7 +43,6 @@ const Logout = styled.div`
 `;
 
 export function Navbar() {
-  console.log(sessionStorage.length);
   return (
     <>
       <Container>

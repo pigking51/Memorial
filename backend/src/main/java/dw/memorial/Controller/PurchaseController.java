@@ -1,5 +1,6 @@
 package dw.memorial.Controller;
 
+import dw.memorial.Dto.LectureCounterDto;
 import dw.memorial.Model.Purchase;
 import dw.memorial.Service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,8 @@ public class PurchaseController {
         return purchaseService.getAllPurchases();
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN,USER')")
-    @GetMapping("/products/purchase/{userId}")
+//    @PreAuthorize("hasAnyRole('ADMIN,USER')")
+    @GetMapping("/products/purchase/{userName}")
     public ResponseEntity<List<Purchase>> getPurchaseListByUserName(
             @PathVariable String userName){
     return new ResponseEntity<>(purchaseService.getPurchaseListByUser(userName),
@@ -44,5 +45,11 @@ public class PurchaseController {
     @GetMapping("/products/purchase/current")
     public List<Purchase> getPurchaseListByCurrentUser(){
         return purchaseService.getPurchaseListByCurrentUser();
+    }
+
+    @GetMapping("/products/purchase/top4")
+    public ResponseEntity<List<LectureCounterDto>> getLectureTop4(){
+        return new ResponseEntity<>(purchaseService.getLectureTop4(),
+                HttpStatus.OK);
     }
 }
