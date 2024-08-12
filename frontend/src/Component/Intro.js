@@ -63,6 +63,7 @@ const Bottom = styled.div`
 export function Intro() {
   return (
     <>
+      <img src="/images/banner/introBanner.png" alt="Intro Image" />
       <Container>
         <Title>
           <span>메모리얼 소개</span>
@@ -93,14 +94,15 @@ export function Intro() {
                 메모리얼의 사전적인 의미는 기념비, 기념비적인 것이라는 뜻으로
                 통하지만
                 <br />
-                오늘날 메모리얼의 의미는
-                <strong>기억과 참여, 소통이 이루어지는 공간적인 의미</strong>
-                를 부여하고 있습니다.
+                오늘날 메모리얼의 의미는 <strong>기억</strong>과{" "}
+                <strong>참여</strong>, <strong>소통</strong>이 이루어지는
+                공간적인 의미 를 부여하고 있습니다.
                 <br />
-                이곳에 오신 모두가 함께 소통하고 참여하며
+                이곳에 오신 모두가 함께 <strong>소통</strong>하고{" "}
+                <strong>참여</strong>하며
                 <br />
-                언젠가 이 순간을 다시 떠올렸을 때 추억이라 생각할 수 있는 공간이
-                되길 바랍니다.
+                언젠가 이 순간을 다시 떠올렸을 때 <strong>추억</strong>이라
+                생각할 수 있는 공간이 되길 바랍니다.
               </span>
             </Middle>
 

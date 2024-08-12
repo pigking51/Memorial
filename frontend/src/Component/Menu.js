@@ -92,10 +92,29 @@ export function Menu() {
       font-weight: bold;
     }
   `;
+  const Banner = styled.div`
+    background-color: rgb(235, 146, 174);
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    h1 {
+      font-size: 50px;
+    }
+    p {
+      font-size: 30px;
+    }
+  `;
 
   return (
     <>
-      <h1>카페메뉴가 와장창!</h1>
+      <Banner>
+        <h1>MENU</h1>
+        <p>메뉴</p>
+      </Banner>
       <Container>
         <Content>
           <Text>
@@ -120,21 +139,37 @@ export function Menu() {
           <ImageContainer>
             <ImageBox>
               <Image>
-                <img src="https://pixabay.com/ko/photos/%EC%BB%A4%ED%94%BC-%EC%9A%B0%EC%9C%A0-%EC%84%A4%ED%83%95-%EC%BB%A4%ED%94%BC-%ED%95%9C%EC%9E%94-563797/" />
+                <img src="/images/img/피스타치오.png" />
               </Image>
-              <p>커어피</p>
+              <p>
+                피스타치오 매직팝 플랫치노
+                <br />
+                4,500원
+              </p>
             </ImageBox>
             <ImageBox>
               <Image>
-                <p></p>
+                <p>
+                  <img src="/images/img/초당옥수수.png" />
+                </p>
               </Image>
-              <p></p>
+              <p>
+                초당옥수수 1인빙수
+                <br />
+                6,300원
+              </p>
             </ImageBox>
             <ImageBox>
               <Image>
-                <p></p>
+                <p>
+                  <img src="/images/img/크림폭포.png" />
+                </p>
               </Image>
-              <p></p>
+              <p>
+                바닐라 크림폭포 데니쉬
+                <br />
+                6,300원
+              </p>
             </ImageBox>
           </ImageContainer>
         </BtContent>
