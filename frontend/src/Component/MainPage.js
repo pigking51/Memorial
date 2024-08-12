@@ -24,7 +24,7 @@ const Section = styled.div`
 `;
 const Nav = styled.div`
   width: 100%;
-  background-color: dodgerblue;
+  background-color: white;
 `;
 const ContentBox = styled.div`
   width: 100%;

@@ -6,22 +6,25 @@ import { userLogout } from "./api";
 const Container = styled.div`
   width: 60%;
   display: flex;
-  background-color: dodgerblue;
   position: relative;
   gap: 56px;
   margin: 0 auto;
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: white;
+  color: #333;
   padding: 5px;
-  background-color: dodgerblue;
   transition: 0.5s;
-  &:hover {
-    background-color: blue;
+  &:first-of-type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: 100px;
+    margin-left: 50px;
   }
-  &:active {
-    background-color: darkblue;
+  &:hover {
+    color: #db365a;
   }
 `;
 const Logout = styled.div`
@@ -50,29 +53,29 @@ export function Navbar() {
         <StyledLink to="/">
           {/* <img src="/images/logo/logo.png" alt="상단로고" /> */}
           <img
-            src="/images/logo/memorial_text_white.png"
+            src="/images/logo/memorial_text.png"
             width="147"
             height="18"
             alt="상단로고"
           />
         </StyledLink>
         <StyledLink to="/intro">
-          <NavItem icon="ti ti-home" name="INTRO"></NavItem>
+          <NavItem name="INTRO"></NavItem>
         </StyledLink>
         <StyledLink to="/menu">
-          <NavItem icon="ti ti-menu" name="MENU"></NavItem>
+          <NavItem name="MENU"></NavItem>
         </StyledLink>
         <StyledLink to="/lecture">
-          <NavItem icon="ti ti-device-tv" name="LECTURE"></NavItem>
+          <NavItem name="LECTURE"></NavItem>
         </StyledLink>
         <StyledLink to="/franchise_Inquiry">
-          <NavItem icon="ti ti-building" name="FRANCHISE"></NavItem>
+          <NavItem name="FRANCHISE"></NavItem>
         </StyledLink>
         <StyledLink to="/FAQ">
-          <NavItem icon="ti ti-question" name="FAQ"></NavItem>
+          <NavItem name="FAQ"></NavItem>
         </StyledLink>
         <StyledLink to="/mypage">
-          <NavItem icon="ti ti-user" name="MYPAGE"></NavItem>
+          <NavItem name="MYPAGE"></NavItem>
         </StyledLink>
 
         {sessionStorage.length != 0 ? (
@@ -81,7 +84,7 @@ export function Navbar() {
           </Logout>
         ) : (
           <StyledLink to="/login">
-            <NavItem icon="ti ti-login" name="LOGIN"></NavItem>
+            <NavItem name="LOGIN"></NavItem>
           </StyledLink>
         )}
       </Container>
