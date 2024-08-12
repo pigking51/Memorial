@@ -62,6 +62,12 @@ export function getLectureDetailById(id) {
   return axios.get(url, headers);
 }
 
+// 회원가입 관련 api
+export function userRegister(data) {
+  const url = `http://localhost:8080/user/signup`;
+  return axios.post(url, data);
+}
+
 // 마이페이지 관련 api
 export function getMyLecture(id) {
   const url = `http://localhost:8080/api/products/purchase/${id}`;

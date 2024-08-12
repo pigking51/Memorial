@@ -157,7 +157,7 @@ const AddressInfo = styled.div`
     border-radius: 4px;
     border: none;
   }
-  &:active {
+  button:active {
     opacity: 0.85;
   }
 `;
@@ -199,7 +199,7 @@ const InfoAgree1Container = styled.div`
     border: 1px solid #8c8c8c;
     color: #8c8c8c;
   }
-  &:active {
+  button:active {
     opacity: 0.85;
   }
 `;
@@ -226,6 +226,9 @@ const InfoAgree2Container = styled.div`
     border-radius: 4px;
     border: 1px solid #8c8c8c;
     color: #8c8c8c;
+  }
+  button:active {
+    opacity: 0.85;
   }
 `;
 

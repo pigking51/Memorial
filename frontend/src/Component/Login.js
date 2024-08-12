@@ -3,7 +3,14 @@ import "./Login.css";
 import { Modal, IDIsNull } from "./Modal";
 import { useState, useRef } from "react";
 import { userLogin, getNowUser, showAllUser } from "./api";
-import { Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Link,
+  Navigate,
+  Route,
+  useNavigate,
+} from "react-router-dom";
+import { SignUp } from "./SignUp";
 
 const Logins = styled.div`
   height: auto;
@@ -106,6 +113,11 @@ export function Login() {
   const IDRef = useRef();
   const PWRef = useRef();
 
+  const navigate = useNavigate();
+  const goToSignup = () => {
+    navigate("/SignUp");
+  };
+
   function IDInput(e) {
     let InputId = e.target.value;
     console.log(InputId);
@@ -177,6 +189,7 @@ export function Login() {
       alert("뭔지모르지만 오류뜸");
     }
   }
+
   return (
     <>
       {/* 로그인 시작 */}
@@ -203,7 +216,7 @@ export function Login() {
           <Empty></Empty>
           <BtnWrap>
             <LoginBtn onClick={InfoCheck}>로그인</LoginBtn>
-            <SignupBtn onClick="">회원가입</SignupBtn>
+            <SignupBtn onClick={goToSignup}> 회원가입</SignupBtn>
           </BtnWrap>
         </LoginBox>
       </Logins>
