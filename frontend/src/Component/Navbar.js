@@ -16,6 +16,7 @@ const StyledLink = styled(Link)`
   color: white;
   padding: 5px;
   background-color: dodgerblue;
+  transition: 0.5s;
   &:hover {
     background-color: blue;
   }
@@ -49,9 +50,9 @@ export function Navbar() {
         <StyledLink to="/">
           {/* <img src="/images/logo/logo.png" alt="상단로고" /> */}
           <img
-            src="/images/logo/Memorial.png"
-            width="80"
-            height="80"
+            src="/images/logo/memorial_text_white.png"
+            width="147"
+            height="18"
             alt="상단로고"
           />
         </StyledLink>

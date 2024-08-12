@@ -65,7 +65,7 @@ export function Intro() {
     <>
       <Container>
         <Title>
-          <span> 메모리얼 소개</span>
+          <span>메모리얼 소개</span>
         </Title>
 
         <Contents>
@@ -73,10 +73,10 @@ export function Intro() {
             <a href="#">
               {/* <img src="./images/logo/logo2.png" alt="로고2" /> */}
               <img
-                src="./images/logo/Memorial.png"
+                src="./images/logo/memorialLogo.png"
                 width="390"
                 height="390"
-                alt="로고2"
+                alt="로고"
               />
             </a>
           </Logo>
