@@ -9,6 +9,8 @@ const Container = styled.div`
   position: relative;
   gap: 56px;
   margin: 0 auto;
+  align-items: center;
+  justify-content: center;
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -21,7 +23,7 @@ const StyledLink = styled(Link)`
     align-items: center;
     width: fit-content;
     height: 100px;
-    margin-left: 50px;
+    /* margin-left: 50px; */
   }
   &:hover {
     color: #db365a;

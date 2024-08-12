@@ -1,38 +1,24 @@
-import { Carousel } from "./Carousel";
+import styled from "styled-components";
 import { useEffect } from "react";
 
-export function Home() {
-  useEffect(() => {
-    const moveImage = Carousel();
+const ImageWrap = styled.div`
+  width: 100%;
+  height: 370px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`;
 
-    return moveImage;
-  }, []);
+export function Home() {
   return (
     <>
-      <Carousel />
-      <h1>메인화면입니다.</h1>
-      <div className="image">
-        <a href="#">
-          <img
-            src="/images/banner/mainpagebanner/event_1.png"
-            alt="임시이미지"
-          />
-        </a>
-        <a href="#">
-          <img
-            src="/images/banner/mainpagebanner/event_2.png"
-            alt="임시이미지2"
-          />
-        </a>
-        <a href="#">
-          <img
-            src="/images/banner/mainpagebanner/event_3.png"
-            alt="임시이미지3"
-          />
-        </a>
-      </div>
+      <ImageWrap>
+        <img src="/images/banner/titleBanner_1.png" alt="Title Image" />
+      </ImageWrap>
+      <div className="image"></div>
       <div className="greetings">
-        <span> 안녕하세요, MEMORIAL입니다 :) </span>
+        <span> 환영합니다, MEMORIAL입니다 :) </span>
       </div>
     </>
   );

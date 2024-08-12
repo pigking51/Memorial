@@ -25,9 +25,14 @@ const Section = styled.div`
 const Nav = styled.div`
   width: 100%;
   background-color: white;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 `;
 const ContentBox = styled.div`
   width: 100%;
+
   /* margin-top: 30px; */
 `;
 

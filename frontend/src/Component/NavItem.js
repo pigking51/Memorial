@@ -7,7 +7,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: 3px;
+  /* margin-top: 3px; */
   span {
     font-size: 1.1rem;
     font-weight: bold;
