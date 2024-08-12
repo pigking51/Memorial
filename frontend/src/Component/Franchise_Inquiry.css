@@ -4,11 +4,23 @@
 #Yes {
   margin-right: 20px;
 }
+#A_Yes {
+  margin-right: 20px;
+}
+#B_Yes {
+  margin-right: 20px;
+}
 
 #NoLabel {
   margin-right: 10px;
 }
 
 #No {
+  margin-right: 20px;
+}
+#A_No {
+  margin-right: 20px;
+}
+#B_No {
   margin-right: 20px;
 }

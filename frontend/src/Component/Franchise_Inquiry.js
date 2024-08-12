@@ -118,7 +118,7 @@ const Yes = styled.div`
   }
 `;
 const No = styled.div`
-  margin-right: 20px;
+  /* margin-right: 20px; */
   display: flex;
   align-items: center;
   label {
@@ -157,7 +157,7 @@ const AddressInfo = styled.div`
     border-radius: 4px;
     border: none;
   }
-  &:active {
+  button:active {
     opacity: 0.85;
   }
 `;
@@ -199,7 +199,7 @@ const InfoAgree1Container = styled.div`
     border: 1px solid #8c8c8c;
     color: #8c8c8c;
   }
-  &:active {
+  button:active {
     opacity: 0.85;
   }
 `;
@@ -226,6 +226,9 @@ const InfoAgree2Container = styled.div`
     border-radius: 4px;
     border: 1px solid #8c8c8c;
     color: #8c8c8c;
+  }
+  button:active {
+    opacity: 0.85;
   }
 `;
 
@@ -328,11 +331,11 @@ export function Franchise_Inquiry() {
           <Radio>
             <Yes>
               <label for="Yes">있음</label>
-              <input type="radio" value="Yes" name="agree" />
+              <input type="radio" value="Yes" name="agree" id="Yes" />
             </Yes>
             <No>
               <label for="No">없음</label>
-              <input type="radio" value="No" name="agree" />
+              <input type="radio" value="No" name="agree" id="No" />
             </No>
           </Radio>
         </Store>
@@ -369,14 +372,14 @@ export function Franchise_Inquiry() {
             </p>
             <InfoAgree1Container>
               <button>상세보기</button>
-              <label for="Yes" id="YesLabel">
+              <label for="A_Yes" id="YesLabel">
                 동의합니다.
               </label>
-              <input type="radio" value="Yes" name="agree" id="Yes" />
-              <label for="No" id="NoLabel">
+              <input type="radio" value="Yes" name="agree" id="A_Yes" />
+              <label for="A_No" id="NoLabel">
                 동의하지 않습니다.
               </label>
-              <input type="radio" value="No" name="agree" id="No" />
+              <input type="radio" value="No" name="agree" id="A_No" />
             </InfoAgree1Container>
           </InfoAgree1>
         </InfoAgree>
@@ -386,14 +389,14 @@ export function Franchise_Inquiry() {
           </p>
           <InfoAgree2Container>
             <button>상세보기</button>
-            <label for="Yes" id="YesLabel">
+            <label for="B_Yes" id="YesLabel">
               동의합니다.
             </label>
-            <input type="radio" value="Yes" name="agree" id="Yes" />
-            <label for="No" id="NoLabel">
+            <input type="radio" value="Yes" name="agree" id="B_Yes" />
+            <label for="B_No" id="NoLabel">
               동의하지 않습니다.
             </label>
-            <input type="radio" value="No" name="agree" id="No" />
+            <input type="radio" value="No" name="agree" id="B_No" />
           </InfoAgree2Container>
         </InfoAgree2>
       </Container>

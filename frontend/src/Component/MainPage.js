@@ -14,6 +14,7 @@ import { LectureWrapper } from "./LectureWrapper";
 import { FAQ } from "./FAQ";
 import { Mypage } from "./Mypage";
 import { Footer } from "./Footer";
+import { SignUp } from "./SignUp";
 
 const Container = styled.div`
   width: 100vw;
@@ -32,7 +33,6 @@ const Nav = styled.div`
 `;
 const ContentBox = styled.div`
   width: 100%;
-
   /* margin-top: 30px; */
 `;
 
@@ -73,6 +73,7 @@ export function MainPage() {
                 <Route path="/FAQ" element={<FAQ />} />
                 <Route path="/mypage" element={<Mypage />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/SignUp" element={<SignUp />} />
               </Routes>
             </ContentBox>
           </Section>
