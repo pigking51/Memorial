@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2206d9c-3204-41df-9423-dea1ad507682" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Controller/PurchaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Controller/PurchaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Repository/PurchaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Repository/PurchaseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Service/PurchaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Service/PurchaseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/PurchaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/PurchaseController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/PurchaseRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/PurchaseRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/PurchaseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/PurchaseService.class" afterDir="false" />
-    </list>
+    <list default="true" id="f2206d9c-3204-41df-9423-dea1ad507682" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

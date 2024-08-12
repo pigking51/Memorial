@@ -99,6 +99,11 @@ const Store = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  margin: 20px 0;
+`;
+const Radio = styled.div`
+  display: flex;
 `;
 const Yes = styled.div`
   margin-right: 20px;
@@ -317,14 +322,19 @@ export function Franchise_Inquiry() {
         </Email>
 
         <Store>
-          <Yes>
-            <label for="Yes">있음</label>
-            <input type="radio" value="Yes" name="agree" />
-          </Yes>
-          <No>
-            <label for="No">없음</label>
-            <input type="radio" value="No" name="agree" />
-          </No>
+          <p>
+            희망지역점포<span>*</span>
+          </p>
+          <Radio>
+            <Yes>
+              <label for="Yes">있음</label>
+              <input type="radio" value="Yes" name="agree" />
+            </Yes>
+            <No>
+              <label for="No">없음</label>
+              <input type="radio" value="No" name="agree" />
+            </No>
+          </Radio>
         </Store>
 
         <Address>
