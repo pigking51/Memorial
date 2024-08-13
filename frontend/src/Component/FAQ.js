@@ -115,16 +115,16 @@ export function FAQ() {
       <FAQContainer>
         <FAQWrap>
           {FAQ_Item &&
-            FAQ_Item.map((item) => (
+            FAQ_Item.map((item, index) => (
               <div key={item.faqId}>
                 <Question
                   onClick={() => {
-                    setVisible(!visible);
+                    setVisible(!visible[index]);
                   }}
                 >
                   {item.question}
                 </Question>
-                {visible && <div className="answer">{item.answer} </div>}
+                {visible[index] && <div className="answer">{item.answer} </div>}
               </div>
             ))}
         </FAQWrap>

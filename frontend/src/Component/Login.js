@@ -109,6 +109,10 @@ export function Login() {
 
   const [data, setData] = useState(null);
   const [nowUserName, setNowUserName] = useState("");
+  const [isReveal, setIsReveal] = useState(true);
+  const [showPW, setShowPW] = useState("password");
+  const [CHborder, setCHborder] = useState(`2px solid #00d1fe`);
+  const [CIborder, setCIborder] = useState(`2px solid #00d1fe`);
 
   const IDRef = useRef();
   const PWRef = useRef();
@@ -139,18 +143,37 @@ export function Login() {
     let ModalText = "";
 
     try {
-      if (IDRef.current == null && PWRef.current == null) {
-        ModalTitle = "입력오류";
-        ModalText = "ID 혹은 PW를 입력하지 않았습니다.";
-        Modal(ModalTitle, ModalText);
-      } else if (IDRef.current == null) {
+      const nowResponse = await showAllUser();
+      const NRData = nowResponse.data;
+      let i = 0;
+      let ID_arr = [];
+
+      for (i = 0; i < NRData.length; i++) {
+        ID_arr.push(NRData[i].userId);
+      }
+
+      console.log(IDRef.current.value);
+      console.log(PWRef.current.value);
+      if (IDRef.current.value == "") {
         const ModalTitle = "입력오류";
-        const ModalText = "ID를 잘못입력했습니다.";
+        const ModalText = "ID를 입력하지 않았습니다.";
         Modal(ModalTitle, ModalText);
-      } else if (PWRef.current == null) {
+        window.confirm(`ID를 입력하지 않았습니다.`);
+        if (CHborder != `2px solid #00d1fe`) {
+          setCHborder(`2px solid #00d1fe`);
+        }
+        setCIborder(`4px solid red`);
+        return;
+      } else if (PWRef.current.value == "") {
         const ModalTitle = "입력오류";
-        const ModalText = "PW를 잘못입력했습니다.";
+        const ModalText = "PW를 입력하지 않았습니다.";
         Modal(ModalTitle, ModalText);
+        window.confirm(`PW를 입력하지 않았습니다.`);
+        if (CIborder != `2px solid #00d1fe`) {
+          setCIborder(`2px solid #00d1fe`);
+        }
+        setCHborder(`4px solid red`);
+        return;
       } else {
         const response = await userLogin(loginData);
         if (response.data.resultCode == "SUCCESS") {
@@ -185,8 +208,25 @@ export function Login() {
       console.log("아이디 비번체크 오류", error);
       ModalTitle = "입력오류";
       ModalText = "ID 혹은 PW가 일치하지 않습니다..";
+
       Modal(ModalTitle, ModalText);
-      alert("뭔지모르지만 오류뜸");
+      window.confirm(`ID 혹은 PW가 일치하지 않습니다.`);
+      setCIborder(`4px solid red`);
+      setCHborder(`4px solid red`);
+    }
+  }
+
+  function revealToggle() {
+    if (isReveal) {
+      setIsReveal(false);
+      setShowPW("text");
+      setCHborder(`4px solid red`);
+      console.log("반응확인");
+    } else {
+      setIsReveal(true);
+      setShowPW("password");
+      setCHborder(`2px solid #00d1fe`);
+      console.log("반응확인22");
     }
   }
 
@@ -202,16 +242,20 @@ export function Login() {
             ref={IDRef}
             placeholder="ID"
             onChange={IDInput}
+            style={{ border: `${CIborder}` }}
           />
-          <PasswordWrap>
+          <PasswordWrap style={{ border: `${CHborder}` }}>
             <input
-              type="password"
+              type={showPW}
               id="password"
               ref={PWRef}
               placeholder="비밀번호"
               onChange={PWInput}
             />
-            <span className="togBtn revealBtn"></span>
+            <span
+              onClick={revealToggle}
+              className={`togBtn ${isReveal ? `revealBtn` : `hideBtn`}`}
+            ></span>
           </PasswordWrap>
           <Empty></Empty>
           <BtnWrap>
