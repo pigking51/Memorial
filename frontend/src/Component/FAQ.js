@@ -119,12 +119,12 @@ export function FAQ() {
               <div key={item.faqId}>
                 <Question
                   onClick={() => {
-                    setVisible(!visible[index]);
+                    setVisible(!visible);
                   }}
                 >
                   {item.question}
                 </Question>
-                {visible[index] && <div className="answer">{item.answer} </div>}
+                {visible && <div className="answer">{item.answer} </div>}
               </div>
             ))}
         </FAQWrap>

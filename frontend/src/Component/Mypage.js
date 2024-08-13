@@ -1,6 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { getNowUser, getMyLecture, showAllUser, getLectureTop4 } from "./api";
+import {
+  getNowUser,
+  getMyLecture,
+  showAllUser,
+  getLectureTop4,
+  modifyData,
+} from "./api";
 import "./Mypage.css";
 
 // 강의정보
@@ -79,8 +85,12 @@ const UserInfo = styled.div`
     }
   }
 `;
-const Myclass = styled.li``;
-const UserEdit = styled.li``;
+const Myclass = styled.li`
+  cursor: pointer;
+`;
+const UserEdit = styled.li`
+  cursor: pointer;
+`;
 const UserData = styled.div`
   width: 100%;
   overflow: hidden;
@@ -306,6 +316,88 @@ export function Mypage() {
     mypageContent();
   }, []);
 
+  let CPassword = "";
+  let CHPassword = "";
+  let CEmail = "";
+  let CName = "";
+  let CGender = "";
+
+  const CPWRef = useRef();
+  const CHPWRef = useRef();
+  const CEmailRef = useRef();
+  const CNameRef = useRef();
+  const CGenderRef = useRef();
+
+  function inputPW() {
+    CPassword = CPWRef.current.value;
+    console.log(CPassword);
+  }
+  function inputCHPW() {
+    CHPassword = CHPWRef.current.value;
+    console.log(CHPassword);
+  }
+  function inputEmail() {
+    CEmail = CEmailRef.current.value;
+    console.log(CEmail);
+  }
+  function inputGender() {
+    CGender = CGenderRef.current.value;
+    console.log(CGender);
+  }
+  function inputName() {
+    CName = CNameRef.current.value;
+    console.log(CName);
+  }
+  async function modifyUser() {
+    const data = {
+      password: CPassword,
+      email: CEmail,
+      gender: CGender,
+      realName: CName,
+    };
+    if (CPassword != CHPassword) {
+      window.confirm(`비밀번호가 일치하지 않습니다!`);
+      return;
+    }
+    try {
+      const currentResponse = await getNowUser();
+      const CRUserId = currentResponse.data.data.userId;
+      console.log(CRUserId);
+
+      const modifyResponse = await modifyData(CRUserId, data);
+      if (modifyResponse) {
+        window.confirm(`회원정보 수정 완료!`);
+      }
+    } catch (error) {
+      console.log("회원정보 수정 오류", error);
+    }
+  }
+
+  async function isEmailDupe() {
+    try {
+      const response = await showAllUser();
+      const data = response.data;
+      let i = 0;
+      let email_arr = [];
+      for (i = 0; i < data.length; i++) {
+        email_arr.push(data[i].email);
+      }
+      if (email_arr.indexOf(CEmailRef.current.value) == -1) {
+        if (
+          !window.confirm(
+            `사용 가능한 Email입니다! 해당 Email을 사용하시겠습니까?`
+          )
+        ) {
+          CEmailRef.current.value = "";
+        }
+      } else {
+        window.confirm(`중복된 Email입니다! 다른 Email을 입력해주세요`);
+      }
+    } catch (error) {
+      console.log(`Email 중복확인 오류`, error);
+    }
+  }
+
   async function mypageContent() {
     try {
       // 내 정보
@@ -337,6 +429,8 @@ export function Mypage() {
       const LRData = LecRankResponse.data;
       console.log(LRData);
       setLecData(LRData);
+
+      // 회원정보 수정
     } catch (error) {
       console.log("데이터 호출 실패", error);
     }
@@ -427,32 +521,63 @@ export function Mypage() {
               <h2>회원정보 수정</h2>
 
               <Write>
-                <Password type="password" placeholder="패스워드" />
-                <PasswordCheck type="password" placeholder="패스워드확인" />
+                <Password
+                  type="password"
+                  ref={CPWRef}
+                  placeholder="패스워드"
+                  onChange={inputPW}
+                />
+                <PasswordCheck
+                  type="password"
+                  ref={CHPWRef}
+                  placeholder="패스워드확인"
+                  onChange={inputCHPW}
+                />
 
                 <EmailWrap>
-                  <Email type="email" placeholder="이메일" />
-                  <EmailCheck>중복체크</EmailCheck>
+                  <Email
+                    type="email"
+                    ref={CEmailRef}
+                    placeholder="이메일"
+                    onChange={inputEmail}
+                  />
+                  <EmailCheck onClick={isEmailDupe}>중복체크</EmailCheck>
                 </EmailWrap>
 
-                <Name type="text" placeholder="이름" />
+                <Name
+                  type="text"
+                  ref={CNameRef}
+                  placeholder="이름"
+                  onChange={inputName}
+                />
 
                 <Gender>
-                  <input type="radio" name="gender" value="MALE" id="male" />
+                  <input
+                    type="radio"
+                    ref={CGenderRef}
+                    name="gender"
+                    value="MALE"
+                    id="male"
+                    onChange={inputGender}
+                  />
                   <label for="male">남성</label>
 
                   <input
                     type="radio"
+                    ref={CGenderRef}
                     name="gender"
                     value="FEMALE"
                     id="female"
+                    onChange={inputGender}
                   />
                   <label for="female">여성</label>
                 </Gender>
 
                 <Btnwrap>
                   <button className="backBtn boxBtn">취소</button>
-                  <button className="boxBtn register">수정하기</button>
+                  <button className="boxBtn register" onClick={modifyUser}>
+                    수정하기
+                  </button>
                 </Btnwrap>
               </Write>
             </UserModify>
