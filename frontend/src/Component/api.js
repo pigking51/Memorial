@@ -81,6 +81,12 @@ export function getLectureTop4() {
   return axios.get(url, headers);
 }
 
+// 회원정보 수정
+export function modifyData(id, data) {
+  const url = `http://localhost:8080/user/modify/${id}`;
+  return axios.patch(url, data, headers);
+}
+
 // 로그아웃
 export function userLogout() {
   // const url = `http://localhost:8080/user/logout`;

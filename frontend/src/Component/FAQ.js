@@ -115,7 +115,7 @@ export function FAQ() {
       <FAQContainer>
         <FAQWrap>
           {FAQ_Item &&
-            FAQ_Item.map((item) => (
+            FAQ_Item.map((item, index) => (
               <div key={item.faqId}>
                 <Question
                   onClick={() => {

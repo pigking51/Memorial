@@ -24,6 +24,7 @@ const StyledLink = styled(Link)`
     width: fit-content;
     height: 100px;
     /* margin-left: 50px; */
+    cursor: pointer;
   }
   &:hover {
     color: #db365a;
@@ -36,19 +37,24 @@ const Logout = styled.div`
   align-items: center;
   text-decoration: none;
   font-weight: bold;
-  color: white;
+  color: #333;
   padding: 5px;
-  background-color: dodgerblue;
   cursor: pointer;
   &:hover {
-    background-color: blue;
-  }
-  &:active {
-    background-color: darkblue;
+    color: #db365a;
   }
 `;
 
 export function Navbar() {
+  function isLogin() {
+    if (sessionStorage.length == 0) {
+      if (window.confirm(`로그인 해 주세요!`)) {
+        window.location.href = `Login`;
+      } else {
+        window.location.reload();
+      }
+    }
+  }
   return (
     <>
       <Container>
@@ -76,7 +82,7 @@ export function Navbar() {
         <StyledLink to="/FAQ">
           <NavItem name="FAQ"></NavItem>
         </StyledLink>
-        <StyledLink to="/mypage">
+        <StyledLink onClick={isLogin} to="/mypage">
           <NavItem name="MYPAGE"></NavItem>
         </StyledLink>
 
