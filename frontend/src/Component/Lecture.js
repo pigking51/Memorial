@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { IconBack } from "./Icons";
-import { getLectureDetailById, getMyLecture, getNowUser } from "./api";
+import {
+  getLectureDetailById,
+  getMyLecture,
+  getNowUser,
+  saveLecture,
+} from "./api";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -87,14 +92,13 @@ export function Lecture() {
       console.log("오류발생", error);
     }
   }
-  console.log(detail);
   async function subOrStudy() {
     try {
       const currentResponse = await getNowUser();
       const CRUserId = currentResponse.data.data.userId;
+      console.log(currentResponse.data.data);
       const response = await getMyLecture(CRUserId);
       const data = response.data;
-      console.log(data);
       let i = 0;
       let lec_arr = [];
       for (i = 0; i < data.length; i++) {
@@ -106,6 +110,34 @@ export function Lecture() {
       }
     } catch (error) {
       console.log("구독여부 확인오류", error);
+    }
+  }
+  async function doSubscribe() {
+    try {
+      const currentResponse = await getNowUser();
+      const CURLECResponse = await getLectureDetailById(parseInt(id, 10));
+      const userData = currentResponse.data.data.userId;
+      const userData2 = currentResponse.data.data.authority[0].authority;
+      const lectureData = CURLECResponse.data;
+      console.log(CURLECResponse.data);
+      console.log(userData2);
+      console.log(currentResponse.data.data);
+      const data = {
+        user: { userId: userData, authority: { authorityName: userData2 } },
+        lecture: lectureData,
+      };
+      const response = await saveLecture(data);
+      if (response.data != null) {
+        if (
+          window.confirm(`강의를 신청했습니다. 강의를 들으러 가시겠습니까?`)
+        ) {
+          window.location.href = `Home`;
+        } else {
+          window.location.reload();
+        }
+      }
+    } catch (error) {
+      console.log("구독신청과정 오류", error);
     }
   }
   return (
@@ -133,9 +165,11 @@ export function Lecture() {
                   <b>설명</b> : {detail.text}
                 </p>
                 {isSubscribe ? (
-                  <Study>강의듣기</Study>
+                  <Study onClick={() => navigate(`Streaming/${id}`)}>
+                    강의듣기
+                  </Study>
                 ) : (
-                  <Subscribe>신청하기</Subscribe>
+                  <Subscribe onClick={doSubscribe}>신청하기</Subscribe>
                 )}
               </p>
             </Content>

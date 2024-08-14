@@ -12,14 +12,9 @@ import lombok.Setter;
 @Setter
 public class LikeDto {
 
-    private long postId;
-    private long commentId;
     private String userId;
-
     public LikeDto toLikeDtoFromLike(Like like){
         LikeDto likeDto = new LikeDto();
-        likeDto.setPostId(getPostId());
-        likeDto.setCommentId(getCommentId());
         likeDto.setUserId(getUserId());
 
         return likeDto;

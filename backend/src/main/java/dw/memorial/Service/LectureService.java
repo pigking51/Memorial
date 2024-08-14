@@ -42,7 +42,6 @@ public class LectureService {
             Lectures temp = lecturesOptional.get();
             temp.setLectureTitle(lectures.getLectureTitle());
             temp.setMajor(lectures.getMajor());
-            temp.setPrice(lectures.getPrice());
             temp.setImage(lectures.getImage());
             temp.setText(lectures.getText());
             temp.setLectureUrl(lectures.getLectureUrl());

@@ -12,6 +12,7 @@ const ImageWrap = styled.div`
 `;
 
 export function Home() {
+  
   return (
     <>
       <ImageWrap>

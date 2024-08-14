@@ -37,9 +37,14 @@ export function TopDownAction() {
   }, []);
   return (
     <>
-      <h1>Top Down Action Game</h1>
       <button onClick={() => setPlayingGame(true)}>StartGame</button>
-      <button onClick={() => sendMessage("Player", "Attack")}>Attack</button>
+      <button
+        onClick={() =>
+          sendMessage("CafeDecorator", "OpenPopup(tilemap, tiles)")
+        }
+      >
+        Attack
+      </button>
       <Container>
         {playingGame ? (
           <Unity

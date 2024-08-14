@@ -311,6 +311,7 @@ export function Mypage() {
   const [userCData, setUserCData] = useState(null);
   const [data, setData] = useState(null);
   const [lecData, setLecData] = useState(null);
+  const [isLecNull, setIsLecNull] = useState(false);
 
   useEffect(() => {
     mypageContent();
@@ -430,6 +431,12 @@ export function Mypage() {
       console.log(LRData);
       setLecData(LRData);
 
+      // 강의 구독여부
+
+      if (MRData.length == 0) {
+        setIsLecNull(true);
+      }
+
       // 회원정보 수정
     } catch (error) {
       console.log("데이터 호출 실패", error);
@@ -488,10 +495,14 @@ export function Mypage() {
             <Mylecture>
               <h2>내 강의 보기</h2>
               <LectureWrap>
-                {data &&
+                {isLecNull == false ? (
+                  data &&
                   data.map((dat) => (
                     <LectureBox>{dat.lecture.lectureTitle}</LectureBox>
-                  ))}
+                  ))
+                ) : (
+                  <LectureBox>구독한 강의가 없습니다</LectureBox>
+                )}
               </LectureWrap>
               <h2>☆ MEMORIAL이 추천하는 BEST 강좌 ☆</h2>
               <BestLecture>

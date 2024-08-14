@@ -12,14 +12,9 @@ let chanBear = "";
 let headers = {
   headers: {
     accept: "application/json",
-    Authorization:
-      // "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NDFmN2JmMDgwOWMxZGFlNTViYzgyMTkzNDcwMTQwMiIsIm5iZiI6MTcyMTg4NDQ4OS4wMDI2MTcsInN1YiI6IjY0Njk2MzUwYTUwNDZlMDBlNWI2NjBkMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.r3fi44yAiziGcROaufG04pkpjYAp71lcMtXXM9bXbPY",
-      // "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwZXBlIiwiYXV0aCI6IlJPTEVfQURNSU4iLCJleHAiOjE3MjMxNzQ2ODR9.p8ALBrsIUmE0WgZoFp-QOdNtI9gwdWIbhLQ0I3H7zNnPs5QopdCLpdc9zp9n37i85SYUOcBmEy1G4DYGwfsRAw",
-      // `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwZXBlIiwiYXV0aCI6IlJPTEVfQURNSU4iLCJleHAiOjE3MjMxNzQ2ODR9.p8ALBrsIUmE0WgZoFp-QOdNtI9gwdWIbhLQ0I3H7zNnPs5QopdCLpdc9zp9n37i85SYUOcBmEy1G4DYGwfsRAw`,
-      // // `Bearer ${isSession ? sessionStorage.getItem("JWT-token") : ""}`,
-      `Bearer ${
-        sessionStorage.length != 0 ? sessionStorage.getItem("JWT-token") : ""
-      }`,
+    Authorization: `Bearer ${
+      sessionStorage.length != 0 ? sessionStorage.getItem("JWT-token") : ""
+    }`,
   },
 };
 
@@ -70,14 +65,14 @@ export function userRegister(data) {
 
 // 마이페이지 관련 api
 export function getMyLecture(id) {
-  const url = `http://localhost:8080/api/products/purchase/${id}`;
+  const url = `http://localhost:8080/api/products/subscribe/${id}`;
   console.log(headers);
   return axios.get(url, headers);
 }
 
 // 인기강의
 export function getLectureTop4() {
-  const url = `http://localhost:8080/api/products/purchase/top4`;
+  const url = `http://localhost:8080/api/products/subscribe/top4`;
   return axios.get(url, headers);
 }
 
@@ -85,6 +80,13 @@ export function getLectureTop4() {
 export function modifyData(id, data) {
   const url = `http://localhost:8080/user/modify/${id}`;
   return axios.patch(url, data, headers);
+}
+
+// 강의 구독하기
+export function saveLecture(data) {
+  const url = `http://localhost:8080/api/products/subscribe`;
+
+  return axios.post(url, data, headers);
 }
 
 // 로그아웃

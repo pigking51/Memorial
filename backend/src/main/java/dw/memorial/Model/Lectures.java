@@ -24,9 +24,6 @@ public class Lectures {
     @Column(name = "major", nullable = false, length = 100)
     private String major;
 
-    @Column(name = "price", nullable = false)
-    private double price;
-
     @Column(name = "image", nullable = false, length = 65535)
     private String image;
 
