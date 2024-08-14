@@ -140,6 +140,9 @@ export function Lecture() {
       console.log("구독신청과정 오류", error);
     }
   }
+  function goToStreaming() {
+    window.location.href = `/streaming/${id}`;
+  }
   return (
     <Container>
       {detail && (
@@ -165,9 +168,7 @@ export function Lecture() {
                   <b>설명</b> : {detail.text}
                 </p>
                 {isSubscribe ? (
-                  <Study onClick={() => navigate(`Streaming/${id}`)}>
-                    강의듣기
-                  </Study>
+                  <Study onClick={goToStreaming}>강의듣기</Study>
                 ) : (
                   <Subscribe onClick={doSubscribe}>신청하기</Subscribe>
                 )}

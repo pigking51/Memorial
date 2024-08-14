@@ -15,6 +15,8 @@ import { FAQ } from "./FAQ";
 import { Mypage } from "./Mypage";
 import { Footer } from "./Footer";
 import { SignUp } from "./SignUp";
+import { Streaming } from "./Streaming";
+import { StreamingWrapper } from "./StreamingWrapper";
 
 const Container = styled.div`
   width: 100vw;
@@ -64,7 +66,10 @@ export function MainPage() {
                 <Route path="/menu" element={<Menu />} />
                 <Route path="/lecture" element={<LectureWrapper />}>
                   <Route index element={<Education />} />
-                  <Route path=":id" element={<Lecture />} />
+                  <Route index path=":id" element={<Lecture />} />
+                </Route>
+                <Route path="/streaming" element={<StreamingWrapper />}>
+                  <Route path=":id" element={<Streaming />} />
                 </Route>
                 <Route
                   path="/franchise_Inquiry"
