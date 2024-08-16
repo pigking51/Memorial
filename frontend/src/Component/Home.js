@@ -18,7 +18,9 @@ export function Home() {
         <img src="/images/banner/titleBanner_1.png" alt="Title Image" />
       </ImageWrap>
       {/* <div className="image"></div> */}
-      <div>{/* <TopDownAction /> */}</div>
+      <div>
+        <TopDownAction />
+      </div>
       <div className="greetings">
         <span> 환영합니다, MEMORIAL입니다 :) </span>
       </div>

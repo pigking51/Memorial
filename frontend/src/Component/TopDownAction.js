@@ -11,9 +11,8 @@ const Container = styled.div`
 
 export function TopDownAction() {
   const [playingGame, setPlayingGame] = useState(false);
-  const [isGameOver, setIsGameOver] = useState(false);
   const [userName, setUserName] = useState();
-  const [score, setScore] = useState();
+  const [likeScore, setLikeScore] = useState();
 
   const { unityProvider, sendMessage, addEventListener, removeEventListener } =
     useUnityContext({
@@ -23,22 +22,21 @@ export function TopDownAction() {
       codeUrl: "Build/testProject.wasm",
     });
 
-  function handleGameOver(userName, score) {
-    setIsGameOver(true);
+  function handleLike(userName, likeScore) {
     setUserName(userName);
-    setScore(score);
+    setLikeScore(likeScore);
   }
 
   useEffect(() => {
-    addEventListener("GameOver", handleGameOver);
+    addEventListener("LikeScores", handleLike);
     return () => {
-      removeEventListener("GameOver", handleGameOver);
+      removeEventListener("LikeScores", handleLike);
     };
   }, []);
   return (
     <>
       <button onClick={() => setPlayingGame(true)}>StartGame</button>
-      <button
+      {/* <button
         onClick={() =>
           sendMessage(
             "CafeDecorator",
@@ -51,7 +49,7 @@ export function TopDownAction() {
         }
       >
         Attack
-      </button>
+      </button> */}
       <Container>
         {playingGame ? (
           <Unity
@@ -63,8 +61,8 @@ export function TopDownAction() {
           />
         ) : null}
       </Container>
-      {isGameOver && (
-        <p>{`Game Over ${userName}! You've scored ${score} points.`}</p>
+      {playingGame && (
+        <p>{`${userName}! You've scored ${likeScore} points.`}</p>
       )}
     </>
   );
