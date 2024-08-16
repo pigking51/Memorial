@@ -40,7 +40,14 @@ export function TopDownAction() {
       <button onClick={() => setPlayingGame(true)}>StartGame</button>
       <button
         onClick={() =>
-          sendMessage("CafeDecorator", "OpenPopup(tilemap, tiles)")
+          sendMessage(
+            "CafeDecorator",
+            "OpenPopup",
+            JSON.stringify({
+              tilemap: tilemap,
+              tiles: tiles,
+            })
+          )
         }
       >
         Attack

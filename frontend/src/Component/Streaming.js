@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { getLectureDetailById } from "./api";
 
@@ -70,6 +70,7 @@ const SlideMenu = styled.div`
   top: 0;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 16px 0 0 16px;
+  transition: all 2s linear;
 `;
 const CloseSideMenu = styled.div`
   width: 100%;
@@ -188,6 +189,8 @@ const Next = styled.span`
 export function Streaming() {
   const { id } = useParams();
   const [lectureData, setLectureData] = useState();
+  const [isNone, setIsNone] = useState("none");
+  const navigate = useNavigate();
   useEffect(() => {
     showLectureVideo();
   }, []);
@@ -202,6 +205,12 @@ export function Streaming() {
       console.log("해당 컨텐츠 출력 오류", error);
     }
   }
+  function showSlide() {
+    setIsNone("block");
+  }
+  function hideSlide() {
+    setIsNone("none");
+  }
 
   return (
     <>
@@ -213,22 +222,22 @@ export function Streaming() {
       <Container>
         <Top>
           <Left>
-            <Logo>
+            <Logo onClick={() => navigate(-1)}>
               <img src="/images/icon/back.png" alt="뒤로가기" />
             </Logo>
             {lectureData && (
               <LectureTitle>{lectureData.lectureTitle}</LectureTitle>
             )}
           </Left>
-          <Hamburger>
+          <Hamburger onClick={showSlide}>
             <a>
               <img src="/images/icon/menu.png" alt="메뉴" />
             </a>
           </Hamburger>
         </Top>
-        <SlideMenu style={{ display: "none" }}>
+        <SlideMenu style={{ display: isNone }}>
           <CloseSideMenu>
-            <button>X</button>
+            <button onClick={hideSlide}>X</button>
           </CloseSideMenu>
           <Navi>
             <li>

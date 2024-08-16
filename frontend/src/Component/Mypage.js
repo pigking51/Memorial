@@ -130,6 +130,7 @@ const LectureBox = styled.div`
   margin-bottom: 15px;
   font-size: 25px;
   font-family: "GmarketSansMedium";
+  cursor: pointer;
   button {
     transition: 0.3s;
     width: 200px;
@@ -141,6 +142,7 @@ const LectureBox = styled.div`
     color: #fff;
     font-weight: bold;
     margin: 10px auto;
+    cursor: pointer;
   }
   &:hover {
     opacity: 0.6;
@@ -447,6 +449,10 @@ export function Mypage() {
   const [visible, setVisible] = useState(true);
   const [visible2, setVisible2] = useState(false);
 
+  function goToStreaming(lecId) {
+    window.location.href = `/streaming/${lecId}`;
+  }
+
   return (
     <>
       <Found>
@@ -498,7 +504,11 @@ export function Mypage() {
                 {isLecNull == false ? (
                   data &&
                   data.map((dat) => (
-                    <LectureBox>{dat.lecture.lectureTitle}</LectureBox>
+                    <LectureBox
+                      onClick={() => goToStreaming(dat.lecture.lectureId)}
+                    >
+                      {dat.lecture.lectureTitle}
+                    </LectureBox>
                   ))
                 ) : (
                   <LectureBox>구독한 강의가 없습니다</LectureBox>
