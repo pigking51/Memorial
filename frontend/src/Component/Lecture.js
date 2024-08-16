@@ -25,8 +25,11 @@ const Back = styled.div`
   cursor: pointer;
 `;
 const Img = styled.img`
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 `;
 const Content = styled.div`
   font-size: 1rem;
@@ -34,7 +37,7 @@ const Content = styled.div`
   color: #333;
 `;
 const Section = styled.div`
-  width: 60%;
+  width: 50%;
   margin: 0 auto;
   padding-bottom: 40px;
 `;
@@ -42,7 +45,7 @@ const Subscribe = styled.button`
   width: 100px;
   height: 30px;
   background-color: white;
-  color: #00deff;
+  color: rgb(235, 146, 174);
   border-width: 3px;
   font-weight: 700;
   text-align: center;
@@ -50,14 +53,14 @@ const Subscribe = styled.button`
   border-radius: 30px;
   cursor: pointer;
   font-size: 15px;
-  border: 2px solid #00d1fe;
+  border: 2px solid rgb(235, 146, 174);
   margin-left: 90%;
 `;
 const Study = styled.button`
   width: 100px;
   height: 30px;
   background-color: white;
-  color: #00deff;
+  color: rgb(235, 146, 174);
   border-width: 3px;
   font-weight: 700;
   text-align: center;
@@ -65,8 +68,25 @@ const Study = styled.button`
   border-radius: 30px;
   cursor: pointer;
   font-size: 15px;
-  border: 2px solid #00d1fe;
+  border: 2px solid rgb(235, 146, 174);
   margin-left: 90%;
+`;
+
+const Banner = styled.div`
+  background-color: rgb(235, 146, 174);
+  height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  h1 {
+    font-size: 50px;
+  }
+  p {
+    font-size: 30px;
+  }
 `;
 
 export function Lecture() {
@@ -144,42 +164,46 @@ export function Lecture() {
     window.location.href = `/streaming/${id}`;
   }
   return (
-    <Container>
-      {detail && (
-        <>
-          <Section>
-            <Header>
-              <h1>{detail.title}</h1>
-              <Back onClick={() => navigate(-1)}>
-                <IconBack />
-              </Back>
-            </Header>
-            <Img src={detail.image} />
-            <Content>
-              <p>
-                <b>타이틀</b> : {detail.lectureTitle}
-              </p>
-              <p>
-                <b>분야</b> : {detail.major}
-              </p>
-              <hr />
-              <p>
+    <>
+      <Banner>
+        <h1>Lecture</h1>
+        <p>강의</p>
+      </Banner>
+      <Container>
+        {detail && (
+          <>
+            <Section>
+              <Header>
+                <h1>{detail.title}</h1>
+                <Back onClick={() => navigate(-1)}>
+                  <IconBack />
+                </Back>
+              </Header>
+              <Img src={detail.image} />
+              <Content>
                 <p>
-                  <b>설명</b> : {detail.text}
+                  <b>타이틀</b> : {detail.lectureTitle}
                 </p>
-                {isSubscribe ? (
-                  <Study onClick={goToStreaming}>강의듣기</Study>
-                ) : (
-                  <Subscribe onClick={doSubscribe}>신청하기</Subscribe>
-                )}
-              </p>
-            </Content>
-            <Back onClick={() => navigate(-1)}>
-              <IconBack />
-            </Back>
-          </Section>
-        </>
-      )}
-    </Container>
+                <p>
+                  <b>분야</b> : {detail.major}
+                </p>
+                <hr />
+                <p>
+                  <p>
+                    <b>설명</b> : {detail.text}
+                  </p>
+                  {isSubscribe ? (
+                    <Study onClick={goToStreaming}>강의듣기</Study>
+                  ) : (
+                    <Subscribe onClick={doSubscribe}>신청하기</Subscribe>
+                  )}
+                </p>
+              </Content>
+              <Back onClick={() => navigate(-1)}>{/* <IconBack /> */}</Back>
+            </Section>
+          </>
+        )}
+      </Container>
+    </>
   );
 }

@@ -231,175 +231,195 @@ const InfoAgree2Container = styled.div`
     opacity: 0.85;
   }
 `;
-
+const Banner = styled.div`
+  background-color: rgb(235, 146, 174);
+  height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  h1 {
+    font-size: 50px;
+  }
+  p {
+    font-size: 30px;
+  }
+`;
 export function Franchise_Inquiry() {
   return (
     <>
+      <Banner>
+        <h1>Franchise</h1>
+        <p>창업문의</p>
+      </Banner>
       <Title>창업문의를 남겨주시면 상세하게 설명드리겠습니다.</Title>
-
-      <Container>
-        <Brand>
-          <p>
-            <span></span>
-          </p>
-          <select>
-            <option name="빽다방" id="1" value="빽다방">
-              빽다방
-            </option>
-            <option name="빽다방" id="1" value="스타벅스">
-              스타벅스
-            </option>
-            <option name="빽다방" id="1" value="엔젤인어스">
-              엔젤인어스
-            </option>
-          </select>
-        </Brand>
-
-        <Name>
-          <p>
-            이름<span>*</span>
-          </p>
-          <input type="text" placeholder="이름" />
-        </Name>
-        <Phone>
-          <p>
-            전화번호<span>*</span>
-          </p>
-          <PhoneNumber>
+      <>
+        <Container>
+          <Brand>
+            <p>
+              <span></span>
+            </p>
             <select>
-              <option name="010" id="010" value="010">
-                010
+              <option name="빽다방" id="1" value="빽다방">
+                빽다방
               </option>
-              <option name="011" id="011" value="011">
-                011
+              <option name="빽다방" id="1" value="스타벅스">
+                스타벅스
               </option>
-              <option name="012" id="012" value="012">
-                012
-              </option>
-              <option name="013" id="013" value="013">
-                013
-              </option>
-              <option name="014" id="014" value="014">
-                014
-              </option>
-              <option name="015" id="015" value="015">
-                015
-              </option>
-              <option name="016" id="016" value="016">
-                016
-              </option>
-              <option name="017" id="017" value="016">
-                016
+              <option name="빽다방" id="1" value="엔젤인어스">
+                엔젤인어스
               </option>
             </select>
-            <p>-</p>
-            <input type="tel" />
-            <p>-</p>
-            <input type="tel" />
-          </PhoneNumber>
-        </Phone>
-        <Email>
-          <p>
-            이메일<span>*</span>
-          </p>
-          <EmailInput>
-            <input type="email" />
-            <p>@</p>
-            <input type="email" />
+          </Brand>
 
-            <select>
-              <option name="g-mail" id="1" value="g-mail">
-                @gmail.com
-              </option>
-              <option name="naver" id="2" value="naver">
-                @naver.com
-              </option>
-              <option name="hanmail" id="3" value="hanmail">
-                @hanmail.net
-              </option>
-              <option name="yahoo" id="4" value="yahoo">
-                @yahoo.co.kr
-              </option>
-            </select>
-          </EmailInput>
-        </Email>
-
-        <Store>
-          <p>
-            희망지역점포<span>*</span>
-          </p>
-          <Radio>
-            <Yes>
-              <label for="Yes">있음</label>
-              <input type="radio" value="Yes" name="agree" id="Yes" />
-            </Yes>
-            <No>
-              <label for="No">없음</label>
-              <input type="radio" value="No" name="agree" id="No" />
-            </No>
-          </Radio>
-        </Store>
-
-        <Address>
-          <p>
-            주소<span>*</span>
-          </p>
-          <AddressInfo>
-            <button>우편번호찾기</button>
-            <input type="text" />
-          </AddressInfo>
-        </Address>
-
-        <Etc>
-          <p>
-            추가정보입력<span>*</span>
-          </p>
-          <EtcWrite>
-            <textarea
-              cols="100"
-              rows="5"
-              placeholder="점포를 보유하셨거나 입점희망 점포에 대한 사전정보가 있을 경우, 점포의 평수/임대료 등 구체적인 정보를 남겨주시면 조금 더 정확한 상담이 가능합니다."
-            ></textarea>
+          <Name>
             <p>
-              현재 <span>0</span>/ 최대200byte (한글100자,영문200자)
+              이름<span>*</span>
             </p>
-          </EtcWrite>
-        </Etc>
-        <InfoAgree>
-          <InfoAgree1>
+            <input type="text" placeholder="이름" />
+          </Name>
+          <Phone>
             <p>
-              개인정보 보호를 위한 이용자 동의서<span>*</span>
+              전화번호<span>*</span>
             </p>
-            <InfoAgree1Container>
+            <PhoneNumber>
+              <select>
+                <option name="010" id="010" value="010">
+                  010
+                </option>
+                <option name="011" id="011" value="011">
+                  011
+                </option>
+                <option name="012" id="012" value="012">
+                  012
+                </option>
+                <option name="013" id="013" value="013">
+                  013
+                </option>
+                <option name="014" id="014" value="014">
+                  014
+                </option>
+                <option name="015" id="015" value="015">
+                  015
+                </option>
+                <option name="016" id="016" value="016">
+                  016
+                </option>
+                <option name="017" id="017" value="016">
+                  016
+                </option>
+              </select>
+              <p>-</p>
+              <input type="tel" />
+              <p>-</p>
+              <input type="tel" />
+            </PhoneNumber>
+          </Phone>
+          <Email>
+            <p>
+              이메일<span>*</span>
+            </p>
+            <EmailInput>
+              <input type="email" />
+              <p>@</p>
+              <input type="email" />
+
+              <select>
+                <option name="g-mail" id="1" value="g-mail">
+                  @gmail.com
+                </option>
+                <option name="naver" id="2" value="naver">
+                  @naver.com
+                </option>
+                <option name="hanmail" id="3" value="hanmail">
+                  @hanmail.net
+                </option>
+                <option name="yahoo" id="4" value="yahoo">
+                  @yahoo.co.kr
+                </option>
+              </select>
+            </EmailInput>
+          </Email>
+
+          <Store>
+            <p>
+              희망지역점포<span>*</span>
+            </p>
+            <Radio>
+              <Yes>
+                <label for="Yes">있음</label>
+                <input type="radio" value="Yes" name="agree" id="Yes" />
+              </Yes>
+              <No>
+                <label for="No">없음</label>
+                <input type="radio" value="No" name="agree" id="No" />
+              </No>
+            </Radio>
+          </Store>
+
+          <Address>
+            <p>
+              주소<span>*</span>
+            </p>
+            <AddressInfo>
+              <button>우편번호찾기</button>
+              <input type="text" />
+            </AddressInfo>
+          </Address>
+
+          <Etc>
+            <p>
+              추가정보입력<span>*</span>
+            </p>
+            <EtcWrite>
+              <textarea
+                cols="100"
+                rows="5"
+                placeholder="점포를 보유하셨거나 입점희망 점포에 대한 사전정보가 있을 경우, 점포의 평수/임대료 등 구체적인 정보를 남겨주시면 조금 더 정확한 상담이 가능합니다."
+              ></textarea>
+              <p>
+                현재 <span>0</span>/ 최대200byte (한글100자,영문200자)
+              </p>
+            </EtcWrite>
+          </Etc>
+          <InfoAgree>
+            <InfoAgree1>
+              <p>
+                개인정보 보호를 위한 이용자 동의서<span>*</span>
+              </p>
+              <InfoAgree1Container>
+                <button>상세보기</button>
+                <label for="A_Yes" id="YesLabel">
+                  동의합니다.
+                </label>
+                <input type="radio" value="Yes" name="agree" id="A_Yes" />
+                <label for="A_No" id="NoLabel">
+                  동의하지 않습니다.
+                </label>
+                <input type="radio" value="No" name="agree" id="A_No" />
+              </InfoAgree1Container>
+            </InfoAgree1>
+          </InfoAgree>
+          <InfoAgree2>
+            <p>
+              마케팅 활용 동의서(선택)<span>*</span>
+            </p>
+            <InfoAgree2Container>
               <button>상세보기</button>
-              <label for="A_Yes" id="YesLabel">
+              <label for="B_Yes" id="YesLabel">
                 동의합니다.
               </label>
-              <input type="radio" value="Yes" name="agree" id="A_Yes" />
-              <label for="A_No" id="NoLabel">
+              <input type="radio" value="Yes" name="agree" id="B_Yes" />
+              <label for="B_No" id="NoLabel">
                 동의하지 않습니다.
               </label>
-              <input type="radio" value="No" name="agree" id="A_No" />
-            </InfoAgree1Container>
-          </InfoAgree1>
-        </InfoAgree>
-        <InfoAgree2>
-          <p>
-            마케팅 활용 동의서(선택)<span>*</span>
-          </p>
-          <InfoAgree2Container>
-            <button>상세보기</button>
-            <label for="B_Yes" id="YesLabel">
-              동의합니다.
-            </label>
-            <input type="radio" value="Yes" name="agree" id="B_Yes" />
-            <label for="B_No" id="NoLabel">
-              동의하지 않습니다.
-            </label>
-            <input type="radio" value="No" name="agree" id="B_No" />
-          </InfoAgree2Container>
-        </InfoAgree2>
-      </Container>
+              <input type="radio" value="No" name="agree" id="B_No" />
+            </InfoAgree2Container>
+          </InfoAgree2>
+        </Container>
+      </>
     </>
   );
 }

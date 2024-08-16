@@ -4,7 +4,53 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2206d9c-3204-41df-9423-dea1ad507682" name="Changes" comment="" />
+    <list default="true" id="f2206d9c-3204-41df-9423-dea1ad507682" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Config/WebConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Config/WebConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/FAQController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/FAQController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/LectureController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/LectureController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/LikeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/LikeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/SubscribeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/SubscribeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/ViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/ViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/BaseResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/BaseResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/LectureCounterDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/LectureCounterDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/LikeDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/LikeDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/LoginDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/LoginDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/SessionDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/SessionDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/TokenDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/TokenDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/UserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/UserDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Enumstatus/ResultCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Enumstatus/ResultCode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/CustomExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/CustomExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/InvalidRequestException.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/InvalidRequestException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/MyAccessDeniedHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/MyAccessDeniedHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/MyAuthenticationEntryPoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/MyAuthenticationEntryPoint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/ResourceNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/ResourceNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Jwt/JwtFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Jwt/JwtFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Jwt/TokenProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Jwt/TokenProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Authority.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Authority.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/FAQ.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/FAQ.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Lectures.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Lectures.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Like.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Like.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Subscribe.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Subscribe.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/User$GenderEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/User$GenderEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/FAQRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/FAQRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/LectureRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/LectureRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/LikeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/LikeRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/SubscribeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/SubscribeRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/FAQService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/FAQService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/LectureService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/LectureService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/LikeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/LikeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/SubscribeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/SubscribeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/UserDetailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/UserDetailService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/memorialApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/memorialApplication.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +72,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
       </MavenGeneralSettings>
     </option>
   </component>

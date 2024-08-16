@@ -10,7 +10,7 @@ const Top = styled.div`
   display: flex;
   width: 100%;
   height: 100px;
-  border-bottom: 1px solid #00d1fe;
+  border-bottom: 1px dashed #db365a;
   justify-content: space-between;
   span {
     width: 700px;
@@ -61,7 +61,7 @@ const SlideMenu = styled.div`
   height: 100%;
   width: 300px;
   position: fixed;
-  background-color: #333;
+  background-color: #fde9f3;
   z-index: 3;
   display: flex;
   justify-content: center;
@@ -69,14 +69,14 @@ const SlideMenu = styled.div`
   right: 0;
   top: 0;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  border-radius: 16px 0 0 16px;
+  border-radius: 20px 0 0 20px;
   transition: all 2s linear;
 `;
 const CloseSideMenu = styled.div`
   width: 100%;
   height: 30px;
   margin-bottom: 50px;
-  background-color: #333;
+  background-color: #fde9f3;
   button {
     display: flex;
     justify-content: center;
@@ -84,14 +84,15 @@ const CloseSideMenu = styled.div`
     width: 40px;
     height: 40px;
     float: right;
-    background-color: #333;
-    color: #00d1fe;
-    border: 3px solid #00d1fe;
-    border-radius: 8px;
-    font-size: 20px;
+    background-color: #fff;
+    color: #db365a;
+    border: 3px solid #db365a;
+    border-radius: 30px;
+    font-size: 15px;
     line-height: 30px;
     cursor: pointer;
     margin-right: 20px;
+    margin-top: 20px;
     font-weight: bold;
     &:hover {
       opacity: 0.7;
@@ -117,7 +118,7 @@ const Navi = styled.ul`
   }
 `;
 const StyledLink = styled(Link)`
-  color: #00d1fe;
+  color: #db365a;
   text-decoration: none;
 `;
 const Video = styled.div`

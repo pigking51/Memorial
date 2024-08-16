@@ -6,7 +6,7 @@
   width: 150px;
   height: 50px;
   border-radius: 30px;
-  background-color: #00d1fe;
+  background-color: #eb92ae;
   border: none;
   font-size: 15px;
   color: #fff;
@@ -15,8 +15,8 @@
 }
 .boxBtn:hover {
   background-color: #fff;
-  border: 2px solid #00d1fe;
-  color: #00d1fe;
+  border: 2px solid #eb92ae;
+  color: #eb92ae;
 }
 
 .register {

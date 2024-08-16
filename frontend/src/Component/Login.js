@@ -45,7 +45,7 @@ const LoginBox = styled.div`
 const PasswordWrap = styled.div`
   width: 566px;
   height: 50px;
-  border: 2px solid #00d1fe;
+  border: 2px solid #eb92ae;
   border-radius: 8px;
   font-size: 15px;
   padding: 0 16px 0 20px;
@@ -68,7 +68,7 @@ const BtnWrap = styled.div`
 const LoginBtn = styled.button`
   width: 200px;
   height: 50px;
-  background-color: #00deff;
+  background-color: #eb92ae;
   color: white;
   font-weight: 700;
   text-align: center;
@@ -83,7 +83,7 @@ const SignupBtn = styled.button`
   width: 200px;
   height: 50px;
   background-color: white;
-  color: #00deff;
+  color: #eb92ae;
   border-width: 3px;
   font-weight: 700;
   text-align: center;
@@ -91,7 +91,7 @@ const SignupBtn = styled.button`
   border-radius: 30px;
   cursor: pointer;
   font-size: 15px;
-  border: 2px solid #00d1fe;
+  border: 2px solid #eb92ae;
   margin-left: 10px;
 `;
 
@@ -110,8 +110,8 @@ export function Login() {
   const [nowUserName, setNowUserName] = useState("");
   const [isReveal, setIsReveal] = useState(true);
   const [showPW, setShowPW] = useState("password");
-  const [CHborder, setCHborder] = useState(`2px solid #00d1fe`);
-  const [CIborder, setCIborder] = useState(`2px solid #00d1fe`);
+  const [CHborder, setCHborder] = useState(`2px solid #EB92AE`);
+  const [CIborder, setCIborder] = useState(`2px solid #EB92AE`);
 
   const IDRef = useRef();
   const PWRef = useRef();
@@ -158,20 +158,20 @@ export function Login() {
         const ModalText = "ID를 입력하지 않았습니다.";
         Modal(ModalTitle, ModalText);
         window.confirm(`ID를 입력하지 않았습니다.`);
-        if (CHborder != `2px solid #00d1fe`) {
-          setCHborder(`2px solid #00d1fe`);
+        if (CHborder != `2px solid #EB92AE`) {
+          setCHborder(`2px solid #EB92AE`);
         }
-        setCIborder(`4px solid red`);
+        setCIborder(`3px solid #DB365A`);
         return;
       } else if (PWRef.current.value == "") {
         const ModalTitle = "입력오류";
         const ModalText = "PW를 입력하지 않았습니다.";
         Modal(ModalTitle, ModalText);
         window.confirm(`PW를 입력하지 않았습니다.`);
-        if (CIborder != `2px solid #00d1fe`) {
-          setCIborder(`2px solid #00d1fe`);
+        if (CIborder != `2px solid #EB92AE`) {
+          setCIborder(`2px solid #EB92AE`);
         }
-        setCHborder(`4px solid red`);
+        setCHborder(`3px solid #DB365A`);
         return;
       } else {
         const response = await userLogin(loginData);
@@ -210,8 +210,8 @@ export function Login() {
 
       Modal(ModalTitle, ModalText);
       window.confirm(`ID 혹은 PW가 일치하지 않습니다.`);
-      setCIborder(`4px solid red`);
-      setCHborder(`4px solid red`);
+      setCIborder(`3px solid #DB365A`);
+      setCHborder(`3px solid #DB365A`);
     }
   }
 
@@ -219,12 +219,12 @@ export function Login() {
     if (isReveal) {
       setIsReveal(false);
       setShowPW("text");
-      setCHborder(`4px solid red`);
+      setCHborder(`3px solid #DB365A`);
       console.log("반응확인");
     } else {
       setIsReveal(true);
       setShowPW("password");
-      setCHborder(`2px solid #00d1fe`);
+      setCHborder(`3px solid #DB365A`);
       console.log("반응확인22");
     }
   }

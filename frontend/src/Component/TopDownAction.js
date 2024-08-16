@@ -44,8 +44,8 @@ export function TopDownAction() {
             "CafeDecorator",
             "OpenPopup",
             JSON.stringify({
-              tilemap: tilemap,
-              tiles: tiles,
+              // tilemap: tilemap,
+              // tiles: tiles,
             })
           )
         }

@@ -12,7 +12,7 @@ const FAQTitle = styled.div`
 `;
 const FAQContainer = styled.div`
   width: calc(100% - 400px);
-  border-top: 3px solid #00d1fe;
+  border-top: 3px solid #eb92ae;
   height: auto;
   margin: 0 auto;
 `;
@@ -76,7 +76,22 @@ const Question = styled.div`
     opacity: 0.8;
   }
 `;
-
+const Banner = styled.div`
+  background-color: rgb(235, 146, 174);
+  height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  h1 {
+    font-size: 50px;
+  }
+  p {
+    font-size: 30px;
+  }
+`;
 let isHidden = true;
 export function FAQ() {
   const [FAQ_Item, setFAQ_Item] = useState(null);
@@ -111,6 +126,10 @@ export function FAQ() {
   }
   return (
     <>
+      <Banner>
+        <h1>FAQ</h1>
+        <p>자주 묻는 질문</p>
+      </Banner>
       <FAQTitle>FAQ</FAQTitle>
       <FAQContainer>
         <FAQWrap>

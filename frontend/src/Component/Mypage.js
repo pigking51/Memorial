@@ -15,7 +15,7 @@ const Found = styled.div`
   height: 50px;
   display: flex;
   justify-content: right;
-  background-color: #00d1fe;
+  background-color: rgb(235, 146, 174);
   padding-right: 56px;
 `;
 const FoundSearch = styled.div`
@@ -23,7 +23,7 @@ const FoundSearch = styled.div`
   justify-content: center;
   input {
     width: 250px;
-    margin-right: 30px;
+    margin-right: 15px;
     height: 30px;
     border-radius: 4px;
     border: none;
@@ -34,13 +34,13 @@ const FoundSearch = styled.div`
   }
   button {
     transition: 0.3s;
-    width: 100px;
+    width: 60px;
     height: 30px;
     border-radius: 4px;
     background-color: #fff;
     border: none;
     font-size: 15px;
-    color: #00d1fe;
+    color: rgb(235, 146, 174);
     font-weight: bold;
     margin-top: 10px;
     border-radius: 30px;
@@ -58,8 +58,10 @@ const UserInfo = styled.div`
   display: flex;
   align-items: flex-start;
   width: 25%;
-  border-right: 1px solid #999;
+  /* border-right: 1px solid #db365a; */
+  box-shadow: #fcd3e6 0px 0px 15px;
   position: relative;
+
   ul {
     width: fit-content;
     height: auto;
@@ -68,9 +70,10 @@ const UserInfo = styled.div`
   }
   li {
     width: 250px;
-    height: 50px;
-    line-height: 50px;
+    height: 40px;
+    line-height: 40px;
     font-size: 18px;
+    color: #333;
   }
   li:first-child {
     font-weight: bold;
@@ -79,9 +82,9 @@ const UserInfo = styled.div`
   }
   a {
     text-decoration: none;
-    color: #000;
+    color: #333;
     &:hover {
-      color: #00d1fe;
+      color: #db365a;
     }
   }
 `;
@@ -103,7 +106,7 @@ const Mylecture = styled.div`
     width: auto;
     height: auto;
     margin: 30px 0 30px 30px;
-    border-bottom: 3px solid #00d1fe;
+    border-bottom: 3px solid rgb(235, 146, 174);
     padding: 15px;
   }
 `;
@@ -118,13 +121,13 @@ const LectureWrap = styled.div`
   overflow-x: hidden;
 `;
 const LectureBox = styled.div`
-  border: 3px solid #00d1fe;
-  border-bottom: 8px solid #00d1fe;
-  border-radius: 30px;
+  border: 2px solid rgb(235, 146, 174);
+  border-bottom: 4px solid rgb(235, 146, 174);
+  border-radius: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 150px;
+  height: 100px;
   width: calc(100% - 50px);
   margin-left: 25px;
   margin-bottom: 15px;
@@ -136,7 +139,7 @@ const LectureBox = styled.div`
     width: 200px;
     height: 50px;
     border-radius: 30px;
-    background-color: #00d1fe;
+    background-color: rgb(235, 146, 174);
     border: none;
     font-size: 15px;
     color: #fff;
@@ -157,13 +160,15 @@ const BestLectureList = styled.ul`
   height: 300px;
   list-style: none;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-left: 30px;
   li {
     width: calc(25% - 22px);
     height: 100%;
-    margin: 0px 10px;
-    border: 1px solid #000;
-    border-radius: 4px;
+    margin: 0px 8px;
+    border: 5px solid #eb92ae;
+    /* border-radius: 10px; */
+    /* box-shadow: #db365a 0px 3px 6px; */
     position: relative;
     a {
       width: 100%;
@@ -171,18 +176,19 @@ const BestLectureList = styled.ul`
       text-decoration: none;
       span {
         position: absolute;
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: #fde9f3;
         width: 100%;
         height: 36%;
-        color: #fff;
         font-family: "GmarketSansMedium";
         font-size: 18px;
         bottom: 0;
+
         p {
           width: 100%;
           height: auto;
           text-align: left;
           padding-left: 20px;
+          color: #333;
         }
       }
     }
@@ -207,7 +213,7 @@ const UserModify = styled.div`
     width: auto;
     height: auto;
     margin: 30px 0 30px 30px;
-    border-bottom: 3px solid #00d1fe;
+    border-bottom: 3px solid rgb(235, 146, 174);
     padding: 15px;
   }
 `;
@@ -223,7 +229,7 @@ const Password = styled.input`
   width: 400px;
   height: 50px;
   border-radius: 4px;
-  border: 2px solid #00d1fe;
+  border: 2px solid rgb(235, 146, 174);
   font-size: 15px;
   padding: 0 20px;
   margin-top: 30px;
@@ -232,7 +238,7 @@ const PasswordCheck = styled.input`
   width: 400px;
   height: 50px;
   border-radius: 4px;
-  border: 2px solid #00d1fe;
+  border: 2px solid rgb(235, 146, 174);
   font-size: 15px;
   padding: 0 20px;
   margin-top: 30px;
@@ -249,7 +255,7 @@ const Email = styled.input`
   width: 290px;
   height: 50px;
   border-radius: 4px;
-  border: 2px solid #00d1fe;
+  border: 2px solid rgb(235, 146, 174);
   font-size: 15px;
   padding: 0 20px;
 `;
@@ -258,15 +264,15 @@ const EmailCheck = styled.button`
   width: 100px;
   height: 50px;
   border-radius: 30px;
-  background-color: #00d1fe;
+  background-color: rgb(235, 146, 174);
   border: none;
   font-size: 15px;
   color: #fff;
   font-weight: bold;
   &:hover {
-    border: #00d1fe 2px solid;
+    border: rgb(235, 146, 174) 2px solid;
     background-color: #fff;
-    color: #00d1fe;
+    color: rgb(235, 146, 174);
     cursor: pointer;
   }
 `;
@@ -274,7 +280,7 @@ const Name = styled.input`
   width: 400px;
   height: 50px;
   border-radius: 4px;
-  border: 2px solid #00d1fe;
+  border: 2px solid rgb(235, 146, 174);
   font-size: 15px;
   padding: 0 20px;
   margin-top: 30px;
@@ -325,6 +331,9 @@ export function Mypage() {
   let CName = "";
   let CGender = "";
 
+  const [PWborder, setPWborder] = useState(`2px solid #EB92AE`);
+  const [Emailborder, setEmailborder] = useState(`2px solid #EB92AE`);
+
   const CPWRef = useRef();
   const CHPWRef = useRef();
   const CEmailRef = useRef();
@@ -360,6 +369,7 @@ export function Mypage() {
     };
     if (CPassword != CHPassword) {
       window.confirm(`비밀번호가 일치하지 않습니다!`);
+      setPWborder(`3px solid #DB365A`);
       return;
     }
     try {
@@ -395,6 +405,7 @@ export function Mypage() {
         }
       } else {
         window.confirm(`중복된 Email입니다! 다른 Email을 입력해주세요`);
+        setEmailborder(`4px solid red`);
       }
     } catch (error) {
       console.log(`Email 중복확인 오류`, error);
@@ -465,7 +476,12 @@ export function Mypage() {
       <User>
         <UserInfo>
           <ul>
-            <li>{userCData && userCData.realName}님 환영합니다.</li>
+            <li>
+              <h3>
+                {userCData && userCData.realName}님<br />
+                환영합니다 😄
+              </h3>
+            </li>
             <Myclass>
               <a
                 onClick={() => {
@@ -547,6 +563,7 @@ export function Mypage() {
                   ref={CPWRef}
                   placeholder="패스워드"
                   onChange={inputPW}
+                  style={{ border: `${PWborder}` }}
                 />
                 <PasswordCheck
                   type="password"
@@ -561,6 +578,7 @@ export function Mypage() {
                     ref={CEmailRef}
                     placeholder="이메일"
                     onChange={inputEmail}
+                    style={{ border: `${Emailborder}` }}
                   />
                   <EmailCheck onClick={isEmailDupe}>중복체크</EmailCheck>
                 </EmailWrap>

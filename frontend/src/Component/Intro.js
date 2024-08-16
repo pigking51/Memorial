@@ -36,7 +36,7 @@ const Top = styled.div`
 `;
 const Middle = styled.div`
   height: 130px;
-  line-height: 20px;
+  line-height: 26px;
   span {
     font-size: 20px;
   }
@@ -59,20 +59,37 @@ const Bottom = styled.div`
     line-height: 30px;
   }
 `;
-
+const Banner = styled.div`
+  background-color: rgb(235, 146, 174);
+  height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  h1 {
+    font-size: 50px;
+  }
+  p {
+    font-size: 30px;
+  }
+`;
 export function Intro() {
   return (
     <>
-      <img src="/images/banner/introBanner.png" alt="Intro Image" />
+      <Banner>
+        <h1>Introduce</h1>
+        <p>메모리얼 소개</p>
+      </Banner>
       <Container>
-        <Title>
+        {/* <Title>
           <span>메모리얼 소개</span>
-        </Title>
+        </Title> */}
 
         <Contents>
           <Logo>
             <a href="#">
-              {/* <img src="./images/logo/logo2.png" alt="로고2" /> */}
               <img
                 src="./images/logo/memorialLogo.png"
                 width="390"
@@ -96,7 +113,8 @@ export function Intro() {
                 <br />
                 오늘날 메모리얼의 의미는 <strong>기억</strong>과{" "}
                 <strong>참여</strong>, <strong>소통</strong>이 이루어지는
-                공간적인 의미 를 부여하고 있습니다.
+                <br />
+                공간적인 의미를 부여하고 있습니다.
                 <br />
                 이곳에 오신 모두가 함께 <strong>소통</strong>하고{" "}
                 <strong>참여</strong>하며
@@ -108,12 +126,16 @@ export function Intro() {
 
             <Bottom>
               <p>
-                <strong>“순간이여 멈추어라! 너는 정말로 아름답구나!”</strong>
-                <br />
-                <h5>Verweile doch! Du bist so schön!</h5>
+                <strong>
+                  <h3>“순간이여 멈추어라! 너는 정말로 아름답구나!”</h3>
+                </strong>
+                {/* <br /> */}
+                <h5> Verweile doch! Du bist so schön!</h5>
               </p>
               <br />
-              <span>요한 볼프강 폰 괴테, 『파우스트』, 1828</span>
+              <span>
+                <h5>요한 볼프강 폰 괴테, 『파우스트』, 1828</h5>
+              </span>
             </Bottom>
           </Aside>
         </Contents>

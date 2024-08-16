@@ -12,12 +12,13 @@ const Contents = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
   padding: 0 200px;
-  margin-bottom: 50px;
+  margin: 100px 0px 100px 0px;
+  justify-content: center;
   span {
     text-align: center;
     font-size: 35px;
     margin-top: 50%;
-    color: #00d1fe;
+    color: #db365a;
     height: auto;
   }
 `;
@@ -25,17 +26,17 @@ const Card = styled.div`
   min-width: 487px;
   border-radius: 5px;
   background-color: white;
-  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 4px 8px 1px #fcd3e6;
   transition: all 0.2s ease;
   padding-bottom: 20px;
   p {
     height: fit-content;
     width: 100%;
-    font-size: 18px;
+    font-size: 20px;
     margin: 25px;
   }
   &:hover {
-    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 2px 5px 5px #eb92ae;
     transform: translate(0px, -5px);
     filter: brightness(120%);
     cursor: pointer;
@@ -53,6 +54,22 @@ const Text = styled.div`
   margin: 2px 0;
 `;
 
+const Banner = styled.div`
+  background-color: rgb(235, 146, 174);
+  height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  h1 {
+    font-size: 50px;
+  }
+  p {
+    font-size: 30px;
+  }
+`;
 // const categories = [
 //   { category: "Now Playing", func: getLecturesNowPlaying },
 //   { category: "Popular", func: getLecturesPopular },
@@ -95,6 +112,11 @@ export function Education() {
 
   return (
     <>
+      <Banner>
+        <h1>Lecture</h1>
+        <p>강의</p>
+      </Banner>
+      <br></br>
       <Container>
         <Contents>
           {data &&

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { showAllUser, userRegister } from "./api";
@@ -42,7 +42,7 @@ const NicknameWrap = styled.div`
     width: 160px;
     height: 50px;
     border-radius: 30px;
-    background-color: #00d1fe;
+    background-color: #eb92ae;
     border: none;
     font-size: 18px;
     color: #fff;
@@ -50,17 +50,17 @@ const NicknameWrap = styled.div`
     margin-right: 24px;
   }
   button:hover {
-    border: #00d1fe 2px solid;
+    border: #eb92ae 2px solid;
     background-color: #fff;
-    color: #00d1fe;
+    color: #eb92ae;
     cursor: pointer;
   }
 `;
 const Nickname = styled.input`
-  width: 566px;
+  width: 600px;
   height: 50px;
   border-radius: 4px;
-  border: 2px solid #00d1fe;
+  border: 2px solid #eb92ae;
   font-size: 15px;
   padding: 0 20px;
   margin-left: 24px;
@@ -71,7 +71,7 @@ const Password = styled.input`
   width: 800px;
   height: 50px;
   border-radius: 4px;
-  border: 2px solid #00d1fe;
+  border: 2px solid #eb92ae;
   font-size: 15px;
   padding: 0 20px;
   margin-top: 30px;
@@ -80,7 +80,7 @@ const Password_check = styled.input`
   width: 800px;
   height: 50px;
   border-radius: 4px;
-  border: 2px solid #00d1fe;
+  border: 2px solid #eb92ae;
   font-size: 15px;
   padding: 0 20px;
   margin-top: 30px;
@@ -89,7 +89,7 @@ const Birth = styled.input`
   width: 800px;
   height: 50px;
   border-radius: 4px;
-  border: 2px solid #00d1fe;
+  border: 2px solid #eb92ae;
   font-size: 15px;
   padding: 0 20px;
   margin-top: 30px;
@@ -106,7 +106,7 @@ const EmailWrap = styled.div`
     width: 160px;
     height: 50px;
     border-radius: 30px;
-    background-color: #00d1fe;
+    background-color: #eb92ae;
     border: none;
     font-size: 18px;
     color: #fff;
@@ -114,17 +114,17 @@ const EmailWrap = styled.div`
     margin-right: 24px;
   }
   button:hover {
-    border: #00d1fe 2px solid;
+    border: #eb92ae 2px solid;
     background-color: #fff;
-    color: #00d1fe;
+    color: #eb92ae;
     cursor: pointer;
   }
 `;
 const Email = styled.input`
-  width: 566px;
+  width: 600px;
   height: 50px;
   border-radius: 4px;
-  border: 2px solid #00d1fe;
+  border: 2px solid #eb92ae;
   font-size: 15px;
   padding: 0 20px;
   margin-left: 24px;
@@ -134,7 +134,7 @@ const Name = styled.input`
   width: 800px;
   height: 50px;
   border-radius: 4px;
-  border: 2px solid #00d1fe;
+  border: 2px solid #eb92ae;
   font-size: 15px;
   padding: 0 20px;
   margin-top: 30px;
@@ -195,7 +195,7 @@ const Btnwrap = styled.div`
     width: 225px;
     height: 50px;
     border-radius: 30px;
-    background-color: #00d1fe;
+    background-color: #eb92ae;
     border: none;
     margin-left: 50px;
     font-size: 18px;
@@ -205,8 +205,8 @@ const Btnwrap = styled.div`
   }
   .boxBtn:hover {
     background-color: #fff;
-    border: 2px solid #00d1fe;
-    color: #00d1fe;
+    border: 2px solid #eb92ae;
+    color: #eb92ae;
   }
 `;
 
@@ -221,12 +221,12 @@ export function SignUp() {
   let name = "";
   let gender = "";
 
-  let IDborder = `2px solid #00d1fe`;
-  let PWborder = `2px solid #00d1fe`;
-  let Birthborder = `2px solid #00d1fe`;
-  let Emailborder = `2px solid #00d1fe`;
-  let Nameborder = `2px solid #00d1fe`;
-  let PWCborder = `2px solid #00d1fe`;
+  const [IDborder, setIDborder] = useState(`2px solid #EB92AE`);
+  const [PWborder, setPWborder] = useState(`2px solid #EB92AE`);
+  const [Birthborder, setBirthborder] = useState(`2px solid #EB92AE`);
+  const [Emailborder, setEmailborder] = useState(`2px solid #EB92AE`);
+  const [Nameborder, setNameborder] = useState(`2px solid #EB92AE`);
+  const [PWCborder, setPWCborder] = useState(`2px solid #EB92AE`);
 
   const IDRef = useRef();
   const PWRef = useRef();
@@ -314,34 +314,35 @@ export function SignUp() {
   async function userSignUp() {
     if (IDRef.current.value == "") {
       window.confirm(`ID를 입력하지 않았습니다! ID를 입력해주세요!`);
-      IDborder = `4px solid red`;
+      setIDborder(`3px solid #DB365A`);
       return;
     }
     if (PWRef.current.value == "") {
       window.confirm(`PW를 입력하지 않았습니다! PW를 입력해주세요!`);
-      PWborder = `4px solid red`;
+      // PWborder = `4px solid red`;
+      setPWborder(`3px solid #DB365A`);
       return;
     }
     if (BirthRef.current.value == "") {
       window.confirm(`생일을 입력하지 않았습니다! 생일을 입력해주세요!`);
-      Birthborder = `4px solid red`;
+      setBirthborder(`3px solid #DB365A`);
       return;
     }
     if (EmailRef.current.value == "") {
       window.confirm(`Email을 입력하지 않았습니다! Email을 입력해주세요!`);
-      Emailborder = `4px solid red`;
+      setEmailborder(`3px solid #DB365A`);
       return;
     }
     if (NameRef.current.value == "") {
       window.confirm(`이름을 입력하지 않았습니다! 이름을 입력해주세요!`);
-      Nameborder = `4px solid red`;
+      setNameborder(`3px solid #DB365A`);
       return;
     }
     if (PWRef.current.value != PWCRef.current.value) {
       window.confirm(
         `비밀번호가 일치하지 않습니다! 비밀번호를 다시 확인해주세요!`
       );
-      PWCborder = `4px solid red`;
+      setPWCborder(`3px solid #DB365A`);
       return;
     }
     try {
@@ -380,7 +381,7 @@ export function SignUp() {
               placeholder="아이디"
               ref={IDRef}
               onChange={IDInput}
-              border={IDborder}
+              style={{ border: `${IDborder}` }}
             />
             <Nick_check onClick={userIdCheck}>중복체크</Nick_check>
           </NicknameWrap>
@@ -390,14 +391,14 @@ export function SignUp() {
             placeholder="패스워드"
             ref={PWRef}
             onChange={PWInput}
-            border={PWborder}
+            style={{ border: `${PWborder}` }}
           />
           <Password_check
             type="password"
             placeholder="패스워드확인"
             ref={PWCRef}
             onChange={PWCInput}
-            border={PWCborder}
+            style={{ border: `${PWCborder}` }}
           />
 
           <Birth
@@ -405,7 +406,7 @@ export function SignUp() {
             placeholder="생년월일"
             ref={BirthRef}
             onChange={BirthInput}
-            border={Birthborder}
+            style={{ border: `${Birthborder}` }}
           />
           <EmailWrap>
             <Email
@@ -413,7 +414,7 @@ export function SignUp() {
               placeholder="이메일"
               ref={EmailRef}
               onChange={EmailInput}
-              border={Emailborder}
+              style={{ border: `${Emailborder}` }}
             />
             <Email_check onClick={userEmailCheck}>중복체크</Email_check>
           </EmailWrap>
@@ -423,7 +424,7 @@ export function SignUp() {
             placeholder="이름"
             ref={NameRef}
             onChange={NameInput}
-            border={Nameborder}
+            style={{ border: `${Nameborder}` }}
           />
 
           <Gender>
