@@ -6,7 +6,26 @@ const Container = styled.div`
   width: 1440px;
   height: 760px;
   margin: auto;
-  border: 1px solid gray;
+  border: 2px solid #e38ca6;
+`;
+
+const StartButton = styled.button`
+  width: 200px;
+  height: 50px;
+  color: #e38ca6;
+  background-color: #f3e1eb;
+  border: 2px solid #e38ca6;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 20px;
+`;
+
+const BtContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0;
+  align-items: center;
 `;
 
 export function TopDownAction() {
@@ -35,7 +54,6 @@ export function TopDownAction() {
   }, []);
   return (
     <>
-      <button onClick={() => setPlayingGame(true)}>StartGame</button>
       {/* <button
         onClick={() =>
           sendMessage(
@@ -44,12 +62,12 @@ export function TopDownAction() {
             JSON.stringify({
               // tilemap: tilemap,
               // tiles: tiles,
-            })
-          )
-        }
-      >
-        Attack
-      </button> */}
+              })
+              )
+              }
+              >
+              Attack
+              </button> */}
       <Container>
         {playingGame ? (
           <Unity
@@ -61,9 +79,14 @@ export function TopDownAction() {
           />
         ) : null}
       </Container>
-      {playingGame && (
-        <p>{`${userName}! You've scored ${likeScore} points.`}</p>
-      )}
+      <BtContainer>
+        <StartButton onClick={() => setPlayingGame(true)}>
+          StartGame
+        </StartButton>
+        {playingGame && (
+          <p>{`${userName}! You've scored ${likeScore} points.`}</p>
+        )}
+      </BtContainer>
     </>
   );
 }
