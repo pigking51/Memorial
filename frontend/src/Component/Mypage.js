@@ -122,8 +122,8 @@ const LectureWrap = styled.div`
 `;
 const LectureBox = styled.div`
   border: 2px solid rgb(235, 146, 174);
-  border-bottom: 4px solid rgb(235, 146, 174);
-  border-radius: 60px;
+  /* border-bottom: 4px solid rgb(235, 146, 174); */
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -133,6 +133,7 @@ const LectureBox = styled.div`
   margin-bottom: 15px;
   font-size: 25px;
   font-family: "GmarketSansMedium";
+  color: #333;
   cursor: pointer;
   button {
     transition: 0.3s;
@@ -215,6 +216,7 @@ const UserModify = styled.div`
     margin: 30px 0 30px 30px;
     border-bottom: 3px solid rgb(235, 146, 174);
     padding: 15px;
+    color: #333;
   }
 `;
 const Write = styled.div`

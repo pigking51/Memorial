@@ -30,29 +30,56 @@ const Brand = styled.div`
   }
 `;
 const Name = styled.div`
-  width: 100%;
-  height: 50px;
+  width: 300px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 20px 0;
+  padding: 20px;
+  background-color: #fde9f3;
+  border-bottom: 2px #666;
   input {
     height: 50px;
     width: 500px;
-    padding: 0 20px;
+    padding-left: 10px;
   }
 `;
-const Phone = styled.div`
-  width: 100%;
-  height: 50px;
+const Name2 = styled.div`
+  width: 300px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 20px 0;
+  padding: 0 20px 0 20px;
+  /* margin: 20px 0; */
+  background-color: white;
 `;
-const PhoneNumber = styled.div`
+
+const Namewrap = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const Phone = styled.div`
+  width: 300px;
+  height: 70px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #fde9f3;
+  border-bottom: 2px #666;
+`;
+const PhoneNumber = styled.div`
+  width: auto;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px 0 20px;
+  /* margin: 20px 0; */
+  background-color: white;
   select {
     height: 50px;
     width: 100px;
@@ -67,13 +94,21 @@ const PhoneNumber = styled.div`
     padding: 0 20px;
   }
 `;
+const Phonewrap = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
 const Email = styled.div`
-  width: 100%;
-  height: 50px;
+  width: 300px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 20px 0;
+  padding: 20px;
+  background-color: #fde9f3;
+  border-bottom: 2px #666;
 `;
 const EmailInput = styled.div`
   display: flex;
@@ -93,6 +128,11 @@ const EmailInput = styled.div`
     padding: 0 20px;
     margin-left: 20px;
   }
+`;
+const Emailwrap = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
 const Store = styled.div`
   width: 100%;
@@ -247,6 +287,37 @@ const Banner = styled.div`
     font-size: 30px;
   }
 `;
+const Ad = styled.div`
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+`;
+const AdInfo = styled.div`
+  /* margin-top: 100px; */
+  height: 120px;
+  width: 80%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h2 {
+    font-size: xx-large;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    color: white;
+  }
+
+  span {
+    color: red;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  }
+`;
+
+const Info = styled.div`
+  margin-top: 50px;
+  background-color: black;
+  color: white;
+`;
+
 export function Franchise_Inquiry() {
   return (
     <>
@@ -254,10 +325,23 @@ export function Franchise_Inquiry() {
         <h1>Franchise</h1>
         <p>창업문의</p>
       </Banner>
-      <Title>창업문의를 남겨주시면 상세하게 설명드리겠습니다.</Title>
+      <Ad>
+        <AdInfo>
+          <h2>
+            프랜차이즈(가맹점) & 개인카페 컨설팅 ‘<span>선착순 20팀</span>’ 로고
+            및 브랜딩 비용 <span>100% 본사 지원</span>
+          </h2>
+        </AdInfo>
+      </Ad>
+      <Ad>
+        <img src="/images/etc./franchisePageInfo.png" alt="info" />
+      </Ad>
+      <Title>
+        <span>01</span> 필수입력
+      </Title>
       <>
         <Container>
-          <Brand>
+          {/* <Brand>
             <p>
               <span></span>
             </p>
@@ -272,18 +356,23 @@ export function Franchise_Inquiry() {
                 엔젤인어스
               </option>
             </select>
-          </Brand>
-
-          <Name>
-            <p>
-              이름<span>*</span>
-            </p>
-            <input type="text" placeholder="이름" />
-          </Name>
-          <Phone>
-            <p>
-              전화번호<span>*</span>
-            </p>
+          </Brand> */}
+          <Namewrap>
+            <Name>
+              <p>
+                이름<span>*</span>
+              </p>
+            </Name>
+            <Name2>
+              <input type="text" placeholder="이름" />
+            </Name2>
+          </Namewrap>
+          <Phonewrap>
+            <Phone>
+              <p>
+                전화번호<span>*</span>
+              </p>
+            </Phone>
             <PhoneNumber>
               <select>
                 <option name="010" id="010" value="010">
@@ -311,16 +400,18 @@ export function Franchise_Inquiry() {
                   016
                 </option>
               </select>
-              <p>-</p>
+              <p> - </p>
               <input type="tel" />
-              <p>-</p>
+              <p> - </p>
               <input type="tel" />
             </PhoneNumber>
-          </Phone>
-          <Email>
-            <p>
-              이메일<span>*</span>
-            </p>
+          </Phonewrap>
+          <Emailwrap>
+            <Email>
+              <p>
+                이메일<span>*</span>
+              </p>
+            </Email>
             <EmailInput>
               <input type="email" />
               <p>@</p>
@@ -341,8 +432,7 @@ export function Franchise_Inquiry() {
                 </option>
               </select>
             </EmailInput>
-          </Email>
-
+          </Emailwrap>
           <Store>
             <p>
               희망지역점포<span>*</span>
