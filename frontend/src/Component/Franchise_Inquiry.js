@@ -52,7 +52,7 @@ const Name2 = styled.div`
   justify-content: space-between;
   padding: 0 20px 0 20px;
   /* margin: 20px 0; */
-  background-color: white;
+  background-color: lightgray;
 `;
 
 const Namewrap = styled.div`
@@ -79,7 +79,7 @@ const PhoneNumber = styled.div`
   justify-content: space-between;
   padding: 0 20px 0 20px;
   /* margin: 20px 0; */
-  background-color: white;
+  background-color: lightgray;
   select {
     height: 50px;
     width: 100px;
