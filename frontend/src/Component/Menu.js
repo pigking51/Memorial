@@ -192,7 +192,7 @@ export function Menu() {
           </BtContentTitle>
           <ImageContainer>
             <PrevButton>
-              <img src="/images/img/Prev.png" />
+              <img src="/images/icon/Prev.png" />
             </PrevButton>
             <ImageBox>
               <Image>
@@ -229,7 +229,7 @@ export function Menu() {
               </p>
             </ImageBox>
             <NextButton>
-              <img src="/images/img/Next.png" />
+              <img src="/images/icon/Next.png" />
             </NextButton>
           </ImageContainer>
         </BtContent>
