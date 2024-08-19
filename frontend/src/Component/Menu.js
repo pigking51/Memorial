@@ -1,10 +1,13 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 export function Menu() {
+  const [visible, setVisible] = useState("New-Menu");
+
   const Container = styled.div``;
   const Content = styled.div`
     width: 100%;
-    height: 650px;
+    height: auto;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -26,7 +29,6 @@ export function Menu() {
       color: #eb92ae;
     }
   `;
-
   const BackGroundImage = styled.div`
     img {
       width: 100%;
@@ -35,7 +37,6 @@ export function Menu() {
       z-index: -1;
       right: 0;
       top: 0;
-      border-bottom: 1px solid #eb92ae;
     }
   `;
   const MenuChoice = styled.ul`
@@ -67,7 +68,6 @@ export function Menu() {
       color: #333;
     }
   `;
-  const BtContent = styled.div``;
   const BtContentTitle = styled.div`
     width: 100%;
     font-size: 40px;
@@ -131,7 +131,6 @@ export function Menu() {
       font-size: 30px;
     }
   `;
-
   const PrevButton = styled.button`
     background-color: transparent;
     border: none;
@@ -150,90 +149,162 @@ export function Menu() {
     }
   `;
 
-  return (
+  const renderContent = (title, items) => (
     <>
-      <Banner>
-        <h1>MENU</h1>
-        <p>메뉴</p>
-      </Banner>
-      <Container>
-        <Content>
-          <BackGroundImage>
-            <img src="/images/img/Coffee-Background.WEBP" />
-          </BackGroundImage>
-          <Text>
-            <p>전체메뉴</p>
-            <p></p>
-          </Text>
-          <MenuChoice>
-            <li>
-              <a>New-Menu</a>
-            </li>
-            <li>
-              <a>Coffee</a>
-            </li>
-            <li>
-              <a>Drink</a>
-            </li>
-            <li>
-              <a>IceCream&Dessert</a>
-            </li>
-            <li>
-              <a>Cookie</a>
-            </li>
-          </MenuChoice>
-        </Content>
-        <SubTitle>
-          <p>8월 신메뉴</p>
-        </SubTitle>
-        <BtContent>
-          <BtContentTitle>
-            <p>★ New-Menu ★</p>
-          </BtContentTitle>
-          <ImageContainer>
-            <PrevButton>
-              <img src="/images/icon/Prev.png" />
-            </PrevButton>
-            <ImageBox>
-              <Image>
-                <img src="/images/img/피스타치오.png" />
-              </Image>
-              <p>
-                피스타치오 매직팝 플랫치노
-                <br />
-                4,500원
-              </p>
-            </ImageBox>
-            <ImageBox>
-              <Image>
-                <p>
-                  <img src="/images/img/초당옥수수.png" />
-                </p>
-              </Image>
-              <p>
-                초당옥수수 1인빙수
-                <br />
-                6,300원
-              </p>
-            </ImageBox>
-            <ImageBox>
-              <Image>
-                <p>
-                  <img src="/images/img/크림폭포.png" />
-                </p>
-              </Image>
-              <p>
-                바닐라 크림폭포 데니쉬
-                <br />
-                6,300원
-              </p>
-            </ImageBox>
-            <NextButton>
-              <img src="/images/icon/Next.png" />
-            </NextButton>
-          </ImageContainer>
-        </BtContent>
-      </Container>
+      <SubTitle>
+        <p>{title}</p>
+      </SubTitle>
+      <BtContentTitle>
+        <p>{title}</p>
+      </BtContentTitle>
+      <ImageContainer>
+        <PrevButton>
+          <img src="/images/icon/Prev.png" />
+        </PrevButton>
+        {items.map((item, index) => (
+          <ImageBox key={index}>
+            <Image>
+              <img src={item.img} />
+            </Image>
+            <p>
+              {item.name}
+              <br />
+              {item.price}
+            </p>
+          </ImageBox>
+        ))}
+        <NextButton>
+          <img src="/images/icon/Next.png" />
+        </NextButton>
+      </ImageContainer>
     </>
+  );
+
+  const contentMap = {
+    "New-Menu": {
+      title: "8th-New-Menu",
+      items: [
+        {
+          img: "/images/img/피스타치오.png",
+          name: "피스타치오 매직팝 플랫치노",
+          price: "4,500원",
+        },
+        {
+          img: "/images/img/초당옥수수.png",
+          name: "초당옥수수 1인빙수",
+          price: "6,300원",
+        },
+        {
+          img: "/images/img/크림폭포.png",
+          name: "바닐라 크림폭포 데니쉬",
+          price: "6,300원",
+        },
+      ],
+    },
+    Coffee: {
+      title: "Coffee",
+      items: [
+        {
+          img: "/images/img/피스타치오.png",
+          name: "피스타치오 매직팝 플랫치노",
+          price: "4,500원",
+        },
+        {
+          img: "/images/img/초당옥수수.png",
+          name: "초당옥수수 1인빙수",
+          price: "6,300원",
+        },
+        {
+          img: "/images/img/크림폭포.png",
+          name: "바닐라 크림폭포 데니쉬",
+          price: "6,300원",
+        },
+      ],
+    },
+    Drink: {
+      title: "Drink",
+      items: [
+        {
+          img: "/images/img/피스타치오.png",
+          name: "피스타치오 매직팝 플랫치노",
+          price: "4,500원",
+        },
+        {
+          img: "/images/img/초당옥수수.png",
+          name: "초당옥수수 1인빙수",
+          price: "6,300원",
+        },
+        {
+          img: "/images/img/크림폭포.png",
+          name: "바닐라 크림폭포 데니쉬",
+          price: "6,300원",
+        },
+      ],
+    },
+    Dessert: {
+      title: "Dessert",
+      items: [
+        {
+          img: "/images/img/피스타치오.png",
+          name: "피스타치오 매직팝 플랫치노",
+          price: "4,500원",
+        },
+        {
+          img: "/images/img/초당옥수수.png",
+          name: "초당옥수수 1인빙수",
+          price: "6,300원",
+        },
+        {
+          img: "/images/img/크림폭포.png",
+          name: "바닐라 크림폭포 데니쉬",
+          price: "6,300원",
+        },
+      ],
+    },
+    Cookie: {
+      title: "Cookie",
+      items: [
+        {
+          img: "/images/img/피스타치오.png",
+          name: "피스타치오 매직팝 플랫치노",
+          price: "4,500원",
+        },
+        {
+          img: "/images/img/초당옥수수.png",
+          name: "초당옥수수 1인빙수",
+          price: "6,300원",
+        },
+        {
+          img: "/images/img/크림폭포.png",
+          name: "바닐라 크림폭포 데니쉬",
+          price: "6,300원",
+        },
+      ],
+    },
+  };
+
+  return (
+    <Container>
+      <Content>
+        <Banner>
+          <h1>Special Offer</h1>
+          <p>Up to 50% off on selected items</p>
+        </Banner>
+        <BackGroundImage>
+          <img src="/images/bg/bg1.png" alt="Background" />
+        </BackGroundImage>
+        <Text>
+          <p>Menu</p>
+        </Text>
+        <MenuChoice>
+          {Object.keys(contentMap).map((key) => (
+            <li key={key} onClick={() => setVisible(key)}>
+              {contentMap[key].title}
+            </li>
+          ))}
+        </MenuChoice>
+        {renderContent(contentMap[visible].title, contentMap[visible].items)}
+      </Content>
+    </Container>
   );
 }
