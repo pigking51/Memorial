@@ -34,25 +34,29 @@ const Name = styled.div`
   height: 70px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 20px;
   background-color: #fde9f3;
   border-bottom: 2px #666;
   input {
-    height: 50px;
+    height: 70px;
     width: 500px;
-    padding-left: 10px;
   }
 `;
 const Name2 = styled.div`
-  width: 300px;
+  width: 100%;
   height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px 0 20px;
   /* margin: 20px 0; */
-  background-color: lightgray;
+  background-color: white;
+  input {
+    height: 50px;
+    width: 500px;
+    padding: 20px;
+  }
 `;
 
 const Namewrap = styled.div`
@@ -72,14 +76,14 @@ const Phone = styled.div`
   border-bottom: 2px #666;
 `;
 const PhoneNumber = styled.div`
-  width: auto;
+  width: 100%;
   height: 70px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 0 20px 0 20px;
   /* margin: 20px 0; */
-  background-color: lightgray;
+  background-color: white;
   select {
     height: 50px;
     width: 100px;
@@ -100,6 +104,46 @@ const Phonewrap = styled.div`
   align-items: center;
 `;
 
+const Startup = styled.div`
+  width: 300px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #fde9f3;
+  border-bottom: 2px #666;
+`;
+const StartupInput = styled.div`
+  width: 100%;
+  height: 70px;
+  display: flex;
+  padding: 20px;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+
+  input {
+    height: 50px;
+    width: 250px;
+    padding: 0 20px;
+  }
+  p {
+    margin: 0 10px;
+  }
+  select {
+    height: 50px;
+    width: 250px;
+    padding: 0 20px;
+    /* margin-left: 20px; */
+  }
+`;
+const Startupwrap = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
 const Email = styled.div`
   width: 300px;
   height: 70px;
@@ -111,9 +155,14 @@ const Email = styled.div`
   border-bottom: 2px #666;
 `;
 const EmailInput = styled.div`
+  width: 100%;
+  height: 70px;
   display: flex;
-  justify-content: space-evenly;
+  padding: 20px;
+  justify-content: flex-start;
   align-items: center;
+  background-color: white;
+
   input {
     height: 50px;
     width: 250px;
@@ -134,17 +183,33 @@ const Emailwrap = styled.div`
   justify-content: flex-start;
   align-items: center;
 `;
+
 const Store = styled.div`
-  width: 100%;
-  height: 50px;
+  width: 300px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 20px 0;
+  padding: 20px;
+  background-color: #fde9f3;
+  border-bottom: 2px #666;
+`;
+const Stroewrap = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
 const Radio = styled.div`
+  width: 100%;
+  height: 70px;
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
   display: flex;
 `;
+
 const Yes = styled.div`
   margin-right: 20px;
   display: flex;
@@ -169,18 +234,25 @@ const No = styled.div`
     height: 20px;
   }
 `;
+
 const Address = styled.div`
-  width: 100%;
-  height: 50px;
+  width: 300px;
+  height: 70px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin: 0;
-  padding: 0;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #fde9f3;
+  border-bottom: 2px #666;
 `;
 const AddressInfo = styled.div`
+  width: 100%;
+  height: 70px;
   display: flex;
+  padding: 20px;
+  justify-content: flex-start;
   align-items: center;
+  background-color: white;
   input {
     height: 50px;
     width: 500px;
@@ -191,7 +263,7 @@ const AddressInfo = styled.div`
     width: 100px;
     margin: 0;
     padding: 0;
-    margin-right: 20px;
+    margin-left: 20px;
     background-color: #8c8c8c;
     color: #fff;
     border-radius: 4px;
@@ -201,35 +273,58 @@ const AddressInfo = styled.div`
     opacity: 0.85;
   }
 `;
+
+const Addresswrap = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
 const Etc = styled.div`
-  width: 100%;
+  width: 300px;
   height: 200px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin: 0;
-  padding: 0;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #fde9f3;
 `;
-const EtcWrite = styled.div``;
+const EtcWrite = styled.div`
+  width: 100%;
+  height: 70px;
+  display: flex;
+  padding: 20px;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+`;
+
+const Etcwrap = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
 const InfoAgree = styled.div`
   width: 100%;
   height: auto;
 `;
 const InfoAgree1 = styled.div`
-  width: 100%;
-  height: 50px;
+  width: 242px;
+  height: 70px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin: 0;
-  padding: 0;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #fde9f3;
 `;
 const InfoAgree1Container = styled.div`
-  width: 800px;
-  height: 50px;
+  width: 100%;
+  height: 70px;
   display: flex;
-  justify-content: end;
+  padding: 20px;
+  justify-content: flex-end;
   align-items: center;
+  background-color: white;
   button {
     height: 50px;
     width: 100px;
@@ -244,20 +339,23 @@ const InfoAgree1Container = styled.div`
   }
 `;
 const InfoAgree2 = styled.div`
-  width: 100%;
-  height: 50px;
+  width: 300px;
+  height: 70px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin: 20px 0;
-  padding: 0;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #fde9f3;
+  border-bottom: 2px #666;
 `;
 const InfoAgree2Container = styled.div`
-  width: 800px;
-  height: 50px;
+  width: 100%;
+  height: 70px;
   display: flex;
-  justify-content: end;
+  padding: 20px;
+  justify-content: flex-end;
   align-items: center;
+  background-color: white;
   button {
     height: 50px;
     width: 100px;
@@ -270,6 +368,12 @@ const InfoAgree2Container = styled.div`
   button:active {
     opacity: 0.85;
   }
+`;
+
+const InfoAgreewrap = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
 const Banner = styled.div`
   background-color: rgb(235, 146, 174);
@@ -318,6 +422,26 @@ const Info = styled.div`
   color: white;
 `;
 
+const UnderBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 50px 0 50px;
+  button {
+    font-size: large;
+    height: 60px;
+    width: 200px;
+    margin-right: 20px;
+    background-color: #eb92ae;
+    border-radius: 30px;
+    border: 1px solid white;
+    color: white;
+  }
+  button:active {
+    opacity: 0.85;
+  }
+`;
+
 export function Franchise_Inquiry() {
   return (
     <>
@@ -334,11 +458,9 @@ export function Franchise_Inquiry() {
         </AdInfo>
       </Ad>
       <Ad>
-        <img src="/images/etc./franchisePageInfo.png" alt="info" />
+        <img src="/images/etc/franchisePageInfo.png" alt="info" />
       </Ad>
-      <Title>
-        <span>01</span> 필수입력
-      </Title>
+      <Title>정보입력</Title>
       <>
         <Container>
           {/* <Brand>
@@ -357,6 +479,7 @@ export function Franchise_Inquiry() {
               </option>
             </select>
           </Brand> */}
+          <hr />
           <Namewrap>
             <Name>
               <p>
@@ -367,6 +490,7 @@ export function Franchise_Inquiry() {
               <input type="text" placeholder="이름" />
             </Name2>
           </Namewrap>
+          <hr />
           <Phonewrap>
             <Phone>
               <p>
@@ -406,6 +530,7 @@ export function Franchise_Inquiry() {
               <input type="tel" />
             </PhoneNumber>
           </Phonewrap>
+          <hr />
           <Emailwrap>
             <Email>
               <p>
@@ -416,7 +541,6 @@ export function Franchise_Inquiry() {
               <input type="email" />
               <p>@</p>
               <input type="email" />
-
               <select>
                 <option name="g-mail" id="1" value="g-mail">
                   @gmail.com
@@ -433,10 +557,37 @@ export function Franchise_Inquiry() {
               </select>
             </EmailInput>
           </Emailwrap>
-          <Store>
-            <p>
-              희망지역점포<span>*</span>
-            </p>
+          <hr />
+          <Startupwrap>
+            <Startup>
+              <p>
+                창업 가능 시기<span>*</span>
+              </p>
+            </Startup>
+            <StartupInput>
+              <select>
+                <option name="g-mail" id="1" value="g-mail">
+                  즉시
+                </option>
+                <option name="naver" id="2" value="naver">
+                  3개월
+                </option>
+                <option name="hanmail" id="3" value="hanmail">
+                  6개월
+                </option>
+                <option name="yahoo" id="4" value="yahoo">
+                  1년 이후
+                </option>
+              </select>
+            </StartupInput>
+          </Startupwrap>
+          <hr />
+          <Stroewrap>
+            <Store>
+              <p>
+                희망지역점포<span>*</span>
+              </p>
+            </Store>
             <Radio>
               <Yes>
                 <label for="Yes">있음</label>
@@ -447,55 +598,67 @@ export function Franchise_Inquiry() {
                 <input type="radio" value="No" name="agree" id="No" />
               </No>
             </Radio>
-          </Store>
-
-          <Address>
-            <p>
-              주소<span>*</span>
-            </p>
+          </Stroewrap>
+          <hr />
+          <Addresswrap>
+            <Address>
+              <p>
+                주소<span>*</span>
+              </p>
+            </Address>
             <AddressInfo>
-              <button>우편번호찾기</button>
               <input type="text" />
+              <button>우편번호찾기</button>
             </AddressInfo>
-          </Address>
-
-          <Etc>
-            <p>
-              추가정보입력<span>*</span>
-            </p>
+          </Addresswrap>
+          <hr />
+          <Etcwrap>
+            <Etc>
+              <p>
+                추가정보입력<span>*</span>
+              </p>
+            </Etc>
             <EtcWrite>
               <textarea
-                cols="100"
-                rows="5"
+                cols="72"
+                rows="10"
                 placeholder="점포를 보유하셨거나 입점희망 점포에 대한 사전정보가 있을 경우, 점포의 평수/임대료 등 구체적인 정보를 남겨주시면 조금 더 정확한 상담이 가능합니다."
               ></textarea>
               <p>
-                현재 <span>0</span>/ 최대200byte (한글100자,영문200자)
+                현재 <span>0</span> / 최대200byte
+                <br />
+                (한글100자,영문200자)
               </p>
             </EtcWrite>
-          </Etc>
-          <InfoAgree>
-            <InfoAgree1>
+          </Etcwrap>
+          <hr />
+          <InfoAgreewrap>
+            <InfoAgree>
+              <InfoAgree1>
+                <p>
+                  개인정보 보호를 위한 이용자 동의서<span>*</span>
+                </p>
+              </InfoAgree1>
+            </InfoAgree>
+            <InfoAgree1Container>
+              <button>상세보기</button>
+              <label for="A_Yes" id="YesLabel">
+                동의합니다.
+              </label>
+              <input type="radio" value="Yes" name="agree" id="A_Yes" />
+              <label for="A_No" id="NoLabel">
+                동의하지 않습니다.
+              </label>
+              <input type="radio" value="No" name="agree" id="A_No" />
+            </InfoAgree1Container>
+          </InfoAgreewrap>
+          <hr />
+          <InfoAgreewrap>
+            <InfoAgree2>
               <p>
-                개인정보 보호를 위한 이용자 동의서<span>*</span>
+                마케팅 활용 동의서 (선택)<span>*</span>
               </p>
-              <InfoAgree1Container>
-                <button>상세보기</button>
-                <label for="A_Yes" id="YesLabel">
-                  동의합니다.
-                </label>
-                <input type="radio" value="Yes" name="agree" id="A_Yes" />
-                <label for="A_No" id="NoLabel">
-                  동의하지 않습니다.
-                </label>
-                <input type="radio" value="No" name="agree" id="A_No" />
-              </InfoAgree1Container>
-            </InfoAgree1>
-          </InfoAgree>
-          <InfoAgree2>
-            <p>
-              마케팅 활용 동의서(선택)<span>*</span>
-            </p>
+            </InfoAgree2>
             <InfoAgree2Container>
               <button>상세보기</button>
               <label for="B_Yes" id="YesLabel">
@@ -507,7 +670,13 @@ export function Franchise_Inquiry() {
               </label>
               <input type="radio" value="No" name="agree" id="B_No" />
             </InfoAgree2Container>
-          </InfoAgree2>
+          </InfoAgreewrap>
+          <hr />
+
+          <UnderBtn>
+            <button>등록하기</button>
+            <button>취소</button>
+          </UnderBtn>
         </Container>
       </>
     </>
