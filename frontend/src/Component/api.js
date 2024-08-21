@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function userLogin(data) {
   const url = `http://localhost:8080/api/authenticate`;
@@ -96,4 +96,18 @@ export function userLogout() {
   sessionStorage.removeItem("JWT-token");
   window.location.reload();
   // return axios.post(url, {}, headers);
+}
+
+// 게임정보 저장
+export function fetchGameData(id, data) {
+  const url = `http://localhost:8080/game/update/${id}`;
+
+  return axios.patch(url, data, headers);
+}
+
+// 게임정보 불러오기
+export function getMyGameData(id) {
+  const url = `http://localhost:8080/game/getmydata/${id}`;
+
+  return axios.get(url, headers);
 }
