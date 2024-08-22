@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
+import { getMenuData } from "./api";
 
 // Styled components (same as before)
 
@@ -184,14 +185,20 @@ const NextButton = styled.button`
 `;
 
 export function Menu() {
-  const [visible, setVisible] = useState("New-Menu");
-  const [translateValue, setTranslateValue] = useState(0);
+  const [visible, setVisible] = useState([]);
+  const [translateValue, setTranslateValue] = useState("8th-New-Menu");
+  const [menuContents, setMenuContents] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const imageContainerRef = useRef(null);
 
   useEffect(() => {
     // Reset translateValue when the visible menu changes
     setTranslateValue(0);
   }, [visible]);
+
+  useEffect(() => {
+    showMenuData();
+  }, []);
 
   const handlePrevClick = () => {
     const containerWidth = imageContainerRef.current.offsetWidth;
@@ -220,13 +227,68 @@ export function Menu() {
     });
   };
 
-  const renderContent = (title, items) => (
+  async function showMenuData() {
+    try {
+      const response = await getMenuData();
+      const data = response.data;
+      let i = 0;
+      const allMenu_arr = [];
+      const newMenu_arr = [];
+      const coffee_arr = [];
+      const drink_arr = [];
+      const dessert_arr = [];
+      const cookie_arr = [];
+      for (i = 0; i < data.length; i++) {
+        if (data[i].menuTitle == "8th-New-Menu") {
+          newMenu_arr.push(data[i]);
+        } else if (data[i].menuTitle == "Coffee") {
+          coffee_arr.push(data[i]);
+        } else if (data[i].menuTitle == "Drink") {
+          drink_arr.push(data[i]);
+        } else if (data[i].menuTitle == "Dessert") {
+          dessert_arr.push(data[i]);
+        } else if (data[i].menuTitle == "Cookie") {
+          cookie_arr.push(data[i]);
+        }
+      }
+      // 기본상태는 첫번째 매뉴가 보여야됨
+      const p_newMenuJson = JSON.stringify(newMenu_arr);
+      const newMenuJson = JSON.parse(p_newMenuJson);
+      console.log(newMenuJson);
+      setVisible(newMenuJson);
+
+      allMenu_arr.push(newMenu_arr);
+      allMenu_arr.push(coffee_arr);
+      allMenu_arr.push(drink_arr);
+      allMenu_arr.push(dessert_arr);
+      allMenu_arr.push(cookie_arr);
+
+      console.log(allMenu_arr);
+      const p_allMenuJson = JSON.stringify(allMenu_arr);
+      const allMenuJson = JSON.parse(p_allMenuJson);
+      console.log(allMenuJson);
+      console.log(allMenuJson[0].menuTitle);
+      setMenuContents(allMenuJson);
+
+      // 데이터 로딩전 오류발생 방지코드
+      setIsLoading(true);
+      console.log(menuContents && menuContents);
+    } catch (error) {
+      console.log("메뉴 데이터 출력 오류", error);
+    }
+  }
+  function nowItems(prop) {
+    console.log(prop);
+    console.log(prop[0].menuTitle);
+  }
+
+  const renderContent = (items) => (
     <>
       <SubTitle>
-        <p>{title}</p>
+        <p>{!isLoading ? `8th-New-Menu` : `${items[0].menuTitle}`}</p>
       </SubTitle>
       <BtContentTitle>
-        <p>{title}</p>
+        <p>{!isLoading ? `8th-New-Menu` : `${items[0].menuTitle}`}</p>
       </BtContentTitle>
       <ContentBox>
         <PrevButton onClick={handlePrevClick}>
@@ -238,13 +300,13 @@ export function Menu() {
         >
           {items.map((item, index) => (
             <ImageBox translateValue={translateValue} key={index}>
-              <Image>
-                <img src={item.img} alt={item.name} />
+              <Image onClick={() => nowItems(items)}>
+                <img src={item.img} alt={item.menuName} />
               </Image>
               <p>
-                {item.name}
+                {item.menuName}
                 <br />
-                {item.price}
+                {`${item.price}원`}
               </p>
             </ImageBox>
           ))}
@@ -255,119 +317,6 @@ export function Menu() {
       </ContentBox>
     </>
   );
-
-  const contentMap = {
-    "New-Menu": {
-      title: "8th-New-Menu",
-      items: [
-        {
-          img: "/images/img/피스타치오.png",
-          name: "피스타치오 매직팝 플랫치노",
-          price: "4,500원",
-        },
-        {
-          img: "/images/img/초당옥수수.png",
-          name: "초당옥수수 1인빙수",
-          price: "6,300원",
-        },
-        {
-          img: "/images/img/크림폭포.png",
-          name: "바닐라 크림폭포 데니쉬",
-          price: "6,300원",
-        },
-      ],
-    },
-    Coffee: {
-      title: "Coffee",
-      items: [
-        {
-          img: "/images/img/아메리카노_ice.png",
-          name: "아메리카노(Ice)",
-          price: "1,500원",
-        },
-        {
-          img: "/images/img/카라멜마키아토_ice.png",
-          name: "카라멜마키아토",
-          price: "3,500원",
-        },
-        {
-          img: "/images/img/에스프레소폰파나.png",
-          name: "에스프레소폰파나",
-          price: "4,800원",
-        },
-        {
-          img: "/images/img/딸기_글레이즈드_크림_프라푸치노.png",
-          name: "딸기 글레이즈드 크림 프라푸치노",
-          price: "4,600원",
-        },
-        {
-          img: "/images/img/민트_콜드_브루.png",
-          name: "민트 콜드브루",
-          price: "3,800원",
-        },
-      ],
-    },
-    Drink: {
-      title: "Drink",
-      items: [
-        {
-          img: "/images/img/슬래머.png",
-          name: "슬래머",
-          price: "4,000원",
-        },
-        {
-          img: "/images/img/콜드폼_딸기_라떼.png",
-          name: "콜드 폼 딸기라떼",
-          price: "5,000원",
-        },
-        {
-          img: "/images/img/우유.png",
-          name: "우유",
-          price: "2,500원",
-        },
-      ],
-    },
-    Dessert: {
-      title: "Dessert",
-      items: [
-        {
-          img: "/images/img/바스크_초코_치즈_케이크.png",
-          name: "바스크 초코 치즈케이크",
-          price: "3,500원",
-        },
-        {
-          img: "/images/img/초콜릿_생크림_케이크.png",
-          name: "초콜릿 생크림 케이크",
-          price: "7,000원",
-        },
-        {
-          img: "/images/img/당근_현무암_케이크.png",
-          name: "당근_현무암_케이크",
-          price: "8,000원",
-        },
-      ],
-    },
-    Cookie: {
-      title: "Cookie",
-      items: [
-        {
-          img: "/images/img/초코스모어쿠키.png",
-          name: "초코스모어쿠키",
-          price: "1,200원",
-        },
-        {
-          img: "/images/img/말차스모어쿠키.png",
-          name: "말차스모어쿠키",
-          price: "1,300원",
-        },
-        {
-          img: "/images/img/마카다미아쿠키.png",
-          name: "마카다미아쿠키",
-          price: "1,200원",
-        },
-      ],
-    },
-  };
 
   return (
     <Container>
@@ -383,13 +332,14 @@ export function Menu() {
           <p>Menu</p>
         </Text>
         <MenuChoice>
-          {Object.keys(contentMap).map((key) => (
-            <li key={key} onClick={() => setVisible(key)}>
-              {contentMap[key].title}
-            </li>
-          ))}
+          {menuContents &&
+            menuContents.map((key, index) => (
+              <li key={key.menuTitle} onClick={() => setVisible(key)}>
+                {key[index].menuTitle}
+              </li>
+            ))}
         </MenuChoice>
-        {renderContent(contentMap[visible].title, contentMap[visible].items)}
+        {renderContent(visible)}
       </Content>
     </Container>
   );
