@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navbar } from "./Navbar";
 import { Home } from "./Home";
+import { Index } from "./Index";
 import { Intro } from "./Intro";
 import { Menu } from "./Menu";
 import { Education } from "./Education";
@@ -60,6 +61,7 @@ export function MainPage() {
             </Nav>
             <ContentBox>
               <Routes>
+                <Route path="/index" element={<Index />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/intro" element={<Intro />} />

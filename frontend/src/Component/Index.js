@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useEffect } from "react";
 import { TopDownAction } from "./TopDownAction";
-import { useHref } from "react-router-dom";
 
 const ImageWrap = styled.div`
   width: 100%;
@@ -12,10 +11,7 @@ const ImageWrap = styled.div`
   }
 `;
 
-export function Home() {
-  function gotoIndex() {
-    window.location.href = `/index`;
-  }
+export function Index() {
   return (
     <>
       <ImageWrap>
@@ -24,7 +20,6 @@ export function Home() {
       {/* <div className="image"></div> */}
       <div>
         <TopDownAction />
-        <button onClick={gotoIndex}>^-^</button>
       </div>
       <div className="greetings">
         <span> 환영합니다, MEMORIAL입니다 :) </span>
