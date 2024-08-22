@@ -111,3 +111,10 @@ export function getMyGameData(id) {
 
   return axios.get(url, headers);
 }
+
+// 메뉴정보 불러오기
+export function getMenuData() {
+  const url = `http://localhost:8080/menu/getallmenu`;
+
+  return axios.get(url, headers);
+}
