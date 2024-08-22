@@ -18,6 +18,9 @@ public class Menu {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "menu_id")
     private long menuId;
+    
+    @Column(name="menu_title")
+    private String menuTitle; // 메뉴를 분류하기 위한것
 
     @Column(name="menu_name")
     private String menuName;
