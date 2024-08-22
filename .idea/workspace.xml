@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2206d9c-3204-41df-9423-dea1ad507682" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Controller/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dump/MenuDump.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dump/menu_202408221049.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dump/menu_202408221105.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/menu_202408221510.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
