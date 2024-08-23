@@ -2,6 +2,20 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+import { showAllLectures } from "./api";
+
+const NotLoading = styled.div`
+  height: 60vh;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+`;
+const Opps = styled.p`
+  position: relative;
+  font-size: 64px;
+  font-weight: bolder;
+`;
 
 const Container = styled.div`
   width: 100%;
@@ -70,31 +84,19 @@ const Banner = styled.div`
     font-size: 30px;
   }
 `;
-// const categories = [
-//   { category: "Now Playing", func: getLecturesNowPlaying },
-//   { category: "Popular", func: getLecturesPopular },
-//   { category: "Top Rated", func: getLecturesTopRated },
-//   { category: "Upcoming", func: getLecturesUpcoming },
-// ];
 
 export function Education() {
   const [data, setData] = useState(null);
-  // const [category, setCategory] = useContext(LectureContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // setPartListOfLecture(category);
     showLecture();
   }, []);
 
+  // 강의 데이터 불러오기
   async function showLecture() {
-    const url = "http://localhost:8080/lectures/getalllectures";
-
     try {
-      const response = await axios.get(url, {
-        headers: { "Access-Control-Allow-Origin": "*" },
-      });
-      // const response = await categories[index].func();
+      const response = await showAllLectures();
       const data = response.data;
       console.log(data);
       let i = 0;
@@ -112,35 +114,43 @@ export function Education() {
 
   return (
     <>
-      <Banner>
-        <h1>Lecture</h1>
-        <p>강의</p>
-      </Banner>
-      <br></br>
-      <Container>
-        <Contents>
-          {data &&
-            data.map((lec) => (
-              <Card
-                key={lec.lectureId}
-                onClick={() => {
-                  navigate(`${lec.lectureId}`);
-                }}
-              >
-                <Img src={lec.image}></Img>
-                <Text>
-                  <b>타이틀</b> :{lec.lectureTitle}
-                </Text>
-                <Text>
-                  <b>분야</b> : {lec.major}
-                </Text>
-                <Text>
-                  <b>설명</b> : {lec.text}
-                </Text>
-              </Card>
-            ))}
-        </Contents>
-      </Container>
+      {data == null ? (
+        <NotLoading>
+          <Opps>이런! 데이터를 불러오지 못했습니다!!!!</Opps>
+        </NotLoading>
+      ) : (
+        <>
+          <Banner>
+            <h1>Lecture</h1>
+            <p>강의</p>
+          </Banner>
+          <br></br>
+          <Container>
+            <Contents>
+              {data &&
+                data.map((lec) => (
+                  <Card
+                    key={lec.lectureId}
+                    onClick={() => {
+                      navigate(`${lec.lectureId}`);
+                    }}
+                  >
+                    <Img src={lec.image}></Img>
+                    <Text>
+                      <b>타이틀</b> :{lec.lectureTitle}
+                    </Text>
+                    <Text>
+                      <b>분야</b> : {lec.major}
+                    </Text>
+                    <Text>
+                      <b>설명</b> : {lec.text}
+                    </Text>
+                  </Card>
+                ))}
+            </Contents>
+          </Container>
+        </>
+      )}
     </>
   );
 }

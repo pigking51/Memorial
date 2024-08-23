@@ -51,6 +51,7 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/post/getallposts/**"),
                                 new AntPathRequestMatcher("/post/getallpostsparts"),
                                 new AntPathRequestMatcher("/post/getallpostsparts/**"),
+                                new AntPathRequestMatcher("/menu/getallmenu"),
                                 new AntPathRequestMatcher("/api/authenticate"),
                                 new AntPathRequestMatcher("/user/login"),
                                 new AntPathRequestMatcher("/user/signup"),

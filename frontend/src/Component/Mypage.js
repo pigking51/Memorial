@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+
 import {
   getNowUser,
   getMyLecture,
   showAllUser,
   getLectureTop4,
   modifyData,
+  showStock,
 } from "./api";
 import "./Mypage.css";
 
@@ -88,6 +90,19 @@ const UserInfo = styled.div`
     }
   }
 `;
+
+const Stocks = styled.div`
+  font-size: 14px;
+  margin-top: 56px;
+`;
+const StInner = styled.div`
+  display: flex;
+  div {
+    margin-right: 24px;
+  }
+`;
+const StResult = styled.span``;
+
 const Myclass = styled.li`
   cursor: pointer;
 `;
@@ -322,9 +337,14 @@ export function Mypage() {
   const [data, setData] = useState(null);
   const [lecData, setLecData] = useState(null);
   const [isLecNull, setIsLecNull] = useState(false);
+  const [stockData, setStockData] = useState([]);
 
   useEffect(() => {
     mypageContent();
+  }, []);
+
+  useEffect(() => {
+    getFRStock();
   }, []);
 
   let CPassword = "";
@@ -411,6 +431,16 @@ export function Mypage() {
       }
     } catch (error) {
       console.log(`Email 중복확인 오류`, error);
+    }
+  }
+
+  async function getFRStock() {
+    try {
+      const response = await showStock();
+      const data = response.data.response.body.items.item;
+      setStockData(data);
+    } catch (error) {
+      console.log("주식 현황 불러오기 실패", error);
     }
   }
 
@@ -511,6 +541,34 @@ export function Mypage() {
             {/* <UserEdit>
               <a href="dashboard.html">대시보드 바로가기</a>
             </UserEdit> */}
+            <Stocks>
+              {stockData.map((stock) => (
+                <StInner>
+                  <div>
+                    <p>이름 : {stock.itmsNm}</p>
+                  </div>
+                  <div>시가총액 : {stock.mrktTotAmt}</div>
+                  <div>거래량 : {stock.trqu}</div>
+                  <div>
+                    등락률 :
+                    <StResult
+                      style={{
+                        color: `${
+                          stock.fltRt > 0
+                            ? "red"
+                            : stock.fltRt == 0
+                            ? "black"
+                            : "blue"
+                        }`,
+                      }}
+                    >
+                      {stock.fltRt}
+                      {stock.fltRt > 0 ? " ▲" : stock.fltRt == 0 ? " -" : " ▼"}
+                    </StResult>
+                  </div>
+                </StInner>
+              ))}
+            </Stocks>
           </ul>
         </UserInfo>
 

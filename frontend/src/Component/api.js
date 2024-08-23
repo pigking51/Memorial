@@ -41,6 +41,14 @@ export function showAllUser() {
 
   return axios.get(url, headers);
 }
+export function showAllLectures() {
+  const url = "http://localhost:8080/lectures/getalllectures";
+
+  return axios.get(url);
+
+  // 헤더에 뭘 붙이는 작업이었는데 까먹음(필요는 없음)
+  // headers: { "Access-Control-Allow-Origin": "*" },
+}
 
 export function getLectureDetailById(id) {
   // let resultLecture = "";
@@ -82,6 +90,16 @@ export function modifyData(id, data) {
   return axios.patch(url, data, headers);
 }
 
+// 주식정보
+export function showStock() {
+  const API_KEY =
+    "Bbw%2BKP6%2Bcl7za25F0EmakNrwYPJ%2FectOS5l7qDNt6AFKqEs2peyJUombGy4yhUNZ3Fz3chTfRzkVPNeNgEcjVg%3D%3D";
+
+  const url = `https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=${API_KEY}&resultType=json&numOfRows=5&likeItmsNm=신`;
+
+  return axios.get(url);
+}
+
 // 강의 구독하기
 export function saveLecture(data) {
   const url = `http://localhost:8080/api/products/subscribe`;
@@ -116,5 +134,5 @@ export function getMyGameData(id) {
 export function getMenuData() {
   const url = `http://localhost:8080/menu/getallmenu`;
 
-  return axios.get(url, headers);
+  return axios.get(url);
 }

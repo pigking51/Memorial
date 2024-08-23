@@ -2,7 +2,18 @@ import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { getMenuData } from "./api";
 
-// Styled components (same as before)
+const NotLoading = styled.div`
+  height: 60vh;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+`;
+const Opps = styled.p`
+  position: relative;
+  font-size: 64px;
+  font-weight: bolder;
+`;
 
 const Container = styled.div``;
 
@@ -319,28 +330,36 @@ export function Menu() {
   );
 
   return (
-    <Container>
-      <Content>
-        <Banner>
-          <h1>Special Offer</h1>
-          <p>Up to 50% off on selected items</p>
-        </Banner>
-        <BackGroundImage>
-          <img src="/images/bg/bg1.png" alt="Background" />
-        </BackGroundImage>
-        <Text>
-          <p>Menu</p>
-        </Text>
-        <MenuChoice>
-          {menuContents &&
-            menuContents.map((key, index) => (
-              <li key={key.menuTitle} onClick={() => setVisible(key)}>
-                {key[index].menuTitle}
-              </li>
-            ))}
-        </MenuChoice>
-        {renderContent(visible)}
-      </Content>
-    </Container>
+    <>
+      {visible.length == 0 ? (
+        <NotLoading>
+          <Opps>이런! 데이터를 불러오지 못했습니다!!!!</Opps>
+        </NotLoading>
+      ) : (
+        <Container>
+          <Content>
+            <Banner>
+              <h1>Special Offer</h1>
+              <p>Up to 50% off on selected items</p>
+            </Banner>
+            <BackGroundImage>
+              <img src="/images/bg/bg1.png" alt="Background" />
+            </BackGroundImage>
+            <Text>
+              <p>Menu</p>
+            </Text>
+            <MenuChoice>
+              {menuContents &&
+                menuContents.map((key, index) => (
+                  <li key={key.menuTitle} onClick={() => setVisible(key)}>
+                    {key[index].menuTitle}
+                  </li>
+                ))}
+            </MenuChoice>
+            {renderContent(visible)}
+          </Content>
+        </Container>
+      )}
+    </>
   );
 }
