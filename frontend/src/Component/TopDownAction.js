@@ -11,14 +11,20 @@ const Container = styled.div`
 `;
 
 const StartButton = styled.button`
-  width: 200px;
-  height: 50px;
-  color: #e38ca6;
-  background-color: #f3e1eb;
-  border: 2px solid #e38ca6;
-  border-radius: 4px;
+  width: 400px;
+  height: 100px;
+  color: #fff;
+  font-size: xx-large;
+  background-color: #eb92ae;
+  border-top: 2px solid #eb92ae;
+  border: 3px solid #fcd3e6;
+  border-bottom: 6px solid #db365a;
+  border-radius: 50px;
   cursor: pointer;
-  margin-bottom: 20px;
+  transition: 0.5s;
+  &:hover {
+    opacity: 0.6;
+  }
 `;
 
 const BtContainer = styled.div`
@@ -127,6 +133,14 @@ export function TopDownAction() {
               >
               Attack
               </button> */}
+      <BtContainer>
+        <StartButton onClick={() => setPlayingGame(true)}>
+          ✨ Game Start ✨
+        </StartButton>
+        {playingGame && (
+          <p>{`${userName}! You've scored ${likeScore} points.`}</p>
+        )}
+      </BtContainer>
       <Container>
         {playingGame ? (
           <Unity
@@ -138,14 +152,6 @@ export function TopDownAction() {
           />
         ) : null}
       </Container>
-      <BtContainer>
-        <StartButton onClick={() => setPlayingGame(true)}>
-          StartGame
-        </StartButton>
-        {playingGame && (
-          <p>{`${userName}! You've scored ${likeScore} points.`}</p>
-        )}
-      </BtContainer>
     </>
   );
 }

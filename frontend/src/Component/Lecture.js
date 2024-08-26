@@ -73,7 +73,9 @@ const Study = styled.button`
 `;
 
 const Banner = styled.div`
-  background-color: rgb(235, 146, 174);
+  background: linear-gradient(50deg, #bc93f9, #eb92ae);
+  background-size: 400% 400%;
+  animation: gradient 4s ease infinite;
   height: 200px;
   width: 100%;
   display: flex;
@@ -81,11 +83,26 @@ const Banner = styled.div`
   align-items: center;
   flex-direction: column;
   color: white;
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
   h1 {
     font-size: 50px;
+    margin: 0;
   }
   p {
     font-size: 30px;
+    margin: 0;
   }
 `;
 
@@ -151,18 +168,13 @@ export function Lecture() {
         if (
           window.confirm(`강의를 신청했습니다. 강의를 들으러 가시겠습니까?`)
         ) {
-          window.location.href = `/streaming/${id}`;
+          window.location.href = `Home`;
         } else {
           window.location.reload();
         }
       }
     } catch (error) {
       console.log("구독신청과정 오류", error);
-      if (window.confirm(`로그인하지 않았습니다! 로그인해주세요!`)) {
-        navigate("/login");
-      } else {
-        window.location.reload();
-      }
     }
   }
   function goToStreaming() {

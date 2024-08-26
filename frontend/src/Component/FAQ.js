@@ -77,7 +77,9 @@ const Question = styled.div`
   }
 `;
 const Banner = styled.div`
-  background-color: rgb(235, 146, 174);
+  background: linear-gradient(45deg, #bc93f9, #eb92ae);
+  background-size: 400% 400%;
+  animation: gradient 4s ease infinite;
   height: 200px;
   width: 100%;
   display: flex;
@@ -85,11 +87,26 @@ const Banner = styled.div`
   align-items: center;
   flex-direction: column;
   color: white;
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
   h1 {
     font-size: 50px;
+    margin: 0;
   }
   p {
     font-size: 30px;
+    margin: 0;
   }
 `;
 let isHidden = true;

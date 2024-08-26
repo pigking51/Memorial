@@ -17,7 +17,9 @@ const Found = styled.div`
   height: 50px;
   display: flex;
   justify-content: right;
-  background-color: rgb(235, 146, 174);
+  background: linear-gradient(45deg, #bc93f9, #eb92ae);
+  background-size: 400% 400%;
+  animation: gradient 4s ease infinite;
   padding-right: 56px;
 `;
 const FoundSearch = styled.div`
@@ -138,7 +140,7 @@ const LectureWrap = styled.div`
 const LectureBox = styled.div`
   border: 2px solid rgb(235, 146, 174);
   /* border-bottom: 4px solid rgb(235, 146, 174); */
-  border-radius: 8px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -150,6 +152,7 @@ const LectureBox = styled.div`
   font-family: "GmarketSansMedium";
   color: #333;
   cursor: pointer;
+  transition: 0.5s;
   button {
     transition: 0.3s;
     width: 200px;
@@ -618,6 +621,8 @@ export function Mypage() {
               <h2>회원정보 수정</h2>
 
               <Write>
+                <hr />
+
                 <Password
                   type="password"
                   ref={CPWRef}

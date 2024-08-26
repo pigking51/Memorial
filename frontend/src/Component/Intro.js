@@ -15,35 +15,65 @@ const Contents = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
   height: 600px;
+  align-items: center;
 `;
 const Logo = styled.div`
-  width: 400px;
-  height: 400px;
+  width: 390px;
+  height: 390px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover img {
+    animation: wave 2s infinite ease-in-out;
+  }
+
+  @keyframes wave {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY(-5px) translateX(5px);
+    }
+    50% {
+      transform: translateY(-10px) translateX(-5px);
+    }
+    75% {
+      transform: translateY(-5px) translateX(5px);
+    }
+  }
 `;
 const Aside = styled.div`
   margin-left: 50px;
   height: 500px;
   width: 740px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  color: #333;
+
+  /* justify-content: center; */
 `;
 const Top = styled.div`
-  height: 100px;
-  margin-top: 20px;
+  height: fit-content;
   line-height: 40px;
   font-size: 30px;
   font-weight: bold;
 `;
 const Middle = styled.div`
-  height: 130px;
   line-height: 26px;
   span {
     font-size: 20px;
   }
 `;
 const Bottom = styled.div`
-  height: 130px;
-  margin-top: 30px;
+  height: fit-content;
   line-height: 40px;
   p {
     font-size: 20px;
@@ -60,7 +90,9 @@ const Bottom = styled.div`
   }
 `;
 const Banner = styled.div`
-  background-color: rgb(235, 146, 174);
+  background: linear-gradient(45deg, #bc93f9, #eb92ae);
+  background-size: 400% 400%;
+  animation: gradient 4s ease infinite;
   height: 200px;
   width: 100%;
   display: flex;
@@ -68,11 +100,26 @@ const Banner = styled.div`
   align-items: center;
   flex-direction: column;
   color: white;
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
   h1 {
     font-size: 50px;
+    margin: 0;
   }
   p {
     font-size: 30px;
+    margin: 0;
   }
 `;
 export function Intro() {
@@ -89,14 +136,7 @@ export function Intro() {
 
         <Contents>
           <Logo>
-            <a href="#">
-              <img
-                src="./images/logo/memorialLogo.png"
-                width="390"
-                height="390"
-                alt="로고"
-              />
-            </a>
+            <img src="./images/logo/memorialLogo.png" alt="로고" />
           </Logo>
           <Aside>
             <Top>
@@ -140,6 +180,17 @@ export function Intro() {
           </Aside>
         </Contents>
       </Container>
+      <svg style={{ display: "none" }}>
+        <filter id="wave">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.01 0.05"
+            numOctaves="5"
+            seed="2"
+          />
+          <feDisplacementMap scale="20" in="SourceGraphic" />
+        </filter>
+      </svg>
     </>
   );
 }

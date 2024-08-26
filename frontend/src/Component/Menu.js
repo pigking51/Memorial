@@ -1,20 +1,26 @@
 import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { getMenuData } from "./api";
-import { useNavigate } from "react-router-dom";
 
-// const NotLoading = styled.div`
-//   height: 60vh;
-//   display: flex;
-//   position: relative;
-//   justify-content: center;
-//   align-items: center;
-// `;
-// const Opps = styled.p`
-//   position: relative;
-//   font-size: 64px;
-//   font-weight: bolder;
-// `;
+const NotLoading = styled.div`
+  height: 60vh;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+`;
+const Opps = styled.img`
+  position: relative;
+  height: 500px;
+  width: 500px;
+  animation: rotate_image 30s linear infinite;
+  transform-origin: 50% 50%;
+  @keyframes rotate_image {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
 
 const Container = styled.div``;
 
@@ -68,6 +74,7 @@ const MenuChoice = styled.ul`
     justify-content: center;
     color: #e38ca6;
     background-color: #fff;
+    margin: 100px 0;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
@@ -156,7 +163,9 @@ const Image = styled.div`
 `;
 
 const Banner = styled.div`
-  background-color: rgb(235, 146, 174);
+  background: linear-gradient(50deg, #bc93f9, #eb92ae);
+  background-size: 400% 400%;
+  animation: gradient 4s ease infinite;
   height: 200px;
   width: 100%;
   display: flex;
@@ -164,6 +173,19 @@ const Banner = styled.div`
   align-items: center;
   flex-direction: column;
   color: white;
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
   h1 {
     font-size: 50px;
     margin: 0;
@@ -202,8 +224,6 @@ export function Menu() {
   const [menuContents, setMenuContents] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const imageContainerRef = useRef(null);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Reset translateValue when the visible menu changes
@@ -313,11 +333,7 @@ export function Menu() {
           style={{ width: `calc(3 * (300px + 40px))` }} // 3 items view
         >
           {items.map((item, index) => (
-            <ImageBox
-              onClick={() => navigate(`${item.menuId}`)}
-              translateValue={translateValue}
-              key={index}
-            >
+            <ImageBox translateValue={translateValue} key={index}>
               <Image onClick={() => nowItems(items)}>
                 <img src={item.img} alt={item.menuName} />
               </Image>
@@ -338,29 +354,33 @@ export function Menu() {
 
   return (
     <>
-      <Container>
-        <Content>
-          <Banner>
-            <h1>Special Offer</h1>
-            <p>Up to 50% off on selected items</p>
-          </Banner>
-          <BackGroundImage>
-            <img src="/images/bg/bg1.png" alt="Background" />
-          </BackGroundImage>
-          <Text>
-            <p>Menu</p>
-          </Text>
-          <MenuChoice>
-            {menuContents &&
-              menuContents.map((key, index) => (
-                <li key={key.menuTitle} onClick={() => setVisible(key)}>
-                  {key[index].menuTitle}
-                </li>
-              ))}
-          </MenuChoice>
-          {renderContent(visible)}
-        </Content>
-      </Container>
+      {visible.length == 0 ? (
+        <NotLoading>
+          <Opps src="./images/logo/memorialLogo.png" />
+        </NotLoading>
+      ) : (
+        <Container>
+          <Content>
+            <Banner>
+              <h1>Special Offer</h1>
+              <p>Up to 50% off on selected items</p>
+            </Banner>
+            <BackGroundImage>
+              <img src="/images/bg/bg1.png" alt="Background" />
+            </BackGroundImage>
+            <Text>{/* <p>Menu</p> */}</Text>
+            <MenuChoice>
+              {menuContents &&
+                menuContents.map((key, index) => (
+                  <li key={key.menuTitle} onClick={() => setVisible(key)}>
+                    {key[index].menuTitle}
+                  </li>
+                ))}
+            </MenuChoice>
+            {renderContent(visible)}
+          </Content>
+        </Container>
+      )}
     </>
   );
 }

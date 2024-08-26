@@ -11,10 +11,17 @@ const NotLoading = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const Opps = styled.p`
+const Opps = styled.img`
   position: relative;
-  font-size: 64px;
-  font-weight: bolder;
+  height: 500px;
+  width: 500px;
+  animation: rotate_image 30s linear infinite;
+  transform-origin: 50% 50%;
+  @keyframes rotate_image {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `;
 
 const Container = styled.div`
@@ -69,7 +76,9 @@ const Text = styled.div`
 `;
 
 const Banner = styled.div`
-  background-color: rgb(235, 146, 174);
+  background: linear-gradient(50deg, #bc93f9, #eb92ae);
+  background-size: 400% 400%;
+  animation: gradient 4s ease infinite;
   height: 200px;
   width: 100%;
   display: flex;
@@ -77,11 +86,26 @@ const Banner = styled.div`
   align-items: center;
   flex-direction: column;
   color: white;
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
   h1 {
     font-size: 50px;
+    margin: 0;
   }
   p {
     font-size: 30px;
+    margin: 0;
   }
 `;
 
@@ -114,35 +138,43 @@ export function Education() {
 
   return (
     <>
-      <Banner>
-        <h1>Lecture</h1>
-        <p>강의</p>
-      </Banner>
-      <br></br>
-      <Container>
-        <Contents>
-          {data &&
-            data.map((lec) => (
-              <Card
-                key={lec.lectureId}
-                onClick={() => {
-                  navigate(`${lec.lectureId}`);
-                }}
-              >
-                <Img src={lec.image}></Img>
-                <Text>
-                  <b>타이틀</b> :{lec.lectureTitle}
-                </Text>
-                <Text>
-                  <b>분야</b> : {lec.major}
-                </Text>
-                <Text>
-                  <b>설명</b> : {lec.text}
-                </Text>
-              </Card>
-            ))}
-        </Contents>
-      </Container>
+      {data == null ? (
+        <NotLoading>
+          <Opps src="./images/logo/memorialLogo.png" />
+        </NotLoading>
+      ) : (
+        <>
+          <Banner>
+            <h1>Lecture</h1>
+            <p>강의</p>
+          </Banner>
+          <br></br>
+          <Container>
+            <Contents>
+              {data &&
+                data.map((lec) => (
+                  <Card
+                    key={lec.lectureId}
+                    onClick={() => {
+                      navigate(`${lec.lectureId}`);
+                    }}
+                  >
+                    <Img src={lec.image}></Img>
+                    <Text>
+                      <b>타이틀</b> :{lec.lectureTitle}
+                    </Text>
+                    <Text>
+                      <b>분야</b> : {lec.major}
+                    </Text>
+                    <Text>
+                      <b>설명</b> : {lec.text}
+                    </Text>
+                  </Card>
+                ))}
+            </Contents>
+          </Container>
+        </>
+      )}
     </>
   );
 }
