@@ -112,7 +112,6 @@ const Banner = styled.div`
 let isHidden = true;
 export function FAQ() {
   const [FAQ_Item, setFAQ_Item] = useState(null);
-  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     fetchFAQs();
@@ -132,15 +131,18 @@ export function FAQ() {
     }
   }
 
-  function revealHidden() {
-    if (!isHidden) {
-      isHidden = true;
-      console.log(isHidden);
+  function revealHidden(e, index) {
+    console.log(e);
+    const answers = document.querySelectorAll(".answer");
+    console.log(answers[index]);
+
+    if (answers[index].style.display == `none`) {
+      answers[index].style.display = `block`;
     } else {
-      isHidden = false;
-      console.log(isHidden);
+      answers[index].style.display = `none`;
     }
   }
+
   return (
     <>
       <Banner>
@@ -154,13 +156,13 @@ export function FAQ() {
             FAQ_Item.map((item, index) => (
               <div key={item.faqId}>
                 <Question
-                  onClick={() => {
-                    setVisible(!visible);
+                  onClick={(e) => {
+                    revealHidden(e, index);
                   }}
                 >
                   {item.question}
                 </Question>
-                {visible && <div className="answer">{item.answer} </div>}
+                <div className="answer">{item.answer}</div>
               </div>
             ))}
         </FAQWrap>

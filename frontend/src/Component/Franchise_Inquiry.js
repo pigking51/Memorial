@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import "./Franchise_Inquiry.css";
+import { useEffect, useRef, useState } from "react";
+import { getNowUser, saveInquery } from "./api";
 
 const Title = styled.div`
   width: 100%;
@@ -460,6 +462,150 @@ const UnderBtn = styled.div`
 `;
 
 export function Franchise_Inquiry() {
+  const phoneRef = useRef();
+  // 이름 담기
+  const [userName, setUserName] = useState("이름안썼음");
+  // 전화번호 담기
+  const [pNum1, setpNum1] = useState("010");
+  const [pNum2, setpNum2] = useState(0);
+  const [pNum3, setpNum3] = useState(0);
+  const [SPNum, setSPNum] = useState(0);
+  // Email 담기
+  const [EInput1, setEInput1] = useState("");
+  const [EInput2, setEInput2] = useState("");
+  const [EInput3, setEInput3] = useState("");
+  const [SEInput, setSEInput] = useState("");
+  const SelEmail = document.querySelector(".selEmail");
+  // 창업 가능 시기 담기
+  const [Savailable, setAvailable] = useState("empty");
+  // 희망지역점포 담기
+  const [Swish, setWish] = useState("empty");
+  // 주소 담기
+  const [Saddress, setAddress] = useState("왜 안적었어");
+  // 추가정보입력 담기
+  const [SETC, setETC] = useState(0);
+  // 이용자 동의서 담기
+  const [pAgree, setPAgree] = useState();
+  const [mAgree, setMAgree] = useState();
+
+  useEffect(() => {
+    sumPNum();
+  }, [addPNum1, addPNum2, addPNum3]);
+
+  useEffect(() => {
+    sumEmail();
+  }, [addEmail1, addEmail2, addEmail3]);
+
+  // 이름 담는 함수
+  function inputName(prof) {
+    console.log(prof.target.value);
+    setUserName(prof.target.value);
+    console.log(userName && userName);
+  }
+  // 전화번호 담는 함수
+  function addPNum1(prof) {
+    console.log(prof.target.value);
+    setpNum1(prof.target.value);
+    console.log(pNum1 && pNum1);
+  }
+  function addPNum2(prof) {
+    console.log(prof.target.value);
+    setpNum2(prof.target.value);
+    console.log(pNum2 && pNum2);
+  }
+  function addPNum3(prof) {
+    console.log(prof.target.value);
+    setpNum3(prof.target.value);
+    console.log(pNum3 && pNum3);
+  }
+  function sumPNum() {
+    setSPNum(pNum1 + pNum2 + pNum3);
+    console.log(SPNum);
+  }
+  // Email 담는 함수
+  function addEmail1(prof) {
+    console.log(prof.target.value);
+    setEInput1(prof.target.value);
+  }
+  function addEmail2(prof) {
+    if (EInput3 != "") {
+      return;
+    }
+    SelEmail.options[4].selected = true;
+    console.log(prof.target.value);
+    setEInput2(`@${prof.target.value}`);
+  }
+  function addEmail3(prof) {
+    if (EInput2 != "") {
+      return;
+    }
+    console.log(prof.target.value);
+    setEInput3(`@${prof.target.value}`);
+  }
+  function sumEmail() {
+    setSEInput(EInput1 + EInput2 + EInput3);
+    console.log(SEInput);
+  }
+  // 창업 가능 시기 함수
+  function inputAvailable(prof) {
+    console.log(prof.target.value);
+    setAvailable(prof.target.value);
+  }
+  // 희망지역점포 함수
+  function inputWish(prof) {
+    console.log(prof.target.value);
+    setWish(prof.target.value);
+  }
+  // 주소 함수
+  function inputAddress(prof) {
+    console.log(prof.target.value);
+    setAddress(prof.target.value);
+  }
+  // 추가정보입력 함수
+  function inputETC(prof) {
+    console.log(prof.target.value);
+    setETC(prof.target.value);
+  }
+  // 이용자 동의서 함수
+  function inputPAgree(prof) {
+    console.log(prof.target.value);
+    setPAgree(prof.target.value);
+  }
+  function inputMAgree(prof) {
+    console.log(prof.target.value);
+    setMAgree(prof.target.value);
+  }
+  // 입력내용 저장
+  async function savedata() {
+    try {
+      const currentResponse = await getNowUser();
+      const CRUserId = currentResponse.data.data.userId;
+      console.log(CRUserId);
+      const data = {
+        userId: CRUserId,
+        uname: userName,
+        phoneNum: SPNum,
+        email: SEInput,
+        available: Savailable,
+        wish: Swish,
+        address: Saddress,
+        etc: SETC,
+        priAgree: pAgree,
+        marAgree: mAgree,
+      };
+
+      console.log(data);
+      const response = await saveInquery(data);
+      const Rdata = response.data;
+      if (window.confirm("문의완료!")) {
+        // window.location.reload();
+      }
+    } catch (error) {
+      console.log("문의저장 오류", error);
+      window.confirm("문의저장 오류!");
+    }
+  }
+
   return (
     <>
       <Banner>
@@ -504,7 +650,11 @@ export function Franchise_Inquiry() {
               </p>
             </Name>
             <Name2>
-              <input type="text" placeholder="이름" />
+              <input
+                type="text"
+                placeholder="이름"
+                onChange={(e) => inputName(e)}
+              />
             </Name2>
           </Namewrap>
           <hr />
@@ -515,7 +665,7 @@ export function Franchise_Inquiry() {
               </p>
             </Phone>
             <PhoneNumber>
-              <select>
+              <select rel={phoneRef} onChange={(e) => addPNum1(e)}>
                 <option name="010" id="010" value="010">
                   010
                 </option>
@@ -537,14 +687,14 @@ export function Franchise_Inquiry() {
                 <option name="016" id="016" value="016">
                   016
                 </option>
-                <option name="017" id="017" value="016">
-                  016
+                <option name="017" id="017" value="017">
+                  017
                 </option>
               </select>
               <p> - </p>
-              <input type="tel" />
+              <input type="tel" onChange={(e) => addPNum2(e)} />
               <p> - </p>
-              <input type="tel" />
+              <input type="tel" onChange={(e) => addPNum3(e)} />
             </PhoneNumber>
           </Phonewrap>
           <hr />
@@ -555,21 +705,24 @@ export function Franchise_Inquiry() {
               </p>
             </Email>
             <EmailInput>
-              <input type="email" />
+              <input type="email" onChange={(e) => addEmail1(e)} />
               <p>@</p>
-              <input type="email" />
-              <select>
-                <option name="g-mail" id="1" value="g-mail">
+              <input type="email" onChange={(e) => addEmail2(e)} />
+              <select className="selEmail" onChange={(e) => addEmail3(e)}>
+                <option name="g-mail" id="1" value="gmail.com">
                   @gmail.com
                 </option>
-                <option name="naver" id="2" value="naver">
+                <option name="naver" id="2" value="naver.com">
                   @naver.com
                 </option>
-                <option name="hanmail" id="3" value="hanmail">
+                <option name="hanmail" id="3" value="hanmail.net">
                   @hanmail.net
                 </option>
-                <option name="yahoo" id="4" value="yahoo">
+                <option name="yahoo" id="4" value="yahoo.co.kr">
                   @yahoo.co.kr
+                </option>
+                <option name="self" id="5" value="self">
+                  직접입력
                 </option>
               </select>
             </EmailInput>
@@ -582,17 +735,17 @@ export function Franchise_Inquiry() {
               </p>
             </Startup>
             <StartupInput>
-              <select>
-                <option name="g-mail" id="1" value="g-mail">
+              <select onChange={(e) => inputAvailable(e)}>
+                <option name="always" id="1" value="always">
                   즉시
                 </option>
-                <option name="naver" id="2" value="naver">
+                <option name="3month" id="2" value="3month">
                   3개월
                 </option>
-                <option name="hanmail" id="3" value="hanmail">
+                <option name="6month" id="3" value="6month">
                   6개월
                 </option>
-                <option name="yahoo" id="4" value="yahoo">
+                <option name="AF1year" id="4" value="AF1year">
                   1년 이후
                 </option>
               </select>
@@ -608,11 +761,23 @@ export function Franchise_Inquiry() {
             <Radio>
               <Yes>
                 <label for="Yes">있음</label>
-                <input type="radio" value="Yes" name="agree" id="Yes" />
+                <input
+                  type="radio"
+                  value="Yes"
+                  name="agree"
+                  id="Yes"
+                  onChange={(e) => inputWish(e)}
+                />
               </Yes>
               <No>
                 <label for="No">없음</label>
-                <input type="radio" value="No" name="agree" id="No" />
+                <input
+                  type="radio"
+                  value="No"
+                  name="agree"
+                  id="No"
+                  onChange={(e) => inputWish(e)}
+                />
               </No>
             </Radio>
           </Stroewrap>
@@ -624,7 +789,7 @@ export function Franchise_Inquiry() {
               </p>
             </Address>
             <AddressInfo>
-              <input type="text" />
+              <input type="text" onChange={(e) => inputAddress(e)} />
               <button>우편번호찾기</button>
             </AddressInfo>
           </Addresswrap>
@@ -640,9 +805,10 @@ export function Franchise_Inquiry() {
                 cols="72"
                 rows="10"
                 placeholder="점포를 보유하셨거나 입점희망 점포에 대한 사전정보가 있을 경우, 점포의 평수/임대료 등 구체적인 정보를 남겨주시면 조금 더 정확한 상담이 가능합니다."
+                onChange={(e) => inputETC(e)}
               ></textarea>
               <p>
-                현재 <span>0</span> / 최대200byte
+                현재 <span>{SETC.length}</span> / 최대200byte
                 <br />
                 (한글100자,영문200자)
               </p>
@@ -662,11 +828,23 @@ export function Franchise_Inquiry() {
               <label for="A_Yes" id="YesLabel">
                 동의합니다.
               </label>
-              <input type="radio" value="Yes" name="agree" id="A_Yes" />
+              <input
+                type="radio"
+                value="Yes"
+                name="A_agree"
+                id="A_Yes"
+                onChange={(e) => inputPAgree(e)}
+              />
               <label for="A_No" id="NoLabel">
                 동의하지 않습니다.
               </label>
-              <input type="radio" value="No" name="agree" id="A_No" />
+              <input
+                type="radio"
+                value="No"
+                name="A_agree"
+                id="A_No"
+                onChange={(e) => inputPAgree(e)}
+              />
             </InfoAgree1Container>
           </InfoAgreewrap>
           <hr />
@@ -681,18 +859,30 @@ export function Franchise_Inquiry() {
               <label for="B_Yes" id="YesLabel">
                 동의합니다.
               </label>
-              <input type="radio" value="Yes" name="agree" id="B_Yes" />
+              <input
+                type="radio"
+                value="Yes"
+                name="B_agree"
+                id="B_Yes"
+                onChange={(e) => inputMAgree(e)}
+              />
               <label for="B_No" id="NoLabel">
                 동의하지 않습니다.
               </label>
-              <input type="radio" value="No" name="agree" id="B_No" />
+              <input
+                type="radio"
+                value="No"
+                name="B_agree"
+                id="B_No"
+                onChange={(e) => inputMAgree(e)}
+              />
             </InfoAgree2Container>
           </InfoAgreewrap>
           <hr />
 
           <UnderBtn>
-            <button>등록하기</button>
-            <button>취소</button>
+            <button onClick={() => savedata()}>등록하기</button>
+            <button onClick={() => window.location.reload}>취소</button>
           </UnderBtn>
         </Container>
       </>

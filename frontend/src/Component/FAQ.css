@@ -19,6 +19,7 @@
   line-height: 50px;
   font-family: "GmarketSansMedium";
   padding-left: 10px;
+  display: none;
 }
 
 /* 숨김 처리된 답변 스타일 */

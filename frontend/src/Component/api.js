@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+// 로그인
 export function userLogin(data) {
   const url = `http://localhost:8080/api/authenticate`;
 
@@ -135,4 +136,11 @@ export function getMenuData() {
   const url = `http://localhost:8080/menu/getallmenu`;
 
   return axios.get(url);
+}
+
+// 창업문의 저장
+export function saveInquery(data) {
+  const url = `http://localhost:8080/inquery/save`;
+
+  return axios.post(url, data, headers);
 }
