@@ -147,9 +147,9 @@ const Image = styled.div`
   align-items: center;
   width: 300px;
   height: 300px;
-  border: 2px solid #eb92ae;
-  background-color: #f3e1eb;
-  border-radius: 4px;
+  border: 10px solid #db365a;
+  /* background-color: #fde9f3; */
+  border-radius: 30px;
   p {
     font-size: 20px;
     font-weight: bold;
@@ -318,9 +318,9 @@ export function Menu() {
 
   const renderContent = (items) => (
     <>
-      <SubTitle>
+      {/* <SubTitle>
         <p>{!isLoading ? `8th-New-Menu` : `${items[0].menuTitle}`}</p>
-      </SubTitle>
+      </SubTitle> */}
       <BtContentTitle>
         <p>{!isLoading ? `8th-New-Menu` : `${items[0].menuTitle}`}</p>
       </BtContentTitle>

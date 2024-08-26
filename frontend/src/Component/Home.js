@@ -55,7 +55,7 @@ export function Home() {
       <div className="greetings">
         <span> 환영합니다, MEMORIAL입니다 :) </span>
         <div>
-          <button onClick={gotoIndex}>👀</button>
+          <button onClick={gotoIndex}>🦄</button>
         </div>
       </div>
     </>
