@@ -18,6 +18,8 @@ import { Footer } from "./Footer";
 import { SignUp } from "./SignUp";
 import { Streaming } from "./Streaming";
 import { StreamingWrapper } from "./StreamingWrapper";
+import { MenuWrapper } from "./MenuWrapper";
+import { ProductDetail } from "./ProductDetail";
 
 const Container = styled.div`
   width: 100vw;
@@ -65,7 +67,10 @@ export function MainPage() {
                 <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/intro" element={<Intro />} />
-                <Route path="/menu" element={<Menu />} />
+                <Route path="/menu" element={<MenuWrapper />}>
+                  <Route index element={<Menu />} />
+                  <Route path=":id" element={<ProductDetail />}></Route>
+                </Route>
                 <Route path="/lecture" element={<LectureWrapper />}>
                   <Route index element={<Education />} />
                   <Route index path=":id" element={<Lecture />} />

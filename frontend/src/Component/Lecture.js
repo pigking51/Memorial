@@ -151,13 +151,18 @@ export function Lecture() {
         if (
           window.confirm(`강의를 신청했습니다. 강의를 들으러 가시겠습니까?`)
         ) {
-          window.location.href = `Home`;
+          window.location.href = `/streaming/${id}`;
         } else {
           window.location.reload();
         }
       }
     } catch (error) {
       console.log("구독신청과정 오류", error);
+      if (window.confirm(`로그인하지 않았습니다! 로그인해주세요!`)) {
+        navigate("/login");
+      } else {
+        window.location.reload();
+      }
     }
   }
   function goToStreaming() {

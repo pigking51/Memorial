@@ -114,43 +114,35 @@ export function Education() {
 
   return (
     <>
-      {data == null ? (
-        <NotLoading>
-          <Opps>이런! 데이터를 불러오지 못했습니다!!!!</Opps>
-        </NotLoading>
-      ) : (
-        <>
-          <Banner>
-            <h1>Lecture</h1>
-            <p>강의</p>
-          </Banner>
-          <br></br>
-          <Container>
-            <Contents>
-              {data &&
-                data.map((lec) => (
-                  <Card
-                    key={lec.lectureId}
-                    onClick={() => {
-                      navigate(`${lec.lectureId}`);
-                    }}
-                  >
-                    <Img src={lec.image}></Img>
-                    <Text>
-                      <b>타이틀</b> :{lec.lectureTitle}
-                    </Text>
-                    <Text>
-                      <b>분야</b> : {lec.major}
-                    </Text>
-                    <Text>
-                      <b>설명</b> : {lec.text}
-                    </Text>
-                  </Card>
-                ))}
-            </Contents>
-          </Container>
-        </>
-      )}
+      <Banner>
+        <h1>Lecture</h1>
+        <p>강의</p>
+      </Banner>
+      <br></br>
+      <Container>
+        <Contents>
+          {data &&
+            data.map((lec) => (
+              <Card
+                key={lec.lectureId}
+                onClick={() => {
+                  navigate(`${lec.lectureId}`);
+                }}
+              >
+                <Img src={lec.image}></Img>
+                <Text>
+                  <b>타이틀</b> :{lec.lectureTitle}
+                </Text>
+                <Text>
+                  <b>분야</b> : {lec.major}
+                </Text>
+                <Text>
+                  <b>설명</b> : {lec.text}
+                </Text>
+              </Card>
+            ))}
+        </Contents>
+      </Container>
     </>
   );
 }
