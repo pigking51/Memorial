@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import { getMenuData } from "./api";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 // 스타일 컴포넌트 정의
 const Container = styled.div`
@@ -80,11 +80,16 @@ const Allergy = styled.div`
   border-radius: 4px;
   color: white;
 `;
+const Back = styled.div`
+  position: relative;
+  cursor: pointer;
+`;
 
 export function ProductDetail() {
   const { id } = useParams(); // URL에서 id 추출
   const [menu, setMenu] = useState(null); // 메뉴 데이터를 저장할 상태
   const [loading, setLoading] = useState(true); // 로딩 상태
+  const navigate = useNavigate();
 
   useEffect(() => {
     Detailname();
@@ -117,6 +122,9 @@ export function ProductDetail() {
     <Container>
       {menu ? (
         <>
+          <Back onClick={() => navigate(-1)}>
+            <img src="/images/icon/Prev.png" alt="back"></img>
+          </Back>
           <ImageWrapper>
             <Image src={menu.img} alt={menu.menuName} />
           </ImageWrapper>

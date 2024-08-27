@@ -59,7 +59,6 @@ const User = styled.div`
   display: flex;
 `;
 const UserInfo = styled.div`
-  display: flex;
   align-items: flex-start;
   width: 25%;
   /* border-right: 1px solid #db365a; */
@@ -93,17 +92,38 @@ const UserInfo = styled.div`
   }
 `;
 
-const Stocks = styled.div`
+const Stocks = styled.table`
+  width: calc(100% - 40px);
   font-size: 14px;
-  margin-top: 56px;
+  border-collapse: collapse;
+  margin: 0 20px;
+
+  tr {
+    height: 40px;
+    text-align: center;
+    border-bottom: 2px dotted #d9d9d9;
+  }
+
+  tr:first-child {
+    border-bottom: none;
+  }
+
+  tr:hover {
+    cursor: cell;
+  }
+
+  th {
+    text-align: center;
+    border-bottom: 2px solid #d9d9d9;
+    font-weight: 600;
+  }
 `;
-const StInner = styled.div`
-  display: flex;
+const StInner = styled.tr`
   div {
     margin-right: 24px;
   }
 `;
-const StResult = styled.span``;
+const StResult = styled.td``;
 
 const Myclass = styled.li`
   cursor: pointer;
@@ -499,6 +519,13 @@ export function Mypage() {
     window.location.href = `/streaming/${lecId}`;
   }
 
+  const Cafe_Arr = [
+    "CaffeBene",
+    "StarBucks",
+    "Angel in us",
+    "Drop Top",
+    "빽다방",
+  ];
   return (
     <>
       <Found>
@@ -544,35 +571,36 @@ export function Mypage() {
             {/* <UserEdit>
               <a href="dashboard.html">대시보드 바로가기</a>
             </UserEdit> */}
-            <Stocks>
-              {stockData.map((stock) => (
-                <StInner>
-                  <div>
-                    <p>이름 : {stock.itmsNm}</p>
-                  </div>
-                  <div>시가총액 : {stock.mrktTotAmt}</div>
-                  <div>거래량 : {stock.trqu}</div>
-                  <div>
-                    등락률 :
-                    <StResult
-                      style={{
-                        color: `${
-                          stock.fltRt > 0
-                            ? "red"
-                            : stock.fltRt == 0
-                            ? "black"
-                            : "blue"
-                        }`,
-                      }}
-                    >
-                      {stock.fltRt}
-                      {stock.fltRt > 0 ? " ▲" : stock.fltRt == 0 ? " -" : " ▼"}
-                    </StResult>
-                  </div>
-                </StInner>
-              ))}
-            </Stocks>
           </ul>
+          <Stocks>
+            <tr>
+              <th>이름</th>
+              <th>시가총액</th>
+              <th>거래량</th>
+              <th>등락률 </th>
+            </tr>
+            {stockData.map((stock, index) => (
+              <StInner key={index}>
+                <td>{Cafe_Arr[index]}</td>
+                <td>{stock.mrktTotAmt}</td>
+                <td>{stock.trqu}</td>
+                <StResult
+                  style={{
+                    color: `${
+                      stock.fltRt > 0
+                        ? "red"
+                        : stock.fltRt == 0
+                        ? "black"
+                        : "blue"
+                    }`,
+                  }}
+                >
+                  {stock.fltRt}
+                  {stock.fltRt > 0 ? " ▲" : stock.fltRt == 0 ? " -" : " ▼"}
+                </StResult>
+              </StInner>
+            ))}
+          </Stocks>
         </UserInfo>
 
         <UserData>

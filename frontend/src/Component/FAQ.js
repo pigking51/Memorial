@@ -4,11 +4,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const FAQTitle = styled.div`
+  font-size: 32px;
+  font-weight: bold;
   width: calc(100% - 400px);
   margin: 50px auto;
   font-family: "GmarketSansMedium";
   text-align: center;
   height: calc(15% - 100px);
+  color: #eb92ae;
 `;
 const FAQContainer = styled.div`
   width: calc(100% - 400px);
