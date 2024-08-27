@@ -20,6 +20,9 @@ public class CafeDecorator : MonoBehaviour
 
     private Tilemap currentTilemap;
 
+    public static string saveWall;
+    public static string saveFloor;
+
     void Start()
     {
         // 버튼에 리스너 추가
@@ -85,6 +88,15 @@ public class CafeDecorator : MonoBehaviour
                     tilemap.SetTile(new Vector3Int(bounds.x + x, bounds.y + y, 0), newTile);
                 }
             }
+            
+        }
+        if (wallTileCollection.tiles.Contains(newTile))
+        {
+            saveWall = newTile.name;
+        }
+        else if (floorTileCollection.tiles.Contains(newTile))
+        {
+            saveFloor = newTile.name;
         }
     }
 }

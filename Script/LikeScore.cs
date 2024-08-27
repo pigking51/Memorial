@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LikeScore : MonoBehaviour
 {
-    public int likeScore = 0; // 추천 수
+    public static int likeScore = 0; // 추천 수
 
 }
 
