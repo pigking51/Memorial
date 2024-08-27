@@ -10,4 +10,12 @@ mergeInto(LibraryManager.library, {
     },
     DelilveryJson: function (json){
     window.dispatchReactUnityEvent("ShowJson",UTF8ToString(json));},
+ 
+    LoadTileData: function(){
+        try{
+        window.dispatchReactUnityEvent("LoadTileData");}
+        catch(e){
+            console.warn("Failed to dispatch event");
+        }
+    },
 });
