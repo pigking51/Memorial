@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { getMenuData } from "./api";
+import { useNavigate } from "react-router-dom";
 
 const NotLoading = styled.div`
   height: 60vh;
@@ -130,6 +131,7 @@ const ImageContainer = styled.div`
 const ImageBox = styled.div`
   width: 300px; /* Width of each item */
   margin: 0 20px; /* Adjusted margin */
+  cursor: pointer;
   transition: transform 0.3s ease-in-out;
   transform: ${({ translateValue }) => `translateX(${translateValue}px)`};
   p {
@@ -224,6 +226,7 @@ export function Menu() {
   const [menuContents, setMenuContents] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const imageContainerRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Reset translateValue when the visible menu changes
@@ -333,8 +336,12 @@ export function Menu() {
           style={{ width: `calc(3 * (300px + 40px))` }} // 3 items view
         >
           {items.map((item, index) => (
-            <ImageBox translateValue={translateValue} key={index}>
-              <Image onClick={() => nowItems(items)}>
+            <ImageBox
+              onClick={() => navigate(`${item.menuId}`)}
+              translateValue={translateValue}
+              key={index}
+            >
+              <Image>
                 <img src={item.img} alt={item.menuName} />
               </Image>
               <p>
