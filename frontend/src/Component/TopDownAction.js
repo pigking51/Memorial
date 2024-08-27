@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import styled from "styled-components";
 import { getNowUser, fetchGameData, getMyGameData } from "./api";
@@ -41,6 +41,8 @@ export function TopDownAction() {
   const [likeScore, setLikeScore] = useState();
   const [jsonPart, setJsonPart] = useState();
   const [yourName, setYourName] = useState("Guest");
+  const [sendUnity, setSendUnity] = useState("null");
+  const [sendUnity2, setSendUnity2] = useState("null");
 
   const { unityProvider, sendMessage, addEventListener, removeEventListener } =
     useUnityContext({
@@ -88,11 +90,26 @@ export function TopDownAction() {
     }
   }
   async function callMyGameData() {
-    if (sessionStorage.length != 0) {
-      const userResponse = await getNowUser();
-      const URData = userResponse.data.data.userId;
-      const response = await getMyGameData(URData);
-      console.log(response.data);
+    try {
+      if (sessionStorage.length != 0) {
+        const userResponse = await getNowUser();
+        const URData = userResponse.data.data.userId;
+        console.log(URData);
+        setUserName(URData);
+        const response = await getMyGameData(URData);
+        console.log(response.data);
+        if (response.data == null) {
+          return;
+        } else {
+          console.log(response.data);
+          console.log(response.data[0].tileObject);
+          setSendUnity(response.data[0].tileObject);
+          console.log(response.data[0].wallObject);
+          setSendUnity2(response.data[0].wallObject);
+        }
+      }
+    } catch (error) {
+      console.log("게임데이터 로드 오류", error);
     }
   }
 
@@ -102,6 +119,7 @@ export function TopDownAction() {
       removeEventListener("LikeScores", handleLike);
     };
   }, []);
+
   useEffect(() => {
     addEventListener("ShowJson", handleJson);
     updateGameData();
@@ -110,29 +128,34 @@ export function TopDownAction() {
       updateGameData();
     };
   });
+
   useEffect(() => {
     callMyGameData();
-  }, []);
+  }, [updateGameData]);
+
   useEffect(() => {
     nowUserInfo();
   }, []);
 
+  const sendToken = useCallback(() => {
+    sendMessage(`CafeDecorator`, `OldFloorData`, `${sendUnity}`);
+    sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
+    sendMessage(
+      `CafeDecorator`,
+      `ReceiveUnity`,
+      `${userName && userName}님 환영합니다!!!`
+    );
+  }, [sendMessage, sendUnity, sendUnity2]);
+
+  useEffect(() => {
+    addEventListener(`LoadTileData`, sendToken);
+    return () => {
+      removeEventListener(`LoadTileData`, sendToken);
+    };
+  }, [unityProvider, sendToken, addEventListener, removeEventListener]);
+
   return (
     <>
-      {/* <button
-        onClick={() =>
-          sendMessage(
-            "CafeDecorator",
-            "OpenPopup",
-            JSON.stringify({
-              // tilemap: tilemap,
-              // tiles: tiles,
-              })
-              )
-              }
-              >
-              Attack
-              </button> */}
       <BtContainer>
         <StartButton onClick={() => setPlayingGame(true)}>
           ✨ Game Start ✨

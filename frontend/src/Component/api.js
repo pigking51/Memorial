@@ -127,7 +127,7 @@ export function fetchGameData(id, data) {
 // 게임정보 불러오기
 export function getMyGameData(id) {
   const url = `http://localhost:8080/game/getmydata/${id}`;
-
+  console.log(id);
   return axios.get(url, headers);
 }
 
@@ -141,6 +141,5 @@ export function getMenuData() {
 // 창업문의 저장
 export function saveInquery(data) {
   const url = `http://localhost:8080/inquery/save`;
-
   return axios.post(url, data, headers);
 }

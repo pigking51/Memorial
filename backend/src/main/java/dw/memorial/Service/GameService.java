@@ -64,7 +64,7 @@ public class GameService {
             if(gameOptional.get(i).getUser().getUserId().equals(id)){
                 myGameData.add(gameOptional.get(i));
                 break;
-            }else{
+            }else if(!(gameOptional.get(gameOptional.size() -1).getUser().getUserId().equals(id))){
                 return null;
             }
         }
