@@ -69,7 +69,7 @@ export function MainPage() {
                 <Route path="/intro" element={<Intro />} />
                 <Route path="/menu" element={<MenuWrapper />}>
                   <Route index element={<Menu />} />
-                  <Route path=":id" element={<ProductDetail />}></Route>
+                  <Route path=":id" element={<ProductDetail />} />
                 </Route>
                 <Route path="/lecture" element={<LectureWrapper />}>
                   <Route index element={<Education />} />

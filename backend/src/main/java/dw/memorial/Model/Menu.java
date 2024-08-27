@@ -33,4 +33,19 @@ public class Menu {
     @Column(name="price")
     private long price;
 
+    @Column(name="serving_size")
+    private long servingSize;
+    @Column(name="saturated_fat")
+    private long saturatedFat;
+    @Column(name="protein")
+    private long protein;
+    @Column(name="sodium")
+    private long sodium;
+    @Column(name="sugar")
+    private long sugar;
+    @Column(name="caffeine")
+    private long caffeine;
+    @Column(name="allergy")
+    private String allergy;
+
 }

@@ -6,6 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="f2206d9c-3204-41df-9423-dea1ad507682" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity/Scripts/CafeDecorator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity/Scripts/CameraManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity/Scripts/ChangeImage.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity/Scripts/Clock.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity/Scripts/DraggableWindow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity/Scripts/FurnitureData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity/Scripts/FurnitureInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity/Scripts/FurniturePlacer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity/Scripts/LikeButton.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity/Scripts/LikeScore.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity/Scripts/NPCController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity/Scripts/PlayerController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity/Scripts/RandomMovement.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity/Scripts/React.jslib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Unity/Scripts/TileCollection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Model/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Model/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
