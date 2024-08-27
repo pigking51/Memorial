@@ -36,7 +36,7 @@ public class RandomMovement : MonoBehaviour
             ChooseRandomDirection();
             isMoving = true;
             animator.SetBool("isWalking", true);
-            float moveTime = Random.Range(1f, 3f);
+            float moveTime = Random.Range(3f, 7f);
             yield return new WaitForSeconds(moveTime);
             isMoving = false;
             animator.SetBool("isWalking", false);
