@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using TMPro;
+using System;
+using System.Runtime.InteropServices;
 
 public class CafeDecorator : MonoBehaviour
 {
@@ -20,8 +22,20 @@ public class CafeDecorator : MonoBehaviour
 
     private Tilemap currentTilemap;
 
+    public static string saveWall;
+    public static string saveFloor;
+    [DllImport("__Internal")]
+    private static extern void LoadTileData();
+
+    public TextMeshProUGUI token;
+    
     void Start()
     {
+#if UNITY_WEBGL == true && UNITY_EDITOR == false
+        // 데이터 불러오기??
+        LoadTileData();
+#endif
+
         // 버튼에 리스너 추가
         changeWallButton.onClick.AddListener(() => OpenPopup(wallTilemap, wallTileCollection.tiles));
         changeFloorButton.onClick.AddListener(() => OpenPopup(floorTilemap, floorTileCollection.tiles));
@@ -29,6 +43,12 @@ public class CafeDecorator : MonoBehaviour
 
         // 초기에 팝업창 숨기기
         popupPanel.SetActive(false);
+    }
+
+    public void ReceiveUnity(string coin) 
+    {
+        token.text = coin;
+        
     }
 
     private void Update()
@@ -71,6 +91,71 @@ public class CafeDecorator : MonoBehaviour
         }
     }
 
+    void OldFloorData(string floorData) {
+
+        if (floorData != null)
+        {
+            for (int i = 0; i < floorTileCollection.tiles.Count; i++)
+            {
+                if (floorTileCollection.tiles[i].name == floorData)
+                {
+                    TileBase LoadFloor = floorTileCollection.tiles[i];
+
+                    BoundsInt bounds = floorTilemap.cellBounds;
+                    TileBase[] allTiles = floorTilemap.GetTilesBlock(bounds);
+                    for (int x = 0; x < bounds.size.x; x++)
+                    {
+                        for (int y = 0; y < bounds.size.y; y++)
+                        {
+                            int index = x + y * bounds.size.x;
+                            if (allTiles[index] != null)
+                            {
+                                floorTilemap.SetTile(new Vector3Int(bounds.x + x, bounds.y + y, 0), LoadFloor);
+                            }
+                        }
+
+                   }
+               }
+            }
+
+        }
+        else {
+            return;
+        }
+    }
+    void OldWallData(string wallData) { 
+    
+     if(wallData != null) 
+        {
+            for (int i = 0; i<wallTileCollection.tiles.Count; i++)
+            {
+                if (wallTileCollection.tiles[i].name == wallData)
+                {
+                    TileBase LoadWall = wallTileCollection.tiles[i];
+                    BoundsInt bounds = wallTilemap.cellBounds;
+                    TileBase[] allTiles = wallTilemap.GetTilesBlock(bounds);
+                    for (int x = 0; x<bounds.size.x; x++)
+                    {
+                        for (int y = 0; y<bounds.size.y; y++)
+                        {
+                            int index = x + y * bounds.size.x;
+                            if (allTiles[index] != null)
+                            {
+                                wallTilemap.SetTile(new Vector3Int(bounds.x + x, bounds.y + y, 0), LoadWall);
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+        else
+        {
+            return;
+        }
+    }
+
+
     void ChangeTilemapTile(Tilemap tilemap, TileBase newTile)
     {
         BoundsInt bounds = tilemap.cellBounds;
@@ -85,6 +170,15 @@ public class CafeDecorator : MonoBehaviour
                     tilemap.SetTile(new Vector3Int(bounds.x + x, bounds.y + y, 0), newTile);
                 }
             }
+            
+        }
+        if (wallTileCollection.tiles.Contains(newTile))
+        {
+            saveWall = newTile.name;
+        }
+        else if (floorTileCollection.tiles.Contains(newTile))
+        {
+            saveFloor = newTile.name;
         }
     }
 }
