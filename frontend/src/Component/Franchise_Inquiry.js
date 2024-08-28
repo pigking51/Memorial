@@ -298,6 +298,9 @@ const EtcWrite = styled.div`
   justify-content: flex-start;
   align-items: center;
   background-color: white;
+  p {
+    margin-left: 50px;
+  }
 `;
 
 const Etcwrap = styled.div`

@@ -67,6 +67,7 @@ const MenuChoice = styled.ul`
   list-style: none;
   display: flex;
   li {
+    font-weight: bold;
     border: 1px solid #e38ca6;
     width: 200px;
     height: 50px;
