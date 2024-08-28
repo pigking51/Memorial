@@ -87,8 +87,8 @@ export function TopDownAction() {
       console.log(StJsonPart);
       const data = {
         userId: yourName,
-        wallObject: `{${StJsonPart.wall} ? (${StJsonPart.wall}):(베이지)}`,
-        tileObject: `{${StJsonPart.floor} ? (${StJsonPart.floor}) : (원목)}`,
+        wallObject: StJsonPart.wall,
+        tileObject: StJsonPart.floor,
         furnitureObject: StJsonPart.furniture,
       };
       console.log(data);
@@ -103,7 +103,7 @@ export function TopDownAction() {
       if (sessionStorage.length != 0) {
         const userResponse = await getNowUser();
         const URData = userResponse.data.data.userId;
-        console.log(URData);
+        // console.log(URData);
         setUserName(URData);
         const response = await getMyGameData(URData);
         console.log(response.data);
@@ -155,13 +155,12 @@ export function TopDownAction() {
     updateGameData();
     return () => {
       removeEventListener("ShowJson", handleJson);
-      updateGameData();
     };
   });
 
   useEffect(() => {
     callMyGameData();
-  }, [updateGameData]);
+  }, []);
 
   useEffect(() => {
     nowUserInfo();

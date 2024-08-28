@@ -32,6 +32,7 @@ public class GameService {
         for(int i = 0; i < gameOptional.size(); i++){
             if(Objects.equals(gameOptional.get(i).getUser().getUsername(), id)){
                 thisGameOptional.add(gameOptional.get(i));
+                break;
             }
         }
         User user = userRepository.findById(gameDto.getUserId())
