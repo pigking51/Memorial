@@ -29,6 +29,22 @@ public class GameController {
         return new ResponseEntity<>(gameService.getMyData(id),
                 HttpStatus.OK);
     }
+    @GetMapping("/showall")
+    public ResponseEntity<List<Game>> getAllGameData(){
+        return new ResponseEntity<>(gameService.getAllGameData(),
+                HttpStatus.OK);
+    }
+    @GetMapping("/randomvisit")
+    public ResponseEntity<Game> getRandomGameData(){
+        return new ResponseEntity<>(gameService.getRandomGameData(),
+                HttpStatus.OK);
+    }
+    @GetMapping("/visit/{id}")
+    public ResponseEntity<List<Game>> getSomeGameData(@PathVariable String id){
+        return new ResponseEntity<>(gameService.getSomeGameData(id),
+                HttpStatus.OK);
+    }
+
 
 
 }

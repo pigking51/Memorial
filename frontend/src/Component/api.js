@@ -128,6 +128,28 @@ export function fetchGameData(id, data) {
 export function getMyGameData(id) {
   const url = `http://localhost:8080/game/getmydata/${id}`;
   console.log(id);
+
+  return axios.get(url, headers);
+}
+
+// 모든 게임 데이터 불러오기
+export function allGameData() {
+  const url = `http://localhost:8080/game/showall`;
+
+  return axios.get(url, headers);
+}
+
+// 랜덤 게임 데이터 불러오기
+export function randomGameData() {
+  const url = `http://localhost:8080/game/randomvisit`;
+
+  return axios.get(url, headers);
+}
+
+// 특정 게임 데이터 불러오기
+export function someGameData(id) {
+  const url = `http://localhost:8080/game/visit/${id}`;
+
   return axios.get(url, headers);
 }
 
@@ -135,7 +157,7 @@ export function getMyGameData(id) {
 export function getMenuData() {
   const url = `http://localhost:8080/menu/getallmenu`;
 
-  return axios.get(url);
+  return axios.get(url, headers);
 }
 
 // 창업문의 저장

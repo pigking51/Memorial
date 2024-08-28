@@ -1,7 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import styled from "styled-components";
-import { getNowUser, fetchGameData, getMyGameData } from "./api";
+import {
+  getNowUser,
+  fetchGameData,
+  getMyGameData,
+  randomGameData,
+} from "./api";
 
 const Container = styled.div`
   width: 1440px;
@@ -43,6 +48,10 @@ export function TopDownAction() {
   const [yourName, setYourName] = useState("Guest");
   const [sendUnity, setSendUnity] = useState("null");
   const [sendUnity2, setSendUnity2] = useState("null");
+  const [signal, setSignal] = useState("null");
+  const [randomUser, setRandomUser] = useState("null");
+  const [sendRandom, setSendRandom] = useState("null");
+  const [sendRandom2, setSendRandom2] = useState("null");
 
   const { unityProvider, sendMessage, addEventListener, removeEventListener } =
     useUnityContext({
@@ -113,6 +122,27 @@ export function TopDownAction() {
     }
   }
 
+  async function callRandomGameData() {
+    try {
+      const response = await randomGameData();
+      const data = response.data;
+      console.log(data);
+      if (data.tileObject != null) {
+        setSendRandom(data.tileObject);
+      } else {
+        setSendRandom("베이지");
+      }
+      if (data.wallObject != null) {
+        setSendRandom2(data.wallObject);
+      } else {
+        setSendRandom2("원목");
+      }
+      setRandomUser(data.user.userId);
+    } catch (error) {
+      console.log("랜덤게임데이터 출력실패", error);
+    }
+  }
+
   useEffect(() => {
     addEventListener("LikeScores", handleLike);
     return () => {
@@ -137,14 +167,14 @@ export function TopDownAction() {
     nowUserInfo();
   }, []);
 
+  useEffect(() => {
+    callRandomGameData();
+  }, [nowUserInfo]);
+
   const sendToken = useCallback(() => {
     sendMessage(`CafeDecorator`, `OldFloorData`, `${sendUnity}`);
     sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
-    sendMessage(
-      `CafeDecorator`,
-      `ReceiveUnity`,
-      `${userName && userName}님 환영합니다!!!`
-    );
+    sendMessage(`CafeDecorator`, `ReceiveUnity`, `${userName}님 환영합니다!!!`);
   }, [sendMessage, sendUnity, sendUnity2]);
 
   useEffect(() => {
@@ -153,6 +183,36 @@ export function TopDownAction() {
       removeEventListener(`LoadTileData`, sendToken);
     };
   }, [unityProvider, sendToken, addEventListener, removeEventListener]);
+
+  function random(randomBtn) {
+    console.log(randomBtn);
+    setSignal(randomBtn);
+  }
+
+  if (signal != "null") {
+    console.log(sendRandom);
+    console.log(sendRandom2);
+    const send = () => {
+      sendMessage(`CafeDecorator`, `OldFloorData`, `${sendRandom}`);
+      sendMessage(`CafeDecorator`, `OldWallData`, `${sendRandom2}`);
+      sendMessage(
+        `CafeDecorator`,
+        `ReceiveUnity`,
+        `${randomUser}님의 카페에 오신 것을 환영합니다!!!`
+      );
+    };
+    send();
+    setSignal("null");
+  } else {
+    console.log("랜덤방문 실패");
+  }
+
+  useEffect(() => {
+    addEventListener(`VisitRandom`, random);
+    return () => {
+      removeEventListener(`VisitRandom`, random);
+    };
+  }, [callRandomGameData]);
 
   return (
     <>

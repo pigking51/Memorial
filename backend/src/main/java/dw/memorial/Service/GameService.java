@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -64,11 +65,33 @@ public class GameService {
             if(gameOptional.get(i).getUser().getUserId().equals(id)){
                 myGameData.add(gameOptional.get(i));
                 break;
-            }else if(!(gameOptional.get(gameOptional.size() -1).getUser().getUserId().equals(id))){
-                return null;
             }
         }
         return myGameData;
+    }
+
+    public List<Game> getAllGameData(){
+        return gameRepository.findAll();
+    }
+
+    public Game getRandomGameData(){
+        List<Game> allGame = gameRepository.findAll();
+
+        return allGame.get((int)(Math.random()*allGame.size()));
+    }
+
+    public List<Game> getSomeGameData(String id){
+        List<Game> allGame = gameRepository.findAll();
+        List<Game> thatGame = new ArrayList<>();
+        for(int i = 0; i < allGame.size(); i++){
+            if(allGame.get(i).getUser().getUserId().equals(id)){
+                thatGame.add(allGame.get(i));
+                break;
+            } else if (!(allGame.get(allGame.size()-1).getUser().getUserId().equals(id))) {
+                return null;
+            }
+        }
+        return thatGame;
     }
 
 }
