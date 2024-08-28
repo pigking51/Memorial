@@ -42,8 +42,8 @@ const BtContainer = styled.div`
 
 export function TopDownAction() {
   const [playingGame, setPlayingGame] = useState(false);
-  const [userName, setUserName] = useState();
-  const [likeScore, setLikeScore] = useState();
+  const [userName, setUserName] = useState("unknown");
+  const [likeScore, setLikeScore] = useState(0);
   const [jsonPart, setJsonPart] = useState();
   const [yourName, setYourName] = useState("Guest");
   const [sendUnity, setSendUnity] = useState("null");
@@ -61,8 +61,7 @@ export function TopDownAction() {
       codeUrl: "Build/testProject.wasm",
     });
 
-  function handleLike(userName, likeScore) {
-    setUserName(userName);
+  function handleLike(likeScore) {
     setLikeScore(likeScore);
   }
   function handleJson(json) {
@@ -130,12 +129,12 @@ export function TopDownAction() {
       if (data.tileObject != null) {
         setSendRandom(data.tileObject);
       } else {
-        setSendRandom("베이지");
+        setSendRandom("Default");
       }
       if (data.wallObject != null) {
         setSendRandom2(data.wallObject);
       } else {
-        setSendRandom2("원목");
+        setSendRandom2("붉은벽돌");
       }
       setRandomUser(data.user.userId);
     } catch (error) {
