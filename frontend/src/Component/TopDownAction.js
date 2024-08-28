@@ -39,8 +39,8 @@ const BtContainer = styled.div`
 
 export function TopDownAction() {
   const [playingGame, setPlayingGame] = useState(false);
-  const [userName, setUserName] = useState();
-  const [likeScore, setLikeScore] = useState();
+  const [userName, setUserName] = useState("unknown");
+  const [likeScore, setLikeScore] = useState(0);
   const [jsonPart, setJsonPart] = useState();
   const [yourName, setYourName] = useState("Guest");
   const [sendUnity, setSendUnity] = useState("null");
@@ -54,8 +54,7 @@ export function TopDownAction() {
       codeUrl: "Build/testProject.wasm",
     });
 
-  function handleLike(userName, likeScore) {
-    setUserName(userName);
+  function handleLike(likeScore) {
     setLikeScore(likeScore);
   }
   function handleJson(json) {
