@@ -13,6 +13,7 @@ import "./Mypage.css";
 
 // 강의정보
 const Found = styled.div`
+  margin-top: 100px;
   width: 100%;
   height: 50px;
   display: flex;

@@ -31,10 +31,15 @@ const Section = styled.div`
 const Nav = styled.div`
   width: 100%;
   background-color: white;
+  top: 0;
 
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  z-index: 4;
 `;
 const ContentBox = styled.div`
   width: 100%;

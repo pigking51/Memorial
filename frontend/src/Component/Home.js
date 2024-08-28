@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { TopDownAction } from "./TopDownAction";
 import { useHref } from "react-router-dom";
+import { Footer } from "./Footer";
 
 const ImageWrap = styled.div`
   width: 100%;
@@ -37,9 +38,63 @@ const Background = styled.div`
   }
 `;
 
+const Greetings = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  span {
+    margin: 25px 0;
+    color: #eb92ae;
+    font-size: 40px;
+    font-weight: bold;
+  }
+`;
+
+const TopButton = styled.button`
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  background-color: none;
+  border: none;
+  cursor: pointer;
+  top: 50%;
+  right: 5%;
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+`;
+
+const Unicon = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+`;
+
+const GameScreen = styled.div`
+  margin: 50px 0;
+`;
+
 export function Home() {
   function gotoIndex() {
     window.location.href = `/index`;
+  }
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
+  function allowScroll() {
+    document.body.classList.remove("no-scroll");
   }
   return (
     <>
@@ -48,16 +103,25 @@ export function Home() {
           <img src="/images/banner/titleBanner_1.png" alt="Title Image" />
         </Background>
       </ImageWrap>
-      {/* <div className="image"></div> */}
-      <div>
-        <TopDownAction />
-      </div>
-      <div className="greetings">
+      <Greetings>
         <span> 환영합니다, MEMORIAL입니다 :) </span>
-        <div>
-          <button onClick={gotoIndex}>🦄</button>
-        </div>
-      </div>
+        <TopButton
+          onClick={() => {
+            scrollToTop(true);
+            allowScroll();
+          }}
+        >
+          <img src="/images/icon/TopButton.png"></img>
+        </TopButton>
+      </Greetings>
+      {/* <div className="image"></div> */}
+      <GameScreen>
+        <TopDownAction />
+      </GameScreen>
+
+      <Unicon>
+        <button onClick={gotoIndex}>🦄</button>
+      </Unicon>
     </>
   );
 }

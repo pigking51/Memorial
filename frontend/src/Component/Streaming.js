@@ -5,6 +5,7 @@ import { getLectureDetailById } from "./api";
 
 const Container = styled.div`
   width: 100%;
+  margin-top: 100px;
 `;
 const Top = styled.div`
   display: flex;
@@ -62,7 +63,7 @@ const SlideMenu = styled.div`
   width: 300px;
   position: fixed;
   background-color: #fde9f3;
-  z-index: 3;
+  z-index: 5;
   display: flex;
   justify-content: center;
   align-items: center;

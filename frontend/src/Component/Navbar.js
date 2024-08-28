@@ -2,15 +2,14 @@ import { Link } from "react-router-dom";
 import { NavItem } from "./NavItem";
 import styled from "styled-components";
 import { userLogout } from "./api";
+import "./TopDownAction.css";
 
 const Container = styled.div`
-  width: 60%;
+  width: 100%;
   display: flex;
-  position: relative;
-  gap: 56px;
   margin: 0 auto;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -44,6 +43,16 @@ const Logout = styled.div`
     color: #db365a;
   }
 `;
+function allowScroll() {
+  document.body.classList.remove("no-scroll");
+}
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
 
 export function Navbar() {
   function isLogin() {
@@ -58,7 +67,13 @@ export function Navbar() {
   return (
     <>
       <Container>
-        <StyledLink to="/">
+        <StyledLink
+          onClick={() => {
+            allowScroll();
+            scrollToTop(true);
+          }}
+          to="/"
+        >
           {/* <img src="/images/logo/logo.png" alt="상단로고" /> */}
           <img
             src="/images/logo/memorial_text.png"
@@ -67,22 +82,53 @@ export function Navbar() {
             alt="상단로고"
           />
         </StyledLink>
-        <StyledLink to="/intro">
+        <StyledLink
+          onClick={() => {
+            allowScroll();
+            scrollToTop(true);
+          }}
+          to="/intro"
+        >
           <NavItem name="INTRO"></NavItem>
         </StyledLink>
-        <StyledLink to="/menu">
+        <StyledLink
+          onClick={() => {
+            allowScroll();
+            scrollToTop(true);
+          }}
+          to="/menu"
+        >
           <NavItem name="MENU"></NavItem>
         </StyledLink>
-        <StyledLink to="/lecture">
+        <StyledLink
+          onClick={() => {
+            allowScroll();
+            scrollToTop(true);
+          }}
+          to="/lecture"
+        >
           <NavItem name="LECTURE"></NavItem>
         </StyledLink>
-        <StyledLink to="/franchise_Inquiry">
+        <StyledLink
+          onClick={() => {
+            allowScroll();
+            scrollToTop(true);
+          }}
+          to="/franchise_Inquiry"
+        >
           <NavItem name="FRANCHISE"></NavItem>
         </StyledLink>
         <StyledLink to="/FAQ">
           <NavItem name="FAQ"></NavItem>
         </StyledLink>
-        <StyledLink onClick={isLogin} to="/mypage">
+        <StyledLink
+          onClick={() => {
+            allowScroll();
+            isLogin();
+            scrollToTop(true);
+          }}
+          to="/mypage"
+        >
           <NavItem name="MYPAGE"></NavItem>
         </StyledLink>
 

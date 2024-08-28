@@ -381,6 +381,7 @@ const InfoAgreewrap = styled.div`
   align-items: center;
 `;
 const Banner = styled.div`
+  margin-top: 100px;
   background: linear-gradient(45deg, #bc93f9, #eb92ae);
   background-size: 400% 400%;
   animation: gradient 4s ease infinite;

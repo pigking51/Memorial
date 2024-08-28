@@ -76,6 +76,7 @@ const Text = styled.div`
 `;
 
 const Banner = styled.div`
+  margin-top: 100px;
   background: linear-gradient(50deg, #bc93f9, #eb92ae);
   background-size: 400% 400%;
   animation: gradient 4s ease infinite;
