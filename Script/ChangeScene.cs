@@ -7,7 +7,7 @@ public class ChangeScene : MonoBehaviour
 {
     public Button changeSceneButton;
     public GameObject loadingScene;
-
+    public GameObject userName;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,12 +17,14 @@ public class ChangeScene : MonoBehaviour
     void ChangeSceneAndLoadLoading()
     {
         loadingScene.SetActive(true);
+        userName.SetActive(false);
         Invoke("CloseLoadingScene", 5f);
     }
 
     void CloseLoadingScene()
     {
         loadingScene.SetActive(false);
+        userName.SetActive(true);
     }
 
     // Update is called once per frame
