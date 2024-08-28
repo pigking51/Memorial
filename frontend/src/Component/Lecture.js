@@ -17,11 +17,12 @@ const Container = styled.div`
 const Header = styled.div`
   width: 100%;
   margin: 20px 0;
-  color: dodgerblue;
   display: flex;
   justify-content: space-between;
 `;
 const Back = styled.div`
+  width: 30px;
+  height: 30px;
   cursor: pointer;
 `;
 const Img = styled.img`
@@ -42,19 +43,25 @@ const Section = styled.div`
   padding-bottom: 40px;
 `;
 const Subscribe = styled.button`
-  width: 100px;
-  height: 30px;
-  background-color: white;
+  width: 200px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
   color: rgb(235, 146, 174);
   border-width: 3px;
   font-weight: 700;
   text-align: center;
   line-height: 30px;
-  border-radius: 30px;
-  cursor: pointer;
   font-size: 15px;
-  border: 2px solid rgb(235, 146, 174);
-  margin-left: 90%;
+  border-radius: 30px;
+  border-top: 3px solid #eb92ae;
+  border-right: 3px solid #fde9f3;
+  border-bottom: 3px solid #fde9f3;
+  border-left: 3px solid #fcd3e6;
+  /* margin-left: 100%; */
+  cursor: pointer;
 `;
 const Study = styled.button`
   width: 100px;

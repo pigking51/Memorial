@@ -39,13 +39,13 @@ const Logo = styled.div`
       transform: translateY(0);
     }
     25% {
-      transform: translateY(-5px) translateX(5px);
+      transform: translateY(0px) translateX(5px);
     }
     50% {
-      transform: translateY(-10px) translateX(-5px);
+      transform: translateY(0px) translateX(-5px);
     }
     75% {
-      transform: translateY(-5px) translateX(5px);
+      transform: translateY(0px) translateX(5px);
     }
   }
 `;
@@ -57,8 +57,6 @@ const Aside = styled.div`
   align-items: center;
   flex-wrap: wrap;
   color: #333;
-
-  /* justify-content: center; */
 `;
 const Top = styled.div`
   height: fit-content;
