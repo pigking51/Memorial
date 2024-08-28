@@ -87,8 +87,8 @@ export function TopDownAction() {
       console.log(StJsonPart);
       const data = {
         userId: yourName,
-        wallObject: StJsonPart.wall,
-        tileObject: StJsonPart.floor,
+        wallObject: `{${StJsonPart.wall} ? (${StJsonPart.wall}):(베이지)}`,
+        tileObject: `{${StJsonPart.floor} ? (${StJsonPart.floor}) : (원목)}`,
         furnitureObject: StJsonPart.furniture,
       };
       console.log(data);

@@ -18,4 +18,11 @@ mergeInto(LibraryManager.library, {
             console.warn("Failed to dispatch event");
         }
     },
+    VisitRandom: function (showRandom){
+        try{
+        window.dispatchReactUnityEvent("VisitRandom", UTF8ToString(showRandom));}
+        catch(e){
+            console.warn("Failed to dispatch event");
+        }
+    },
 });
