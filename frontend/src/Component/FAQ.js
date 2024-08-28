@@ -25,6 +25,7 @@ const FAQWrap = styled.div`
   height: 500px;
   overflow: scroll;
   overflow-x: hidden;
+  margin: 50px 0;
   ul {
     height: auto;
     border-bottom: 1px solid #00d1fe;
