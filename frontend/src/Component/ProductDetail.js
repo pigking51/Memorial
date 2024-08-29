@@ -10,7 +10,7 @@ const Container = styled.div`
   justify-content: space-around;
   width: auto;
   height: auto;
-  margin: 100px 20%;
+  margin: 15% 20%;
   padding: 25px;
 `;
 
@@ -81,6 +81,9 @@ const Allergy = styled.div`
   color: white;
 `;
 const Back = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   cursor: pointer;
 `;
@@ -122,9 +125,11 @@ export function ProductDetail() {
     <Container>
       {menu ? (
         <>
-          <Back onClick={() => navigate(-1)}>
-            <img src="/images/icon/Prev.png" alt="back"></img>
-          </Back>
+          {/* <div>
+            <Back onClick={() => navigate(-1)}>
+              <img src="/images/icon/Prev.png" alt="back"></img>
+            </Back>
+          </div> */}
           <ImageWrapper>
             <Image src={menu.img} alt={menu.menuName} />
           </ImageWrapper>

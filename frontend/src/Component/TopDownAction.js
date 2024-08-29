@@ -13,25 +13,44 @@ const Container = styled.div`
   width: 1440px;
   height: 760px;
   margin: auto;
-  border: 2px solid #e38ca6;
+  border: 2px solid linear-gradient(50deg, #bc93f9, #eb92ae);
+  animation: gradient 4s ease infinite;
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 `;
 
 const StartButton = styled.button`
   width: 400px;
   height: 100px;
-  color: #fff;
-  font-size: xx-large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #eb92ae;
-  border-top: 2px solid #eb92ae;
-  border: 3px solid #fcd3e6;
-  border-bottom: 6px solid #db365a;
-  border-radius: 50px;
+  color: #fff;
+  text-shadow: 0px 0px 5px rgba(219, 54, 90, 0.9);
+  font-weight: 400;
+  text-align: center;
+  font-size: 40px;
+  margin: 50px 0;
+  border-radius: 60px;
+  border-top: 3px solid #eb92ae;
+  border-right: 3px solid #fde9f3;
+  border-bottom: 3px solid #db365a;
+  border-left: 3px solid #fcd3e6;
   cursor: pointer;
   transition: 0.5s;
   &:hover {
     opacity: 0.6;
   }
-  margin: 150px 0;
 `;
 
 const BtContainer = styled.div`

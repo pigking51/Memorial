@@ -160,7 +160,6 @@ const LectureWrap = styled.div`
 `;
 const LectureBox = styled.div`
   border: 2px solid rgb(235, 146, 174);
-  /* border-bottom: 4px solid rgb(235, 146, 174); */
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -170,7 +169,6 @@ const LectureBox = styled.div`
   margin-left: 25px;
   margin-bottom: 15px;
   font-size: 25px;
-  font-family: "GmarketSansMedium";
   color: #333;
   cursor: pointer;
   transition: 0.5s;
@@ -188,7 +186,7 @@ const LectureBox = styled.div`
     cursor: pointer;
   }
   &:hover {
-    opacity: 0.6;
+    opacity: 0.5;
   }
 `;
 const BestLecture = styled.div`
@@ -208,7 +206,7 @@ const BestLectureList = styled.ul`
     margin: 0px 8px;
     border: 5px solid #eb92ae;
     /* border-radius: 10px; */
-    /* box-shadow: #db365a 0px 3px 6px; */
+    box-shadow: #db365a 0px 3px 6px;
     position: relative;
     a {
       width: 100%;

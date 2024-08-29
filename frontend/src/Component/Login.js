@@ -28,8 +28,11 @@ const LoginBox = styled.div`
   width: fit-content;
   height: fit-content;
   margin: 180px auto;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   padding: 30px;
   background-color: white;
   font-size: 1.3rem;
@@ -39,29 +42,25 @@ const LoginBox = styled.div`
     height: 100px;
     line-height: 100px;
     color: #333;
-    font-family: "GyeonggiTitleM";
   }
 `;
 const PasswordWrap = styled.div`
-  width: 566px;
+  width: 570px;
   height: 50px;
   border: 2px solid #eb92ae;
   border-radius: 8px;
   font-size: 15px;
   padding: 0 16px 0 20px;
-  margin-top: 30px;
+  /* margin-top: 15px; */
   display: grid;
   grid-template-columns: 9fr 1fr;
 `;
-const Empty = styled.div`
-  height: 50px;
-  width: 610px;
-`;
+
 const BtnWrap = styled.div`
-  width: 588px;
-  height: 100px;
+  width: 600px;
+  height: 50px;
   display: flex;
-  margin-top: 30px;
+  /* margin-top: 30px; */
   justify-content: center;
   align-items: center;
 `;
@@ -70,12 +69,12 @@ const LoginBtn = styled.button`
   height: 50px;
   background-color: #eb92ae;
   color: white;
-  font-weight: 700;
+  font-weight: 500;
   text-align: center;
   line-height: 35px;
   border-radius: 30px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 18px;
   border: none;
   margin-right: 10px;
 `;
@@ -85,12 +84,12 @@ const SignupBtn = styled.button`
   background-color: white;
   color: #eb92ae;
   border-width: 3px;
-  font-weight: 700;
+  font-weight: 500;
   text-align: center;
   line-height: 35px;
   border-radius: 30px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 18px;
   border: 2px solid #eb92ae;
   margin-left: 10px;
 `;
@@ -256,7 +255,7 @@ export function Login() {
               className={`togBtn ${isReveal ? `revealBtn` : `hideBtn`}`}
             ></span>
           </PasswordWrap>
-          <Empty></Empty>
+
           <BtnWrap>
             <LoginBtn onClick={InfoCheck}>로그인</LoginBtn>
             <SignupBtn onClick={goToSignup}> 회원가입</SignupBtn>

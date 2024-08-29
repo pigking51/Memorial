@@ -16,6 +16,7 @@ const ImageWrap = styled.div`
 const Background = styled.div`
   width: 100%;
   height: 100%;
+  margin-top: 100px;
   background: linear-gradient(50deg, #bc93f9, #eb92ae);
   background-size: 400% 400%;
   animation: gradient 4s ease infinite;
@@ -40,33 +41,39 @@ const Background = styled.div`
 
 const Greetings = styled.div`
   width: 100%;
+  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
+  margin: 50px 0;
 
   span {
-    margin: 25px 0;
-    color: #eb92ae;
-    font-size: 40px;
-    font-weight: bold;
+    color: #333;
+    font-size: 50px;
+    font-weight: 400;
+  }
+  strong {
+    text-decoration: none;
+    box-shadow: inset 0 -10px 0 hsla(53, 90%, 83%, 0.93);
+    padding-bottom: 2px;
   }
 `;
 
 const TopButton = styled.button`
   position: fixed;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   background-color: none;
   border: none;
   cursor: pointer;
-  top: 50%;
+  top: 85%;
   right: 5%;
 
   img {
-    width: 50px;
-    height: 50px;
+    width: 90;
+    height: 90px;
   }
 `;
 
@@ -104,7 +111,10 @@ export function Home() {
         </Background>
       </ImageWrap>
       <Greetings>
-        <span> 환영합니다, MEMORIAL입니다 :) </span>
+        <span>
+          {" "}
+          환영합니다, <strong>MEMORIAL</strong>입니다 :){" "}
+        </span>
         <TopButton
           onClick={() => {
             scrollToTop(true);

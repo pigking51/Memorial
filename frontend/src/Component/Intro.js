@@ -15,8 +15,9 @@ const Contents = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  height: 600px;
   align-items: center;
+  flex-direction: column;
+  margin: 100px 0;
 `;
 const Logo = styled.div`
   width: 390px;
@@ -39,13 +40,13 @@ const Logo = styled.div`
       transform: translateY(0);
     }
     25% {
-      transform: translateY(-5px) translateX(5px);
+      transform: translateY(0px) translateX(5px);
     }
     50% {
-      transform: translateY(-10px) translateX(-5px);
+      transform: translateY(0px) translateX(-5px);
     }
     75% {
-      transform: translateY(-5px) translateX(5px);
+      transform: translateY(0px) translateX(5px);
     }
   }
 `;
@@ -57,8 +58,6 @@ const Aside = styled.div`
   align-items: center;
   flex-wrap: wrap;
   color: #333;
-
-  /* justify-content: center; */
 `;
 const Top = styled.div`
   height: fit-content;

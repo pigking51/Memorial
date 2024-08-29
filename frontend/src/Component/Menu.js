@@ -9,8 +9,10 @@ const NotLoading = styled.div`
   position: relative;
   justify-content: center;
   align-items: center;
+  padding: 400px;
 `;
 const Opps = styled.img`
+  margin-top: 100px;
   position: relative;
   height: 500px;
   width: 500px;
@@ -98,7 +100,8 @@ const SubTitle = styled.div`
 `;
 
 const ContentBox = styled.div`
-  width: 100%;
+  width: 90%;
+  height: 20%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -125,7 +128,7 @@ const ImageContainer = styled.div`
   height: 400px; /* Adjust height as needed */
   display: flex;
   align-items: center;
-  margin: 200px 0;
+  margin: 100px 0;
   transition: transform 0.3s ease-in-out;
 `;
 
@@ -150,8 +153,6 @@ const Image = styled.div`
   align-items: center;
   width: 300px;
   height: 300px;
-  border: 10px solid #db365a;
-  /* background-color: #fde9f3; */
   border-radius: 30px;
   p {
     font-size: 20px;

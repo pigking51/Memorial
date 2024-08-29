@@ -24,6 +24,10 @@ const Back = styled.div`
   width: 30px;
   height: 30px;
   cursor: pointer;
+  transition: 0.5s;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 const Img = styled.img`
   width: 100%;
@@ -33,12 +37,19 @@ const Img = styled.img`
   align-content: center;
 `;
 const Content = styled.div`
-  font-size: 1rem;
-  line-height: 30px;
+  font-size: large;
+  line-height: 40px;
+  margin-top: 50px;
   color: #333;
+  p {
+  }
 `;
 const Section = styled.div`
-  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 30%;
   margin: 0 auto;
   padding-bottom: 40px;
 `;
@@ -48,35 +59,47 @@ const Subscribe = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
-  color: rgb(235, 146, 174);
-  border-width: 3px;
-  font-weight: 700;
+  background-color: #eb92ae;
+  color: #fff;
+  text-shadow: 0px 0px 5px rgba(219, 54, 90, 0.9);
+  font-weight: 500;
   text-align: center;
-  line-height: 30px;
-  font-size: 15px;
+  font-size: 20px;
+  margin-top: 50px;
   border-radius: 30px;
   border-top: 3px solid #eb92ae;
   border-right: 3px solid #fde9f3;
-  border-bottom: 3px solid #fde9f3;
+  border-bottom: 3px solid #db365a;
   border-left: 3px solid #fcd3e6;
-  /* margin-left: 100%; */
   cursor: pointer;
+  transition: 0.5s;
+  &:hover {
+    opacity: 0.6;
+  }
 `;
 const Study = styled.button`
-  width: 100px;
-  height: 30px;
-  background-color: white;
-  color: rgb(235, 146, 174);
-  border-width: 3px;
-  font-weight: 700;
+  width: 200px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eb92ae;
+  color: #fff;
+  text-shadow: 0px 0px 5px rgba(219, 54, 90, 0.9);
+  font-weight: 500;
   text-align: center;
-  line-height: 30px;
+  font-size: 20px;
+  margin-top: 50px;
   border-radius: 30px;
+  border-top: 3px solid #eb92ae;
+  border-right: 3px solid #fde9f3;
+  border-bottom: 3px solid #db365a;
+  border-left: 3px solid #fcd3e6;
   cursor: pointer;
-  font-size: 15px;
-  border: 2px solid rgb(235, 146, 174);
-  margin-left: 90%;
+  transition: 0.5s;
+  &:hover {
+    opacity: 0.6;
+  }
 `;
 
 const Banner = styled.div`

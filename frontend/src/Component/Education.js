@@ -10,8 +10,10 @@ const NotLoading = styled.div`
   position: relative;
   justify-content: center;
   align-items: center;
+  padding: 400px;
 `;
 const Opps = styled.img`
+  margin-top: 100px;
   position: relative;
   height: 500px;
   width: 500px;
