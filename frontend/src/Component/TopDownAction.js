@@ -241,7 +241,7 @@ export function TopDownAction() {
   // 화면 스크롤
   function scrollToMiddle() {
     window.scrollTo({
-      top: 800,
+      top: 900,
       behavior: "smooth",
     });
 
