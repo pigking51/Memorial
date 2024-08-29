@@ -128,10 +128,6 @@ export function Home() {
       <GameScreen>
         <TopDownAction />
       </GameScreen>
-
-      <Unicon>
-        <button onClick={gotoIndex}>🦄</button>
-      </Unicon>
     </>
   );
 }
