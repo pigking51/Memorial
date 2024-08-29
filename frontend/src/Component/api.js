@@ -132,6 +132,19 @@ export function getMyGameData(id) {
   return axios.get(url, headers);
 }
 
+// 좋아요 저장
+export function saveLike(data) {
+  const url = `http://localhost:8080/like/save`;
+
+  return axios.post(url, data, headers);
+}
+// 좋아요 불러오기
+export function showLike() {
+  const url = `http://localhost:8080/like/all`;
+
+  return axios.get(url);
+}
+
 // 모든 게임 데이터 불러오기
 export function allGameData() {
   const url = `http://localhost:8080/game/showall`;

@@ -26,6 +26,7 @@ public class LikeService {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user ID"));
         Like like1= new Like();
         like1.setUser(user);
+        like1.setLikedUser(likeDto.getLikedUser());
         Like savedLike = likeRepository.save(like1);
         return likeDto.toLikeDtoFromLike(savedLike);
     }

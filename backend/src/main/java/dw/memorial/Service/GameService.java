@@ -48,9 +48,6 @@ public class GameService {
         if(!Objects.equals(gameDto.getWallObject(), "")){
            game1.setWallObject(gameDto.getWallObject());
         }
-        if(!Objects.equals(gameDto.getFurnitureObject(), "")) {
-           game1.setFurnitureObject(gameDto.getFurnitureObject());
-        }
 
         Game savedGame = gameRepository.save(game1);
 

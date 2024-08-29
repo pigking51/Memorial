@@ -61,7 +61,7 @@ const Greetings = styled.div`
   }
 `;
 
-const TopButton = styled.button`
+const TopButton = styled.div`
   position: fixed;
   width: 60px;
   height: 60px;
@@ -128,10 +128,6 @@ export function Home() {
       <GameScreen>
         <TopDownAction />
       </GameScreen>
-
-      {/* <Unicon>
-        <button onClick={gotoIndex}>🦄</button>
-      </Unicon> */}
     </>
   );
 }
