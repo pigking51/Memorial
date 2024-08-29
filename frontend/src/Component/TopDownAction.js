@@ -10,8 +10,8 @@ import {
 import "./TopDownAction.css"; // CSS 파일 import
 
 const Container = styled.div`
-  width: 1440px;
-  height: 760px;
+  width: 1316px;
+  height: 740px;
   margin: auto;
   border: 2px solid linear-gradient(50deg, #bc93f9, #eb92ae);
   animation: gradient 4s ease infinite;
@@ -241,7 +241,7 @@ export function TopDownAction() {
   // 화면 스크롤
   function scrollToMiddle() {
     window.scrollTo({
-      top: 900,
+      top: 800,
       behavior: "smooth",
     });
 
