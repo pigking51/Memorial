@@ -27,38 +27,59 @@ public class GameService {
     UserRepository userRepository;
 
     public GameDto updateGameData(String id, GameDto gameDto){
-        List<Game> gameOptional = gameRepository.findAll();
-        List<Game> thisGameOptional = new ArrayList<>();
-        for(int i = 0; i < gameOptional.size(); i++){
-            if(Objects.equals(gameOptional.get(i).getUser().getUsername(), id)){
-                thisGameOptional.add(gameOptional.get(i));
-                break;
-            }
-        }
-        User user = userRepository.findById(gameDto.getUserId())
+
+        Optional<Game> thisGame = gameRepository.findByUserUserId(id);
+
+        User user = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user ID"));
-        if(!thisGameOptional.isEmpty()){
-            Game game = thisGameOptional.getFirst();
-            game.setUser(user);
-            game.setTileObject(gameDto.getTileObject());
-            game.setWallObject(gameDto.getWallObject());
-            game.setFurnitureObject(gameDto.getFurnitureObject());
 
-            Game savedGame = gameRepository.save(game);
-            return gameDto.toGameDtoFromGame(savedGame);
+        Game game1;
+
+        if(thisGame.isPresent()) {
+           game1 = thisGame.get();
         }else{
-            Game game2 = new Game();
-            game2.setUser(user);
-            game2.setTileObject(gameDto.getTileObject());
-            game2.setWallObject(gameDto.getWallObject());
-            game2.setFurnitureObject(gameDto.getFurnitureObject());
-
-            Game savedGame2 = gameRepository.save(game2);
-            return gameDto.toGameDtoFromGame(savedGame2);
+            game1 = new Game();
+            game1.setUser(user);
         }
 
+        if(!Objects.equals(gameDto.getTileObject(), "")){
+           game1.setTileObject(gameDto.getTileObject());
+        }
+        if(!Objects.equals(gameDto.getWallObject(), "")){
+           game1.setWallObject(gameDto.getWallObject());
+        }
+        if(!Objects.equals(gameDto.getFurnitureObject(), "")) {
+           game1.setFurnitureObject(gameDto.getFurnitureObject());
+        }
+
+        Game savedGame = gameRepository.save(game1);
+
+        return gameDto.toGameDtoFromGame(savedGame);
     }
 
+        //        List<Game> gameOptional = gameRepository.findAll();
+//        List<Game> thisGameOptional = new ArrayList<>();
+//        for(int i = 0; i < gameOptional.size(); i++){
+//            if(Objects.equals(gameOptional.get(i).getUser().getUsername(), id)){
+//                thisGameOptional.add(gameOptional.get(i));
+//                break;
+//            }
+//        }
+        // → 비효율적인 코드
+
+//        else{
+//            Game game2 = new Game();
+//            game2.setUser(user);
+//            game2.setTileObject(gameDto.getTileObject());
+//            game2.setWallObject(gameDto.getWallObject());
+//            game2.setFurnitureObject(gameDto.getFurnitureObject());
+//
+//            Game savedGame2 = gameRepository.save(game2);
+//
+//            return gameDto.toGameDtoFromGame(savedGame2);
+//        }
+
+//    }
     public List<Game> getMyData(String id){
         List<Game> gameOptional = gameRepository.findAll();
         List<Game> myGameData = new ArrayList<>();

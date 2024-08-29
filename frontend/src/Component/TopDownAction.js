@@ -1,7 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import styled from "styled-components";
-import { getNowUser, fetchGameData, getMyGameData } from "./api";
+import {
+  getNowUser,
+  fetchGameData,
+  getMyGameData,
+  randomGameData,
+} from "./api";
 import "./TopDownAction.css"; // CSS 파일 import
 
 const Container = styled.div`
@@ -36,8 +41,8 @@ const BtContainer = styled.div`
   margin: 30px 0;
   align-items: center;
 `;
-
 export function TopDownAction() {
+  // 게임관련 함수
   const [playingGame, setPlayingGame] = useState(false);
   const [userName, setUserName] = useState("unknown");
   const [likeScore, setLikeScore] = useState(0);
@@ -45,6 +50,10 @@ export function TopDownAction() {
   const [yourName, setYourName] = useState("Guest");
   const [sendUnity, setSendUnity] = useState("null");
   const [sendUnity2, setSendUnity2] = useState("null");
+  const [signal, setSignal] = useState("null");
+  const [randomUser, setRandomUser] = useState("null");
+  const [sendRandom, setSendRandom] = useState("null");
+  const [sendRandom2, setSendRandom2] = useState("null");
 
   const { unityProvider, sendMessage, addEventListener, removeEventListener } =
     useUnityContext({
@@ -70,7 +79,7 @@ export function TopDownAction() {
       console.log(URData);
     }
   }
-
+  // 게임데이터 저장
   async function updateGameData() {
     console.log(jsonPart);
 
@@ -90,6 +99,7 @@ export function TopDownAction() {
       }
     }
   }
+  // 저장된 데이터 불러오기
   async function callMyGameData() {
     try {
       if (sessionStorage.length !== 0) {
@@ -111,6 +121,40 @@ export function TopDownAction() {
       }
     } catch (error) {
       console.log("게임데이터 로드 오류", error);
+    }
+  }
+
+  const sendToken = useCallback(() => {
+    sendMessage(`CafeDecorator`, `OldFloorData`, `${sendUnity}`);
+    sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
+    sendMessage(`CafeDecorator`, `ReceiveUnity`, `${userName}님 환영합니다!!!`);
+  }, [sendMessage, sendUnity, sendUnity2]);
+
+  useEffect(() => {
+    addEventListener(`LoadTileData`, sendToken);
+    return () => {
+      removeEventListener(`LoadTileData`, sendToken);
+    };
+  }, [unityProvider, sendToken, addEventListener, removeEventListener]);
+
+  async function callRandomGameData() {
+    try {
+      const response = await randomGameData();
+      const data = response.data;
+      console.log(data);
+      if (data.tileObject != null) {
+        setSendRandom(data.tileObject);
+      } else {
+        setSendRandom("에메랄드빛바다");
+      }
+      if (data.wallObject != null) {
+        setSendRandom2(data.wallObject);
+      } else {
+        setSendRandom2("붉은벽돌");
+      }
+      setRandomUser(data.user.userId);
+    } catch (error) {
+      console.log("랜덤게임데이터 출력실패", error);
     }
   }
 
@@ -138,25 +182,45 @@ export function TopDownAction() {
     nowUserInfo();
   }, []);
 
-  const sendToken = useCallback(() => {
-    sendMessage(`CafeDecorator`, `OldFloorData`, `${sendUnity}`);
-    sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
-    sendMessage(
-      `CafeDecorator`,
-      `ReceiveUnity`,
-      `${userName && userName}님 환영합니다!!!`
-    );
-  }, [sendMessage, sendUnity, sendUnity2]);
+  function random(randomBtn) {
+    console.log(randomBtn);
+    setSignal(randomBtn);
+  }
 
   useEffect(() => {
-    addEventListener(`LoadTileData`, sendToken);
+    addEventListener(`VisitRandom`, random);
     return () => {
-      removeEventListener(`LoadTileData`, sendToken);
+      removeEventListener(`VisitRandom`, random);
     };
-  }, [unityProvider, sendToken, addEventListener, removeEventListener]);
+  });
 
+  useEffect(() => {
+    callRandomGameData();
+  }, [nowUserInfo, signal]);
+
+  // 랜덤방문
+  if (signal != "null") {
+    console.log(sendRandom);
+    console.log(sendRandom2);
+    const send = () => {
+      sendMessage(`CafeDecorator`, `OldFloorData`, `${sendRandom}`);
+      sendMessage(`CafeDecorator`, `OldWallData`, `${sendRandom2}`);
+      sendMessage(
+        `CafeDecorator`,
+        `ReceiveUnity`,
+        `${randomUser}님의 카페에 오신 것을 환영합니다!!!`
+      );
+    };
+    send();
+    setSignal("null");
+  } else {
+    console.log("랜덤방문 실패");
+  }
+
+  // 게임관련 함수 끝
+
+  // 화면 스크롤
   function scrollToMiddle() {
-    // 화면을 스크롤
     window.scrollTo({
       top: 900,
       behavior: "smooth",
