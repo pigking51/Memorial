@@ -11,7 +11,7 @@ import "./TopDownAction.css"; // CSS 파일 import
 
 const Container = styled.div`
   width: 1440px;
-  height: 760px;
+  height: 810px;
   margin: auto;
   border: 2px solid linear-gradient(50deg, #bc93f9, #eb92ae);
   animation: gradient 4s ease infinite;
