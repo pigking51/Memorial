@@ -13,9 +13,11 @@ import lombok.Setter;
 public class LikeDto {
 
     private String userId;
+    private String likedUser;
     public LikeDto toLikeDtoFromLike(Like like){
         LikeDto likeDto = new LikeDto();
-        likeDto.setUserId(getUserId());
+        likeDto.setUserId(like.getUser().getUserId());
+        likeDto.setLikedUser(like.getLikedUser());
 
         return likeDto;
     }

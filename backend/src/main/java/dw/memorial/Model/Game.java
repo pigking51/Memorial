@@ -33,9 +33,10 @@ public class Game {
 
     @Column(name="tile_object")
     private String tileObject;
-
-    @Column(name="furniture_object")
-    private String furnitureObject;
+//
+//    @ManyToOne
+//    @JoinColumn(name="furniture")
+//    private Furniture furniture;
 
     // 게임정보를 받았을때 하나의 코드로 받는 것인지?
     // → 정보는 이름으로 받는다고 함

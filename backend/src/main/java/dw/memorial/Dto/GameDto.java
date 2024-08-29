@@ -18,6 +18,7 @@ public class GameDto {
     private String wallObject;
     private String furnitureObject;
 
+
     public GameDto toGameDtoFromGame(Game game){
         GameDto gameDto = new GameDto();
         gameDto.setUserId(game.getUser().getUserId());

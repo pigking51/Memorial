@@ -6,6 +6,8 @@ import {
   fetchGameData,
   getMyGameData,
   randomGameData,
+  saveLike,
+  showLike,
 } from "./api";
 import "./TopDownAction.css"; // CSS 파일 import
 
@@ -65,6 +67,8 @@ export function TopDownAction() {
   const [playingGame, setPlayingGame] = useState(false);
   const [userName, setUserName] = useState("unknown");
   const [likeScore, setLikeScore] = useState(0);
+  const [isSendLike, setIsSendLike] = useState(false);
+  const [savedLike, setSavedLike] = useState(0);
   const [jsonPart, setJsonPart] = useState();
   const [yourName, setYourName] = useState("Guest");
   const [sendUnity, setSendUnity] = useState("null");
@@ -100,22 +104,64 @@ export function TopDownAction() {
   }
   // 게임데이터 저장
   async function updateGameData() {
-    console.log(jsonPart);
+    try {
+      console.log(jsonPart);
 
-    if (jsonPart != null) {
-      const StJsonPart = JSON.parse(jsonPart);
-      console.log(StJsonPart);
+      if (jsonPart != null) {
+        const StJsonPart = JSON.parse(jsonPart);
+        console.log(StJsonPart);
+        const data = {
+          userId: yourName,
+          wallObject: StJsonPart.wall,
+          tileObject: StJsonPart.floor,
+        };
+        const fData = {
+          furnitureObject: StJsonPart.furniture,
+        };
+        console.log(data);
+        if (sessionStorage.length !== 0) {
+          const response = await fetchGameData(yourName, data);
+          console.log(response);
+          // const fResponse = await fetchFurnitureData();
+        }
+      }
+    } catch (error) {
+      console.log("게임 저장 or 업데이트 실패", error);
+    }
+  }
+  // 좋아요 저장
+  async function saveLikeScore() {
+    try {
+      console.log(likeScore);
+      console.log(yourName);
       const data = {
         userId: yourName,
-        wallObject: StJsonPart.wall,
-        tileObject: StJsonPart.floor,
-        furnitureObject: StJsonPart.furniture,
+        likedUser: yourName,
       };
+      const response = await saveLike(data);
+      console.log(response.data);
+      setIsSendLike(false);
+    } catch (error) {
+      console.log("좋아요 저장 실패", error);
+    }
+  }
+  // 저장된 좋아요 불러오기
+  async function showLikeScore() {
+    try {
+      const response = await showLike();
+      const data = response.data;
       console.log(data);
-      if (sessionStorage.length !== 0) {
-        const response = await fetchGameData(yourName, data);
-        console.log(response);
+      // setSavedLike();
+      let i = 0;
+      let count = 0;
+      for (i = 0; i < data.length; i++) {
+        if (data[i].user.userId === yourName) {
+          count++;
+        }
       }
+      console.log(count);
+    } catch (error) {
+      console.log("좋아요 호출 실패", error);
     }
   }
   // 저장된 데이터 불러오기
@@ -156,6 +202,10 @@ export function TopDownAction() {
     };
   }, [unityProvider, sendToken, addEventListener, removeEventListener]);
 
+  useEffect(() => {
+    saveLikeScore();
+  }, [unityProvider, yourName, isSendLike]);
+
   async function callRandomGameData() {
     try {
       const response = await randomGameData();
@@ -183,6 +233,16 @@ export function TopDownAction() {
       removeEventListener("LikeScores", handleLike);
     };
   }, []);
+
+  useEffect(() => {
+    showLikeScore();
+  }, [unityProvider, yourName]);
+
+  useEffect(() => {
+    console.log("앞은 됨??");
+    sendMessage(`Like Button`, `CallLikeScore`, `100`);
+    console.log("실행은 됨??");
+  }, [unityProvider, likeScore]);
 
   useEffect(() => {
     addEventListener("ShowJson", handleJson);
