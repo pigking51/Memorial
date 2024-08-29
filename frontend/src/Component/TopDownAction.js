@@ -154,11 +154,11 @@ export function TopDownAction() {
       // setSavedLike();
       let i = 0;
       let count = 0;
-      for (i = 0; i < data.length; i++) {
-        if (data[i].user.userId === yourName) {
-          count++;
-        }
-      }
+      // for (i = 0; i < data.length; i++) {
+      //   if (data[i].user.userId === yourName) {
+      //     count++;
+      //   }
+      // }
       console.log(count);
     } catch (error) {
       console.log("좋아요 호출 실패", error);
