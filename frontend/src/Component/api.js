@@ -153,8 +153,8 @@ export function allGameData() {
 }
 
 // 랜덤 게임 데이터 불러오기
-export function randomGameData() {
-  const url = `http://localhost:8080/game/randomvisit`;
+export function randomGameData(id) {
+  const url = `http://localhost:8080/game/randomvisit/${id}`;
 
   return axios.get(url, headers);
 }

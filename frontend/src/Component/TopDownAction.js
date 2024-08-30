@@ -89,6 +89,7 @@ export function TopDownAction() {
   function handleLike(likeScore) {
     setLikeScore(likeScore);
   }
+
   function handleJson(json) {
     console.log(json);
     console.log("작동되는지 확인");
@@ -193,7 +194,7 @@ export function TopDownAction() {
     sendMessage(`CafeDecorator`, `OldFloorData`, `${sendUnity}`);
     sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
     sendMessage(`CafeDecorator`, `ReceiveUnity`, `${userName}님 환영합니다!!!`);
-  }, [sendMessage, sendUnity, sendUnity2]);
+  }, [unityProvider, sendMessage, sendUnity, sendUnity2]);
 
   useEffect(() => {
     addEventListener(`LoadTileData`, sendToken);
@@ -232,7 +233,7 @@ export function TopDownAction() {
     return () => {
       removeEventListener("LikeScores", handleLike);
     };
-  }, []);
+  }, [unityProvider]);
 
   useEffect(() => {
     showLikeScore();
@@ -251,15 +252,15 @@ export function TopDownAction() {
       removeEventListener("ShowJson", handleJson);
       updateGameData();
     };
-  });
+  }, [unityProvider, jsonPart]);
 
   useEffect(() => {
     callMyGameData();
-  }, [updateGameData]);
+  }, [unityProvider]);
 
   useEffect(() => {
     nowUserInfo();
-  }, []);
+  }, [unityProvider]);
 
   function random(randomBtn) {
     console.log(randomBtn);
@@ -271,29 +272,34 @@ export function TopDownAction() {
     return () => {
       removeEventListener(`VisitRandom`, random);
     };
-  });
+  }, [unityProvider]);
 
   useEffect(() => {
-    callRandomGameData();
-  }, [nowUserInfo, signal]);
+    callRandomGameData(yourName);
+  }, [unityProvider, nowUserInfo, yourName, signal]);
 
+  useEffect(() => {
+    VisitRandomCafe();
+  }, [unityProvider, signal]);
   // 랜덤방문
-  if (signal != "null") {
-    console.log(sendRandom);
-    console.log(sendRandom2);
-    const send = () => {
-      sendMessage(`CafeDecorator`, `OldFloorData`, `${sendRandom}`);
-      sendMessage(`CafeDecorator`, `OldWallData`, `${sendRandom2}`);
-      sendMessage(
-        `CafeDecorator`,
-        `ReceiveUnity`,
-        `${randomUser}님의 카페에 오신 것을 환영합니다!!!`
-      );
-    };
-    send();
-    setSignal("null");
-  } else {
-    console.log("랜덤방문 실패");
+  function VisitRandomCafe() {
+    if (signal != "null") {
+      console.log(sendRandom);
+      console.log(sendRandom2);
+      const send = () => {
+        sendMessage(`CafeDecorator`, `OldFloorData`, `${sendRandom}`);
+        sendMessage(`CafeDecorator`, `OldWallData`, `${sendRandom2}`);
+        sendMessage(
+          `CafeDecorator`,
+          `ReceiveUnity`,
+          `${randomUser}님의 카페에 오신 것을 환영합니다!!!`
+        );
+      };
+      send();
+      setSignal("null");
+    } else {
+      console.log("랜덤방문 실패");
+    }
   }
 
   // 게임관련 함수 끝

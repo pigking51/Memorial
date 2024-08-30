@@ -34,9 +34,9 @@ public class GameController {
         return new ResponseEntity<>(gameService.getAllGameData(),
                 HttpStatus.OK);
     }
-    @GetMapping("/randomvisit")
-    public ResponseEntity<Game> getRandomGameData(){
-        return new ResponseEntity<>(gameService.getRandomGameData(),
+    @GetMapping("/randomvisit/{id}")
+    public ResponseEntity<Game> getRandomGameData(@PathVariable String id){
+        return new ResponseEntity<>(gameService.getRandomGameData(id),
                 HttpStatus.OK);
     }
     @GetMapping("/visit/{id}")

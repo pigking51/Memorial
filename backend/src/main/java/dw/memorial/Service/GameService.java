@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Transactional
@@ -93,10 +94,12 @@ public class GameService {
         return gameRepository.findAll();
     }
 
-    public Game getRandomGameData(){
+    public Game getRandomGameData(String id){
         List<Game> allGame = gameRepository.findAll();
+        List<Game> randomRange =
+                allGame.stream().filter((game -> !(game.getUser().getUserId().equals(id)))).collect(Collectors.toList());
 
-        return allGame.get((int)(Math.random()*allGame.size()));
+        return randomRange.get((int)(Math.random()*randomRange.size()));
     }
 
     public List<Game> getSomeGameData(String id){
