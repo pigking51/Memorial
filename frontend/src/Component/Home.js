@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { TopDownAction } from "./TopDownAction";
-import { useHref } from "react-router-dom";
 import { Footer } from "./Footer";
 
 const ImageWrap = styled.div`
@@ -61,19 +60,24 @@ const Greetings = styled.div`
   }
 `;
 
-const TopButton = styled.div`
+const Button = styled.div`
   position: fixed;
   width: 60px;
   height: 60px;
   background-color: none;
   border: none;
   cursor: pointer;
-  top: 85%;
-  right: 5%;
+  top: ${(props) => (props.isCentered ? "85%" : "50%")};
+  right: ${(props) => (props.isCentered ? "5%" : "50%")};
+  transform: ${(props) =>
+    props.isCentered ? "translateX(0)" : "translateX(50%)"};
+  transition: top 0.3s, right 0.3s, transform 0.3s;
+  display: ${(props) =>
+    props.show ? "block" : "none"}; // 버튼 보이기/숨기기 제어
 
   img {
-    width: 90;
-    height: 90px;
+    width: 60px;
+    height: 60px;
   }
 `;
 
@@ -89,20 +93,46 @@ const GameScreen = styled.div`
 `;
 
 export function Home() {
-  function gotoIndex() {
-    window.location.href = `/index`;
-  }
+  const [isCentered, setIsCentered] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
+  const [buttonImage, setButtonImage] = useState("/images/icon/DownButton.png");
 
   function scrollToTop() {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
+    setIsCentered(false);
   }
 
-  function allowScroll() {
-    document.body.classList.remove("no-scroll");
+  function centerScreen() {
+    window.scrollTo({
+      top: 800,
+      behavior: "smooth",
+    });
+    setIsCentered(true);
   }
+
+  function handleGameStart() {
+    setGameStarted(true); // 게임 시작 상태를 true로 설정
+    centerScreen(); // 버튼 위치를 화면 중앙으로 이동
+  }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setButtonImage("/images/icon/TopButton.png");
+      } else {
+        setButtonImage("/images/icon/DownButton.png");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <ImageWrap>
@@ -115,18 +145,22 @@ export function Home() {
           {" "}
           환영합니다, <strong>MEMORIAL</strong>입니다 :){" "}
         </span>
-        <TopButton
+        <Button
+          isCentered={isCentered}
+          show={gameStarted}
           onClick={() => {
-            scrollToTop(true);
-            allowScroll();
+            if (isCentered) {
+              scrollToTop();
+            } else {
+              centerScreen();
+            }
           }}
         >
-          <img src="/images/icon/TopButton.png"></img>
-        </TopButton>
+          <img src={buttonImage} alt="Toggle Button" />
+        </Button>
       </Greetings>
-      {/* <div className="image"></div> */}
-      <GameScreen>
-        <TopDownAction />
+      <GameScreen id="game-screen">
+        <TopDownAction onStartGame={handleGameStart} />
       </GameScreen>
     </>
   );

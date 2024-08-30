@@ -63,7 +63,7 @@ const BtContainer = styled.div`
   margin: 30px 0;
   align-items: center;
 `;
-export function TopDownAction() {
+export function TopDownAction({ onStartGame }) {
   // 게임관련 함수
   const [playingGame, setPlayingGame] = useState(false);
   const [userName, setUserName] = useState("unknown");
@@ -336,6 +336,7 @@ export function TopDownAction() {
           onClick={() => {
             setPlayingGame(true);
             scrollToMiddle();
+            onStartGame(); // 게임 시작 시 콜백 호출
           }}
         >
           ✨ Game Start ✨
