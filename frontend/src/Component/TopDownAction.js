@@ -10,6 +10,7 @@ import {
   showLike,
 } from "./api";
 import "./TopDownAction.css"; // CSS 파일 import
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 1316px;
@@ -69,7 +70,7 @@ export function TopDownAction() {
   const [likeScore, setLikeScore] = useState(0);
   const [isSendLike, setIsSendLike] = useState(false);
   const [savedLike, setSavedLike] = useState(0);
-  const [jsonPart, setJsonPart] = useState();
+  const [jsonPart, setJsonPart] = useState(null);
   const [yourName, setYourName] = useState("Guest");
   const [sendUnity, setSendUnity] = useState("null");
   const [sendUnity2, setSendUnity2] = useState("null");
@@ -77,6 +78,10 @@ export function TopDownAction() {
   const [randomUser, setRandomUser] = useState("null");
   const [sendRandom, setSendRandom] = useState("null");
   const [sendRandom2, setSendRandom2] = useState("null");
+  // 로그인 유무 확인
+  const [isGoToLogin, setIsGoToLogin] = useState(false);
+
+  const navigate = useNavigate();
 
   const { unityProvider, sendMessage, addEventListener, removeEventListener } =
     useUnityContext({
@@ -105,29 +110,39 @@ export function TopDownAction() {
   }
   // 게임데이터 저장
   async function updateGameData() {
-    try {
-      console.log(jsonPart);
+    if (sessionStorage.length !== 0) {
+      try {
+        console.log(jsonPart);
 
-      if (jsonPart != null) {
-        const StJsonPart = JSON.parse(jsonPart);
-        console.log(StJsonPart);
-        const data = {
-          userId: yourName,
-          wallObject: StJsonPart.wall,
-          tileObject: StJsonPart.floor,
-        };
-        const fData = {
-          furnitureObject: StJsonPart.furniture,
-        };
-        console.log(data);
-        if (sessionStorage.length !== 0) {
-          const response = await fetchGameData(yourName, data);
-          console.log(response);
-          // const fResponse = await fetchFurnitureData();
+        if (jsonPart != null) {
+          const StJsonPart = JSON.parse(jsonPart);
+          console.log(StJsonPart);
+          const data = {
+            userId: yourName,
+            wallObject: StJsonPart.wall,
+            tileObject: StJsonPart.floor,
+          };
+          const fData = {
+            furnitureObject: StJsonPart.furniture,
+          };
+          console.log(data);
+          if (sessionStorage.length !== 0) {
+            const response = await fetchGameData(yourName, data);
+            console.log(response);
+            // const fResponse = await fetchFurnitureData();
+          }
         }
+      } catch (error) {
+        console.log("게임 저장 or 업데이트 실패", error);
       }
-    } catch (error) {
-      console.log("게임 저장 or 업데이트 실패", error);
+    } else if (jsonPart != null && isGoToLogin == false) {
+      if (
+        window.confirm(`로그인이 필요한 서비스입니다. \n로그인하시겠습니까?`)
+      ) {
+        navigate(`/login`);
+        setIsGoToLogin(true);
+        return;
+      }
     }
   }
   // 좋아요 저장
@@ -252,7 +267,7 @@ export function TopDownAction() {
       removeEventListener("ShowJson", handleJson);
       updateGameData();
     };
-  }, [unityProvider, jsonPart]);
+  }, [jsonPart]);
 
   useEffect(() => {
     callMyGameData();

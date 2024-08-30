@@ -198,7 +198,7 @@ export function Lecture() {
         if (
           window.confirm(`강의를 신청했습니다. 강의를 들으러 가시겠습니까?`)
         ) {
-          window.location.href = `Home`;
+          navigate(`/streaming/${id}`);
         } else {
           window.location.reload();
         }
