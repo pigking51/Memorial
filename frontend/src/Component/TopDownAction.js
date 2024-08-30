@@ -75,9 +75,12 @@ export function TopDownAction({ onStartGame }) {
   const [sendUnity, setSendUnity] = useState("null");
   const [sendUnity2, setSendUnity2] = useState("null");
   const [signal, setSignal] = useState("null");
+  // 랜덤유저 방문 관련
   const [randomUser, setRandomUser] = useState("null");
   const [sendRandom, setSendRandom] = useState("null");
   const [sendRandom2, setSendRandom2] = useState("null");
+  // 내 화면 복귀 관련
+  const [comeBackHome, setComeBackHome] = useState("null");
   // 로그인 유무 확인
   const [isGoToLogin, setIsGoToLogin] = useState(false);
 
@@ -296,6 +299,7 @@ export function TopDownAction({ onStartGame }) {
   useEffect(() => {
     VisitRandomCafe();
   }, [unityProvider, signal]);
+
   // 랜덤방문
   function VisitRandomCafe() {
     if (signal != "null") {
@@ -314,6 +318,39 @@ export function TopDownAction({ onStartGame }) {
       setSignal("null");
     } else {
       console.log("랜덤방문 실패");
+    }
+  }
+
+  // 타인카페 방문 후 내 화면으로 이동할때
+  function myHome(Home) {
+    console.log(Home);
+    setComeBackHome(Home);
+  }
+
+  useEffect(() => {
+    addEventListener(`ComeBackHome`, myHome);
+    return () => {
+      removeEventListener(`ComeBackHome`, myHome);
+    };
+  }, [unityProvider]);
+
+  useEffect(() => {
+    homeSick();
+  }, [comeBackHome]);
+
+  async function homeSick() {
+    if (comeBackHome != "null") {
+      console.log(sendRandom);
+      console.log(sendRandom2);
+      const send = () => {
+        sendMessage(`CafeDecorator`, `OldFloorData`, `${sendUnity}`);
+        sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
+        sendMessage(`CafeDecorator`, `ReceiveUnity`, `${userName}사장님`);
+      };
+      send();
+      setComeBackHome("null");
+    } else {
+      console.log("내 카페 복귀 실패");
     }
   }
 
