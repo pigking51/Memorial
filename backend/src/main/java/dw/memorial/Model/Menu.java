@@ -30,6 +30,7 @@ public class Menu {
 
     @Column(name="menu_description")
     private String menuDescription;
+
     @Column(name="price")
     private long price;
 
