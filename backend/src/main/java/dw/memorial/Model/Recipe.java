@@ -16,10 +16,6 @@ import lombok.Setter;
 @Table(name = "recipe")
 public class Recipe {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "recipe_no")
-    private long recipeNo;
-
     @Column(name = "recipe_name")
     private String recipeName;
 

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,12 +35,9 @@ public class Game {
 
     @Column(name="tile_object")
     private String tileObject;
-//
-//    @ManyToOne
-//    @JoinColumn(name="furniture")
-//    private Furniture furniture;
 
-    // 게임정보를 받았을때 하나의 코드로 받는 것인지?
-    // → 정보는 이름으로 받는다고 함
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name="furniture")
+    private List<Furniture> furniture;
 
 }

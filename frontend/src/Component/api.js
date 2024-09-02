@@ -178,3 +178,9 @@ export function saveInquery(data) {
   const url = `http://localhost:8080/inquery/save`;
   return axios.post(url, data, headers);
 }
+
+// 최초 게임 실행 시 랜덤 레시피 부여
+export function initialRecipe(id) {
+  const url = `http://localhost:8080/recipe/initial/${id}`;
+  return axios.get(url, headers);
+}

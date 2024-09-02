@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "saved_recipe")
-public class SavedRecipe {
+public class MyRecipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

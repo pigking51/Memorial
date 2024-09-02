@@ -1,6 +1,7 @@
 package dw.memorial.Service;
 
 import dw.memorial.Dto.GameDto;
+import dw.memorial.Model.Furniture;
 import dw.memorial.Model.Game;
 import dw.memorial.Model.User;
 import dw.memorial.Repository.GameRepository;
@@ -9,7 +10,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -48,6 +49,14 @@ public class GameService {
         }
         if(!Objects.equals(gameDto.getWallObject(), "")){
            game1.setWallObject(gameDto.getWallObject());
+        }
+        if(!Objects.equals(gameDto.getFurniture(), "")){
+            if(!gameDto.getFurniture().isEmpty()){
+                List<Furniture> updatedFurniture = gameDto.getFurniture();
+                game1.setFurniture(updatedFurniture);
+            }else{
+                return null;
+            }
         }
 
         Game savedGame = gameRepository.save(game1);
@@ -96,24 +105,21 @@ public class GameService {
 
     public Game getRandomGameData(String id){
         List<Game> allGame = gameRepository.findAll();
-        List<Game> randomRange =
-                allGame.stream().filter((game -> !(game.getUser().getUserId().equals(id)))).collect(Collectors.toList());
+        if (allGame.isEmpty()){
+            return null;
+        }
+        else{
+            List<Game> randomRange =
+                    allGame.stream().filter((game -> !(game.getUser().getUserId().equals(id)))).collect(Collectors.toList());
 
-        return randomRange.get((int)(Math.random()*randomRange.size()));
+            return randomRange.get((int)(Math.random()*randomRange.size()));
+        }
     }
 
     public List<Game> getSomeGameData(String id){
-        List<Game> allGame = gameRepository.findAll();
-        List<Game> thatGame = new ArrayList<>();
-        for(int i = 0; i < allGame.size(); i++){
-            if(allGame.get(i).getUser().getUserId().equals(id)){
-                thatGame.add(allGame.get(i));
-                break;
-            } else if (!(allGame.get(allGame.size()-1).getUser().getUserId().equals(id))) {
-                return null;
-            }
-        }
-        return thatGame;
+        return gameRepository.findAll()
+                .stream().filter(game -> game.getUser().getUserId().equals(id))
+                .toList();
     }
 
 }

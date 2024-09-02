@@ -22,7 +22,6 @@ public class FurnitureDto {
 
     public FurnitureDto toGameDtoFromGame(Furniture furniture){
         FurnitureDto furnitureDto = new FurnitureDto();
-        furnitureDto.setUserId(furniture.getUser().getUserId());
         furnitureDto.setFurnitureObject(furniture.getFurnitureObject());
         furnitureDto.setSiteX(furnitureDto.getSiteX());
         furnitureDto.setSiteY(furnitureDto.getSiteY());

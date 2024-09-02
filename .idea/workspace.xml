@@ -5,9 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2206d9c-3204-41df-9423-dea1ad507682" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Controller/MyRecipeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Service/MyRecipeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Controller/FurnitureController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Controller/SavedRecipeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Dto/FurnitureDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Dto/FurnitureDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Dto/GameDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Dto/GameDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Model/Furniture.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Model/Furniture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Model/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Model/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Model/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Model/Recipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Model/SavedRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Model/MyRecipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Repository/FurnitureRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Repository/SavedRecipeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Repository/MyRecipeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Service/FurnitureService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Service/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Service/GameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Service/SavedRecipeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/FurnitureController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/FurnitureDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/FurnitureDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/GameDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/GameDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Furniture.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Furniture.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Like.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Like.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/FurnitureRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/FurnitureService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/GameService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/GameService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +127,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/backend/src/main/java/dw/memorial/Model/Menu.java</url>
-          <line>46</line>
+          <line>47</line>
           <properties field="caffeine" class="dw.memorial.Model.Menu" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>

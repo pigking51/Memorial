@@ -22,10 +22,6 @@ public class Furniture {
     @Column(name = "furniture_id")
     private long fId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
     @Column(name = "furniture_object")
     private String furnitureObject;
 

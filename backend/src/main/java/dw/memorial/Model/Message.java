@@ -23,9 +23,9 @@ public class Message {
     @Column(name = "target_user")
     private String targetUser;
     @Enumerated(EnumType.STRING)
-    @Column(name = "check")
-    private CheckEnum check;
-    public enum CheckEnum{
+    @Column(name = "message_status")
+    private MessageStatus messageStatus;
+    public enum MessageStatus{
         NEW,
         CHECKED;
     }
