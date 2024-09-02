@@ -1,5 +1,6 @@
 package dw.memorial.Controller;
 
+import dw.memorial.Dto.MessageDto;
 import dw.memorial.Model.Message;
 import dw.memorial.Service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class MessageController {
     MessageService messageService;
 
     @PostMapping("/send")
-    public ResponseEntity<Message> sendMessage(Message message){
-        return new ResponseEntity<>(messageService.sendMessage(message),
+    public ResponseEntity<MessageDto> sendMessage(@RequestBody MessageDto messageDto){
+        return new ResponseEntity<>(messageService.sendMessage(messageDto),
                 HttpStatus.OK);
     }
 

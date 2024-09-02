@@ -9,6 +9,9 @@ import {
   saveLike,
   showLike,
   initialRecipe,
+  inviteMyCafe,
+  checkMyMessage,
+  checkMySendMessage,
 } from "./api";
 import "./TopDownAction.css"; // CSS 파일 import
 import { useNavigate } from "react-router-dom";
@@ -84,6 +87,8 @@ export function TopDownAction({ onStartGame }) {
   const [comeBackHome, setComeBackHome] = useState("null");
   // 로그인 유무 확인
   const [isGoToLogin, setIsGoToLogin] = useState(false);
+  // 메시지 전송유무 확인
+  const [isSendMessage, setIsSendMessage] = useState(false);
 
   const navigate = useNavigate();
 
@@ -143,6 +148,9 @@ export function TopDownAction({ onStartGame }) {
             userId: yourName,
             wallObject: StJsonPart.wall,
             tileObject: StJsonPart.floor,
+            // 아래 하드코딩한 것은 예시임!!
+            // 해당 위치에 유니티에서 받은 가구 데이터를 배열로 담아줘야됨
+            // (*유니티에서 배열채로 넘어온 경우 그냥 변수로 담기)
             furniture: [
               {
                 furnitureObject: "가구1",
@@ -395,6 +403,56 @@ export function TopDownAction({ onStartGame }) {
       setComeBackHome("null");
     } else {
       console.log("내 카페 복귀 실패");
+    }
+  }
+
+  // 초대 메세지 발송
+  useEffect(() => {
+    inviteMessage();
+  }, [yourName]);
+
+  async function inviteMessage() {
+    if (yourName != "Guest" && isSendMessage != true) {
+      try {
+        const data = {
+          sendUser: yourName,
+          messageText: `넌 이미 죽어있다`,
+          targetUser: `sampleID123`,
+        };
+        const response = await inviteMyCafe(data);
+        console.log(response.data);
+        setIsSendMessage(true);
+      } catch (error) {
+        console.log("메세지 전송 실패", error);
+      }
+    }
+  }
+
+  // 내가 보낸 메세지 확인하기
+  async function mySendMessage() {
+    if (yourName != "Guset") {
+      try {
+        const response = await checkMySendMessage(yourName);
+        console.log(response.data);
+      } catch (error) {
+        console.log("보낸 메세지 확인 실패", error);
+      }
+    }
+  }
+
+  // 받은 메세지 확인하기
+  useEffect(() => {
+    myMessage();
+  }, [inviteMessage]);
+
+  async function myMessage() {
+    if (yourName != "Guest") {
+      try {
+        const response = await checkMyMessage(yourName);
+        console.log(response.data);
+      } catch (error) {
+        console.log("메세지 수신 실패", error);
+      }
     }
   }
 

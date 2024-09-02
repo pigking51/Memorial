@@ -1,5 +1,6 @@
 package dw.memorial.Service;
 
+import dw.memorial.Dto.MessageDto;
 import dw.memorial.Model.Message;
 import dw.memorial.Repository.MessageRepository;
 import jakarta.transaction.Transactional;
@@ -16,8 +17,16 @@ public class MessageService {
     @Autowired
     MessageRepository messageRepository;
 
-    public Message sendMessage(Message message){
-        return messageRepository.save(message);
+    public MessageDto sendMessage(MessageDto messageDto)
+    {
+        Message message1 = new Message();
+        message1.setSendUser(messageDto.getSendUser());
+        message1.setMessageText(messageDto.getMessageText());
+        message1.setTargetUser(messageDto.getTargetUser());
+
+        Message savedMessage = messageRepository.save(message1);
+
+        return messageDto.toMessageDtoFromMessage(savedMessage);
     }
 
     public List<Message> getMySendMessage(String id){

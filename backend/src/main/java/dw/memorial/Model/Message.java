@@ -14,6 +14,7 @@ import lombok.Setter;
 @Table(name = "message")
 public class Message {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "message_num")
     private int messageNum;
     @Column(name = "send_user")
@@ -29,4 +30,11 @@ public class Message {
         NEW,
         CHECKED;
     }
+    @PrePersist
+    public void msStatus(){
+        if(this.messageStatus == null){
+            this.messageStatus = MessageStatus.NEW;
+        }
+    }
+
 }

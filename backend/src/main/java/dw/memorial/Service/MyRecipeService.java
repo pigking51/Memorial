@@ -25,7 +25,7 @@ public class MyRecipeService {
     @Autowired
     UserRepository userRepository;
 
-    // 최초 접속 시
+    // 최초 접속 시 임의의 레시피 부여
     public MyRecipe initialRecipe(String id){
         List<MyRecipe> MyRecipe = myRecipeRepository.findAll();
         if(MyRecipe.isEmpty()){
@@ -44,6 +44,7 @@ public class MyRecipeService {
         }
     }
 
+    // 타인카페 방문시 좋아요 눌렀을때 받는 레시피(중복포함)
     public MyRecipe addRandomRecipe(String id, MyRecipe myRecipe){
         MyRecipe myRecipe1 = new MyRecipe();
         List<Recipe> allRecipe = recipeRepository.findAll();

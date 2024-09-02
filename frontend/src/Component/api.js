@@ -184,3 +184,32 @@ export function initialRecipe(id) {
   const url = `http://localhost:8080/recipe/initial/${id}`;
   return axios.get(url, headers);
 }
+
+// 타인 카페 방문하여 좋아요 누를 시 받게되는 랜덤 레시피
+export function getRandomRecipe(id, data) {
+  const url = `http://localhost:8080/recipe/addrandomrecipe/${id}`;
+
+  return axios.post(url, data, headers);
+}
+
+// 게임 내 초대메세지 보내기
+export function inviteMyCafe(data) {
+  const url = `http://localhost:8080/message/send`;
+
+  return axios.post(url, data, headers);
+}
+
+// 게임 내 메세지 확인
+// 내가 보낸거
+export function checkMySendMessage(id) {
+  const url = `http://localhost:8080/message/getmysendmessage/${id}`;
+
+  return axios.get(url, headers);
+}
+
+// 받은거
+export function checkMyMessage(id) {
+  const url = `http://localhost:8080/message/getmymessage/${id}`;
+
+  return axios.get(url, headers);
+}
