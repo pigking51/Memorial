@@ -777,7 +777,7 @@ export function Franchise_Inquiry() {
             </Address>
             <AddressInfo>
               <input type="text" onChange={(e) => inputAddress(e)} />
-              <button>우편번호찾기</button>
+              {/* <button>우편번호찾기</button> */}
             </AddressInfo>
           </Addresswrap>
           <hr />
@@ -811,7 +811,7 @@ export function Franchise_Inquiry() {
               </p>
             </InfoAgree1>
             <InfoAgree1Container>
-              <button>상세보기</button>
+              {/* <button>상세보기</button> */}
               <label for="A_Yes" id="YesLabel">
                 동의합니다.
               </label>
@@ -842,7 +842,7 @@ export function Franchise_Inquiry() {
               </p>
             </InfoAgree2>
             <InfoAgree2Container>
-              <button>상세보기</button>
+              {/* <button>상세보기</button> */}
               <label for="B_Yes" id="YesLabel">
                 동의합니다.
               </label>

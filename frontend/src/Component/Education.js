@@ -46,20 +46,21 @@ const Contents = styled.div`
   }
 `;
 const Card = styled.div`
-  min-width: 487px;
+  min-width: 500px;
   border-radius: 5px;
   background-color: white;
   box-shadow: 4px 4px 8px 1px #fcd3e6;
   transition: all 0.2s ease;
-  padding-bottom: 20px;
+  padding: 15px;
   p {
     height: fit-content;
     width: 100%;
     font-size: 20px;
     margin: 25px;
+    padding: 10px;
   }
   &:hover {
-    box-shadow: 2px 2px 5px 5px #eb92ae;
+    box-shadow: 4px 4px 8px 1px #eb92ae;
     transform: translate(0px, -5px);
     filter: brightness(120%);
     cursor: pointer;
