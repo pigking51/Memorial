@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import "./FAQ.css";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const FAQTitle = styled.div`
   font-size: 32px;
@@ -117,9 +117,11 @@ const Banner = styled.div`
 let isHidden = true;
 export function FAQ() {
   const [FAQ_Item, setFAQ_Item] = useState(null);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   useEffect(() => {
     fetchFAQs();
+    setIsDataLoaded(true);
   }, []);
 
   async function fetchFAQs() {
@@ -137,14 +139,20 @@ export function FAQ() {
   }
 
   function revealHidden(e, index) {
-    console.log(e);
-    const answers = document.querySelectorAll(".answer");
-    console.log(answers[index]);
+    if (isDataLoaded == true) {
+      console.log(e);
+      console.log(index);
+      const answers = document.querySelectorAll(".answer");
+      console.log(answers);
+      console.log(answers[index].style.display);
 
-    if (answers[index].style.display == `none`) {
-      answers[index].style.display = `block`;
+      if (answers[index].style.display == `none`) {
+        answers[index].style.display = `block`;
+      } else {
+        answers[index].style.display = `none`;
+      }
     } else {
-      answers[index].style.display = `none`;
+      console.log("기다려!!");
     }
   }
 
@@ -160,11 +168,7 @@ export function FAQ() {
           {FAQ_Item &&
             FAQ_Item.map((item, index) => (
               <div key={item.faqId}>
-                <Question
-                  onClick={(e) => {
-                    revealHidden(e, index);
-                  }}
-                >
+                <Question onClick={() => revealHidden(item, index)}>
                   {item.question}
                 </Question>
                 <div className="answer">{item.answer}</div>

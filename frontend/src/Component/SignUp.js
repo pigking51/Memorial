@@ -435,7 +435,7 @@ export function SignUp() {
                 value="MALE"
                 id="male"
                 ref={GenderRef}
-                onChange={GenderInput}
+                onClick={GenderInput}
                 checked
               />
               <label for="male">남성</label>
@@ -447,7 +447,7 @@ export function SignUp() {
                 value="FEMALE"
                 id="female"
                 ref={GenderRef}
-                onChange={GenderInput}
+                onClick={GenderInput}
               />
               <label for="female">여성</label>
             </Woman>

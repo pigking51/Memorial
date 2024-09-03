@@ -76,8 +76,10 @@ export function TopDownAction({ onStartGame }) {
   const [savedLike, setSavedLike] = useState(0);
   const [jsonPart, setJsonPart] = useState(null);
   const [yourName, setYourName] = useState("Guest");
+  const [isSavedGame, setIsSavedGame] = useState(false);
   const [sendUnity, setSendUnity] = useState("null");
   const [sendUnity2, setSendUnity2] = useState("null");
+  const [sendUnity3, setSendUnity3] = useState([]);
   const [signal, setSignal] = useState("null");
   // 랜덤유저 방문 관련
   const [randomUser, setRandomUser] = useState("null");
@@ -107,6 +109,7 @@ export function TopDownAction({ onStartGame }) {
   function handleJson(json) {
     console.log(json);
     console.log("작동되는지 확인");
+    setIsSavedGame(false);
     setJsonPart(json);
   }
   async function nowUserInfo() {
@@ -141,50 +144,23 @@ export function TopDownAction({ onStartGame }) {
       try {
         console.log(jsonPart);
 
-        if (jsonPart != null) {
+        if (jsonPart != null && isSavedGame == false) {
           const StJsonPart = JSON.parse(jsonPart);
           console.log(StJsonPart);
+          console.log(StJsonPart.furniture);
+
           const data = {
             userId: yourName,
             wallObject: StJsonPart.wall,
             tileObject: StJsonPart.floor,
-            // 아래 하드코딩한 것은 예시임!!
-            // 해당 위치에 유니티에서 받은 가구 데이터를 배열로 담아줘야됨
-            // (*유니티에서 배열채로 넘어온 경우 그냥 변수로 담기)
-            furniture: [
-              {
-                furnitureObject: "가구1",
-                siteX: 2.1,
-                siteY: 1.3,
-              },
-              {
-                furnitureObject: "가구2",
-                siteX: 2.2,
-                siteY: 1.0,
-              },
-              {
-                furnitureObject: "가구3",
-                siteX: 2.7,
-                siteY: 1.7,
-              },
-              {
-                furnitureObject: "가구4",
-                siteX: 1.2,
-                siteY: 2.0,
-              },
-              {
-                furnitureObject: "가구5",
-                siteX: 4.2,
-                siteY: 0.0,
-              },
-            ],
+            furniture: StJsonPart.furniture,
           };
 
           console.log(data);
           if (sessionStorage.length !== 0) {
             const response = await fetchGameData(yourName, data);
             console.log(response);
-            // const fResponse = await fetchFurnitureData();
+            setIsSavedGame(true);
           }
         }
       } catch (error) {
@@ -253,6 +229,8 @@ export function TopDownAction({ onStartGame }) {
           setSendUnity(response.data[0].tileObject);
           console.log(response.data[0].wallObject);
           setSendUnity2(response.data[0].wallObject);
+          console.log(response.data[0].furniture);
+          setSendUnity3(response.data[0].furniture);
         }
       }
     } catch (error) {
@@ -264,7 +242,22 @@ export function TopDownAction({ onStartGame }) {
     sendMessage(`CafeDecorator`, `OldFloorData`, `${sendUnity}`);
     sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
     sendMessage(`CafeDecorator`, `ReceiveUnity`, `${userName}님 환영합니다!!!`);
-  }, [unityProvider, sendMessage, sendUnity, sendUnity2]);
+    sendUnity3.forEach((su) => {
+      sendMessage(
+        `FurnitureManager`,
+        `LoadSelectFurniture`,
+        su.furnitureObject
+      );
+      console.log(su.siteX, su.siteY);
+      let arr = [su.siteX, su.siteY];
+      console.log(arr);
+      sendMessage(
+        `FurnitureManager`,
+        `LoadPlaceFurniture`,
+        JSON.stringify(arr)
+      );
+    });
+  }, [unityProvider, sendMessage, sendUnity, sendUnity2, sendUnity3]);
 
   useEffect(() => {
     addEventListener(`LoadTileData`, sendToken);
@@ -326,7 +319,7 @@ export function TopDownAction({ onStartGame }) {
 
   useEffect(() => {
     callMyGameData();
-  }, [unityProvider]);
+  }, []);
 
   useEffect(() => {
     nowUserInfo();
@@ -419,6 +412,7 @@ export function TopDownAction({ onStartGame }) {
           messageText: `넌 이미 죽어있다`,
           targetUser: `sampleID123`,
         };
+
         const response = await inviteMyCafe(data);
         console.log(response.data);
         setIsSendMessage(true);

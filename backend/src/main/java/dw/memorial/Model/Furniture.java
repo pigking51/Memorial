@@ -26,10 +26,10 @@ public class Furniture {
     private String furnitureObject;
 
     @Column(name = "site_x")
-    private double siteX;
+    private int siteX;
 
     @Column(name = "site_y")
-    private double siteY;
+    private int siteY;
 
 
 }

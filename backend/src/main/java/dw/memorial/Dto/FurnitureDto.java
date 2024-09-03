@@ -16,8 +16,8 @@ public class FurnitureDto {
 
     private String userId;
     private String furnitureObject;
-    private double siteX;
-    private double siteY;
+    private int siteX;
+    private int siteY;
 
 
     public FurnitureDto toGameDtoFromGame(Furniture furniture){
