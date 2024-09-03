@@ -54,9 +54,24 @@ const Greetings = styled.div`
     font-weight: 400;
   }
   strong {
-    text-decoration: none;
-    box-shadow: inset 0 -10px 0 hsla(53, 90%, 83%, 0.93);
-    padding-bottom: 2px;
+    -webkit-animation: textAnim 5s ease-out infinite;
+    animation: textAnim 5s ease-out infinite; /* standard for other browsers */
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 250% 500%;
+    -webkit-background-clip: text;
+    background-clip: text; /* standard for other browsers */
+    -webkit-text-fill-color: transparent;
+  }
+  @keyframes textAnim {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 `;
 
