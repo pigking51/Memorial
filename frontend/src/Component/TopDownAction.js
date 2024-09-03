@@ -243,6 +243,7 @@ export function TopDownAction({ onStartGame }) {
     sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
     sendMessage(`CafeDecorator`, `ReceiveUnity`, `${userName}님 환영합니다!!!`);
     sendUnity3.forEach((su) => {
+      console.log(su.furnitureObject);
       sendMessage(
         `FurnitureManager`,
         `LoadSelectFurniture`,
