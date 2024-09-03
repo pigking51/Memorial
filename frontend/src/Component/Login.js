@@ -27,7 +27,7 @@ const Logins = styled.div`
 const LoginBox = styled.div`
   width: fit-content;
   height: fit-content;
-  margin: 180px auto;
+  margin: 280px 0px 180px 0px;
   flex-direction: column;
   display: flex;
   justify-content: center;
@@ -38,6 +38,7 @@ const LoginBox = styled.div`
   font-size: 1.3rem;
   border-radius: 15px;
   justify-items: center;
+
   h1 {
     height: 100px;
     line-height: 100px;

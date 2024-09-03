@@ -38,7 +38,14 @@ export function Footer() {
         <SubTitle>Memory, Participation, and Communication.</SubTitle>
         <BtContainer>
           <p>ⓒ2024 MEMORIAL. All rights reserved.</p>
-          <input type="text" placeholder="패밀리사이트 바로가기" />
+          <form>
+            <select>
+              <option>🐷 최강건아 최건</option>
+              <option>🐭 도재호 </option>
+              <option>🐵 이승빈</option>
+              <option>👦 김준회</option>
+            </select>
+          </form>
         </BtContainer>
       </Container>
     </>

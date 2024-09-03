@@ -18,6 +18,7 @@ const Wrap = styled.div`
 const Title = styled.div`
   width: 100%;
   height: 300px;
+  margin-top: 100px;
   text-align: center;
   line-height: 300px;
   font-size: 50px;

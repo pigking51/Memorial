@@ -158,7 +158,7 @@ export function Home() {
       <Greetings>
         <span>
           {" "}
-          환영합니다, <strong>MEMORIAL</strong>입니다 :){" "}
+          어서오세요, <strong>MEMORIAL</strong>입니다!{" "}
         </span>
         <Button
           isCentered={isCentered}

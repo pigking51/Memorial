@@ -63,7 +63,7 @@ const UserInfo = styled.div`
   align-items: flex-start;
   width: 25%;
   /* border-right: 1px solid #db365a; */
-  box-shadow: #fcd3e6 0px 0px 15px;
+  box-shadow: 10px 0px 5px -5px #fcd3e6;
   position: relative;
 
   ul {
@@ -204,9 +204,9 @@ const BestLectureList = styled.ul`
     width: calc(25% - 22px);
     height: 100%;
     margin: 0px 8px;
-    border: 5px solid #eb92ae;
-    /* border-radius: 10px; */
-    box-shadow: #db365a 0px 3px 6px;
+    border: 10px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px #db365a;
     position: relative;
     a {
       width: 100%;
@@ -239,7 +239,10 @@ const Picture = styled.p`
     height: 100%;
   }
 `;
-const SubText = styled.span``;
+const SubText = styled.span`
+  /* margin-top: 5px; */
+`;
+
 // 유저정보수정
 const UserModify = styled.div`
   width: 100%;
@@ -605,7 +608,7 @@ export function Mypage() {
         <UserData>
           {visible && (
             <Mylecture>
-              <h2>내 강의 보기</h2>
+              <h2>🦄 내 강의 보기</h2>
               <LectureWrap>
                 {isLecNull == false ? (
                   data &&
@@ -617,10 +620,10 @@ export function Mypage() {
                     </LectureBox>
                   ))
                 ) : (
-                  <LectureBox>구독한 강의가 없습니다</LectureBox>
+                  <LectureBox>구독한 강의가 없습니다 😅</LectureBox>
                 )}
               </LectureWrap>
-              <h2>☆ MEMORIAL이 추천하는 BEST 강좌 ☆</h2>
+              <h2>🦄 MEMORIAL 인기 강좌!</h2>
               <BestLecture>
                 <BestLectureList>
                   {lecData &&
@@ -631,8 +634,10 @@ export function Mypage() {
                             <img src={LData.lecture.image} />
                           </Picture>
                           <SubText>
-                            <p>순위: {index + 1}위</p>
-                            <p>강의제목: {LData.lecture.lectureTitle}</p>
+                            <p>{index + 1}위</p>
+                            <p>
+                              <strong>{LData.lecture.lectureTitle}</strong>
+                            </p>
                             <p>수강신청 수: {LData.count}명</p>
                           </SubText>
                         </a>

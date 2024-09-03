@@ -75,7 +75,9 @@ const Img = styled.img`
 `;
 const Text = styled.div`
   color: #333;
-  margin: 2px 0;
+  margin: 10px 0;
+  padding: 5px;
+  font-size: 20px;
 `;
 
 const Banner = styled.div`
@@ -165,11 +167,9 @@ export function Education() {
                   >
                     <Img src={lec.image}></Img>
                     <Text>
-                      <b>타이틀</b> :{lec.lectureTitle}
+                      <b>{lec.lectureTitle}</b>
                     </Text>
-                    <Text>
-                      <b>분야</b> : {lec.major}
-                    </Text>
+                    <Text>{lec.major}</Text>
                     <Text>
                       <b>설명</b> : {lec.text}
                     </Text>
