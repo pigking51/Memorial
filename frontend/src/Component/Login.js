@@ -12,6 +12,17 @@ import {
 } from "react-router-dom";
 import { SignUp } from "./SignUp";
 
+const Opps = styled.div`
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h2 {
+    font-size: 2.6rem;
+    font-weight: bolder;
+  }
+`;
+
 const Logins = styled.div`
   height: auto;
   width: 100%;
@@ -97,7 +108,6 @@ const SignupBtn = styled.button`
 
 export function Login() {
   const urlLogin = "http://localhost:8080/api/authenticate";
-  // const urlLogin = "http://localhost:8080/user/login";
   const urlsignUp = "http://localhost:8080/user/signup";
   const urlShow = "http://localhost:8080/user/show";
 
@@ -198,9 +208,8 @@ export function Login() {
               console.log("이름찾기 오류");
             }
           }
-          if (window.confirm(`${yourName}님 환영합니다`)) {
-            window.location.href = `/home`;
-          }
+          window.alert(`${yourName}님 환영합니다`);
+          window.location.href = `/home`;
         }
       }
     } catch (error) {
@@ -232,37 +241,43 @@ export function Login() {
   return (
     <>
       {/* 로그인 시작 */}
-      <Logins>
-        <LoginBox>
-          <h1>Login</h1>
-          <input
-            type="text"
-            id="userId"
-            ref={IDRef}
-            placeholder="ID"
-            onChange={IDInput}
-            style={{ border: `${CIborder}` }}
-          />
-          <PasswordWrap style={{ border: `${CHborder}` }}>
+      {sessionStorage.length != 0 ? (
+        <Opps>
+          <h2>이런! 잘못된 방식의 접근입니다;;;</h2>
+        </Opps>
+      ) : (
+        <Logins>
+          <LoginBox>
+            <h1>Login</h1>
             <input
-              type={showPW}
-              id="password"
-              ref={PWRef}
-              placeholder="비밀번호"
-              onChange={PWInput}
+              type="text"
+              id="userId"
+              ref={IDRef}
+              placeholder="ID"
+              onChange={IDInput}
+              style={{ border: `${CIborder}` }}
             />
-            <span
-              onClick={revealToggle}
-              className={`togBtn ${isReveal ? `revealBtn` : `hideBtn`}`}
-            ></span>
-          </PasswordWrap>
+            <PasswordWrap style={{ border: `${CHborder}` }}>
+              <input
+                type={showPW}
+                id="password"
+                ref={PWRef}
+                placeholder="비밀번호"
+                onChange={PWInput}
+              />
+              <span
+                onClick={revealToggle}
+                className={`togBtn ${isReveal ? `revealBtn` : `hideBtn`}`}
+              ></span>
+            </PasswordWrap>
 
-          <BtnWrap>
-            <LoginBtn onClick={InfoCheck}>로그인</LoginBtn>
-            <SignupBtn onClick={goToSignup}> 회원가입</SignupBtn>
-          </BtnWrap>
-        </LoginBox>
-      </Logins>
+            <BtnWrap>
+              <LoginBtn onClick={InfoCheck}>로그인</LoginBtn>
+              <SignupBtn onClick={goToSignup}> 회원가입</SignupBtn>
+            </BtnWrap>
+          </LoginBox>
+        </Logins>
+      )}
       {/* 로그인 끝 */}
       {/* <Modal /> */}
     </>

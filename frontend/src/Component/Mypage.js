@@ -36,7 +36,12 @@ const FoundSearch = styled.div`
     padding: 0 20px;
     margin-top: 10px;
     margin-bottom: 10px;
+    &:focus {
+      border: none;
+      outline: none;
+    }
   }
+
   button {
     transition: 0.3s;
     width: 60px;
@@ -380,12 +385,15 @@ export function Mypage() {
 
   const [PWborder, setPWborder] = useState(`2px solid #EB92AE`);
   const [Emailborder, setEmailborder] = useState(`2px solid #EB92AE`);
+  const [isIndexed, setIsIndexed] = useState(null);
 
+  const searchRef = useRef();
   const CPWRef = useRef();
   const CHPWRef = useRef();
   const CEmailRef = useRef();
   const CNameRef = useRef();
   const CGenderRef = useRef();
+  const LecBoxRef = useRef();
 
   function inputPW() {
     CPassword = CPWRef.current.value;
@@ -415,7 +423,7 @@ export function Mypage() {
       realName: CName,
     };
     if (CPassword != CHPassword) {
-      window.confirm(`비밀번호가 일치하지 않습니다!`);
+      window.alert(`비밀번호가 일치하지 않습니다!`);
       setPWborder(`3px solid #DB365A`);
       return;
     }
@@ -426,7 +434,7 @@ export function Mypage() {
 
       const modifyResponse = await modifyData(CRUserId, data);
       if (modifyResponse) {
-        window.confirm(`회원정보 수정 완료!`);
+        window.alert(`회원정보 수정 완료!`);
       }
     } catch (error) {
       console.log("회원정보 수정 오류", error);
@@ -528,12 +536,34 @@ export function Mypage() {
     "Drop Top",
     "빽다방",
   ];
+
+  function searchLecture() {
+    console.log(searchRef.current.value);
+    const searchCat = searchRef.current.value;
+    console.log(lecData[0].lecture.lectureTitle);
+    console.log(lecData[0].lecture.major);
+    console.log(lecData[0].lecture.text);
+    for (let i = 0; i < lecData.length; i++) {
+      if (
+        lecData[i].lecture.lectureTitle.indexOf(searchCat) != -1 ||
+        lecData[i].lecture.major.indexOf(searchCat) != -1 ||
+        lecData[i].lecture.text.indexOf(searchCat) != -1
+      ) {
+        console.log(LectureBox);
+        // LectureBox[i].style.border = `2px solid #DB365A`;
+        console.log(LecBoxRef.current.children[i].style);
+        console.log(LecBoxRef.current.children[i].style.borderStyle);
+        setIsIndexed(i);
+      }
+    }
+  }
+
   return (
     <>
       <Found>
         <FoundSearch>
-          <input type="search" id="found" placeholder="검색" />
-          <button>검색</button>
+          <input type="search" id="found" ref={searchRef} placeholder="검색" />
+          <button onClick={() => searchLecture()}>검색</button>
         </FoundSearch>
       </Found>
 
@@ -609,11 +639,17 @@ export function Mypage() {
           {visible && (
             <Mylecture>
               <h2>🦄 내 강의 보기</h2>
-              <LectureWrap>
+              <LectureWrap ref={LecBoxRef}>
                 {isLecNull == false ? (
                   data &&
-                  data.map((dat) => (
+                  data.map((dat, index) => (
                     <LectureBox
+                      style={{
+                        border:
+                          isIndexed == index
+                            ? `2px solid #DB365A`
+                            : `2px solid rgb(235, 146, 174)`,
+                      }}
                       onClick={() => goToStreaming(dat.lecture.lectureId)}
                     >
                       {dat.lecture.lectureTitle}

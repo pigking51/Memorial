@@ -36,7 +36,7 @@ public class Game {
     @Column(name="tile_object")
     private String tileObject;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="furniture")
     private List<Furniture> furniture;
 

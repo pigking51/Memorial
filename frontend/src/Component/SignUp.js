@@ -220,7 +220,7 @@ export function SignUp() {
   let birth = "";
   let email = "";
   let name = "";
-  let gender = "";
+  let gender = "MALE";
 
   const [IDborder, setIDborder] = useState(`2px solid #EB92AE`);
   const [PWborder, setPWborder] = useState(`2px solid #EB92AE`);
@@ -357,15 +357,8 @@ export function SignUp() {
       };
       const response = await userRegister(data);
       const result = response.data;
-      if (
-        window.confirm(
-          `회원가입 완료! 확인을 누르면 로그인 페이지로 이동합니다.`
-        )
-      ) {
-        window.location.href = `Login`;
-      } else {
-        window.location.reload();
-      }
+      window.alert(`회원가입 완료! 확인을 누르면 로그인 페이지로 이동합니다.`);
+      window.location.href = `Login`;
     } catch (error) {
       console.log("회원가입 오류", error);
     }
