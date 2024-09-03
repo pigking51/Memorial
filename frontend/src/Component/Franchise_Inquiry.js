@@ -225,7 +225,6 @@ const Yes = styled.div`
   }
 `;
 const No = styled.div`
-  /* margin-right: 20px; */
   display: flex;
   align-items: center;
   label {
@@ -309,19 +308,17 @@ const Etcwrap = styled.div`
   align-items: center;
 `;
 
-const InfoAgree = styled.div`
-  width: 100%;
-  height: auto;
-`;
 const InfoAgree1 = styled.div`
-  width: 242px;
+  width: 300px;
   height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
   background-color: #fde9f3;
+  border-bottom: 2px #666;
 `;
+
 const InfoAgree1Container = styled.div`
   width: 100%;
   height: 70px;
@@ -343,6 +340,7 @@ const InfoAgree1Container = styled.div`
     opacity: 0.85;
   }
 `;
+
 const InfoAgree2 = styled.div`
   width: 300px;
   height: 70px;
@@ -353,6 +351,7 @@ const InfoAgree2 = styled.div`
   background-color: #fde9f3;
   border-bottom: 2px #666;
 `;
+
 const InfoAgree2Container = styled.div`
   width: 100%;
   height: 70px;
@@ -630,22 +629,6 @@ export function Franchise_Inquiry() {
       <Title>정보입력</Title>
       <>
         <Container>
-          {/* <Brand>
-            <p>
-              <span></span>
-            </p>
-            <select>
-              <option name="빽다방" id="1" value="빽다방">
-                빽다방
-              </option>
-              <option name="빽다방" id="1" value="스타벅스">
-                스타벅스
-              </option>
-              <option name="빽다방" id="1" value="엔젤인어스">
-                엔젤인어스
-              </option>
-            </select>
-          </Brand> */}
           <hr />
           <Namewrap>
             <Name>
@@ -820,13 +803,13 @@ export function Franchise_Inquiry() {
           </Etcwrap>
           <hr />
           <InfoAgreewrap>
-            <InfoAgree>
-              <InfoAgree1>
-                <p>
-                  개인정보 보호를 위한 이용자 동의서<span>*</span>
-                </p>
-              </InfoAgree1>
-            </InfoAgree>
+            <InfoAgree1>
+              <p>
+                개인정보 보호를 위한
+                <br />
+                이용자 동의서<span>*</span>
+              </p>
+            </InfoAgree1>
             <InfoAgree1Container>
               <button>상세보기</button>
               <label for="A_Yes" id="YesLabel">
