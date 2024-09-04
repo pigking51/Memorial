@@ -10,6 +10,7 @@ import {
 import styled from "styled-components";
 
 const Container = styled.div`
+  margin: 100px 0px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -35,6 +36,8 @@ const Img = styled.img`
   display: flex;
   justify-content: center;
   align-content: center;
+  border: 20px solid white;
+  border-radius: 10px;
 `;
 const Content = styled.div`
   font-size: large;
@@ -113,6 +116,7 @@ const Banner = styled.div`
   align-items: center;
   flex-direction: column;
   color: white;
+  margin-top: 100px;
 
   @keyframes gradient {
     0% {
@@ -134,6 +138,21 @@ const Banner = styled.div`
     font-size: 30px;
     margin: 0;
   }
+`;
+
+const BackImg = styled.div`
+  width: 100%;
+  height: 100vh; // 뷰포트 높이에 맞춰 이미지의 높이를 설정
+  position: fixed; // 고정된 위치로 설정
+  top: 0;
+  left: 0;
+  z-index: -1; // 다른 요소들보다 뒤에 배치
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover; // 배경 이미지를 컨테이너에 맞게 조정
+  background-repeat: no-repeat; // 이미지 반복 방지
+  background-position: center; // 이미지의 위치를 가운데로 설정
 `;
 
 export function Lecture() {
@@ -229,15 +248,13 @@ export function Lecture() {
               <Img src={detail.image} />
               <Content>
                 <p>
-                  <b>타이틀</b> : {detail.lectureTitle}
+                  <h2>{detail.lectureTitle}</h2>
                 </p>
-                <p>
-                  <b>분야</b> : {detail.major}
-                </p>
+                <p>{detail.major}</p>
                 <hr />
                 <p>
                   <p>
-                    <b>설명</b> : {detail.text}
+                    <b>소개</b> : {detail.text}
                   </p>
                   {isSubscribe ? (
                     <Study onClick={goToStreaming}>강의듣기</Study>
@@ -251,6 +268,9 @@ export function Lecture() {
           </>
         )}
       </Container>
+      <BackImg>
+        <img src="/images/etc/webBackground.png" alt="info" />
+      </BackImg>
     </>
   );
 }

@@ -26,7 +26,6 @@ const Opps = styled.div`
 const Logins = styled.div`
   height: auto;
   width: 100%;
-  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,7 +44,6 @@ const LoginBox = styled.div`
   align-items: center;
   gap: 20px;
   padding: 30px;
-  background-color: white;
   font-size: 1.3rem;
   border-radius: 15px;
   justify-items: center;
@@ -63,9 +61,9 @@ const PasswordWrap = styled.div`
   border-radius: 8px;
   font-size: 15px;
   padding: 0 16px 0 20px;
-  /* margin-top: 15px; */
   display: grid;
   grid-template-columns: 9fr 1fr;
+  background-color: white;
 `;
 
 const BtnWrap = styled.div`
@@ -93,7 +91,7 @@ const LoginBtn = styled.button`
 const SignupBtn = styled.button`
   width: 200px;
   height: 50px;
-  background-color: white;
+
   color: #eb92ae;
   border-width: 3px;
   font-weight: 500;
@@ -104,6 +102,22 @@ const SignupBtn = styled.button`
   font-size: 18px;
   border: 2px solid #eb92ae;
   margin-left: 10px;
+  background-color: white;
+`;
+
+const BackImg = styled.div`
+  width: 100%;
+  height: 100vh; // 뷰포트 높이에 맞춰 이미지의 높이를 설정
+  position: fixed; // 고정된 위치로 설정
+  top: 0;
+  left: 0;
+  z-index: -1; // 다른 요소들보다 뒤에 배치
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover; // 배경 이미지를 컨테이너에 맞게 조정
+  background-repeat: no-repeat; // 이미지 반복 방지
+  background-position: center; // 이미지의 위치를 가운데로 설정
 `;
 
 export function Login() {
@@ -243,7 +257,7 @@ export function Login() {
       {/* 로그인 시작 */}
       {sessionStorage.length != 0 ? (
         <Opps>
-          <h2>이런! 잘못된 방식의 접근입니다;;;</h2>
+          <h2>이런! 잘못된 방식의 접근입니다 😂</h2>
         </Opps>
       ) : (
         <Logins>
@@ -278,8 +292,9 @@ export function Login() {
           </LoginBox>
         </Logins>
       )}
-      {/* 로그인 끝 */}
-      {/* <Modal /> */}
+      <BackImg>
+        <img src="/images/etc/webBackground.png" alt="info" />
+      </BackImg>
     </>
   );
 }

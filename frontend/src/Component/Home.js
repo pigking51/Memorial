@@ -99,14 +99,17 @@ const Button = styled.div`
 
 const BackImg = styled.div`
   width: 100%;
-  height: fit-content;
-  position: absolute; // 위치를 고정하여 배경화면으로 사용
+  height: 100vh; // 뷰포트 높이에 맞춰 이미지의 높이를 설정
+  position: fixed; // 고정된 위치로 설정
   top: 0;
   left: 0;
   z-index: -1; // 다른 요소들보다 뒤에 배치
   display: flex;
   justify-content: center;
   align-items: center;
+  background-size: cover; // 배경 이미지를 컨테이너에 맞게 조정
+  background-repeat: no-repeat; // 이미지 반복 방지
+  background-position: center; // 이미지의 위치를 가운데로 설정
 `;
 
 const GameScreen = styled.div`

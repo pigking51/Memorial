@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  /* border-top: 2px solid black; */
   padding-top: 20px;
   width: 100%;
   height: 300px;
   background-color: #333;
+  position: absolute;
 `;
 const BtTitle = styled.p`
   width: 100%;
@@ -25,9 +25,10 @@ const BtContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
-  margin-top: 100px;
+  margin-top: 50px;
   text-align: center;
   color: white;
+  flex-direction: column;
 `;
 
 export function Footer() {
@@ -38,12 +39,13 @@ export function Footer() {
         <SubTitle>Memory, Participation, and Communication.</SubTitle>
         <BtContainer>
           <p>ⓒ2024 MEMORIAL. All rights reserved.</p>
+          <br />
           <form>
             <select>
-              <option>🐷 최강건아 최건</option>
-              <option>🐭 도재호 </option>
-              <option>🐵 이승빈</option>
-              <option>👦 김준회</option>
+              <option>🐷 백엔드 / 최강건아 최건</option>
+              <option>🐭 유니티 / 도재호 </option>
+              <option>🐵 디자인 / 이승빈</option>
+              <option>👀 프론트엔드 / 김준회</option>
             </select>
           </form>
         </BtContainer>

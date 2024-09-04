@@ -40,24 +40,27 @@ const Logo = styled.div`
       transform: translateY(0);
     }
     25% {
-      transform: translateY(0px) translateX(5px);
+      transform: translateY(0px) translateX(10px);
     }
     50% {
-      transform: translateY(0px) translateX(-5px);
+      transform: translateY(0px) translateX(-10px);
     }
     75% {
-      transform: translateY(0px) translateX(5px);
+      transform: translateY(0px) translateX(10px);
     }
   }
 `;
 const Aside = styled.div`
-  margin-left: 50px;
-  height: 500px;
-  width: 740px;
+  height: 700px;
+  width: 730px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   color: #333;
+  background-color: white;
+  padding: 40px;
+  border: 10px solid #eb92ae;
+  border-radius: 50px;
 `;
 const Top = styled.div`
   height: fit-content;
@@ -73,21 +76,29 @@ const Middle = styled.div`
 `;
 const Bottom = styled.div`
   height: fit-content;
+  width: 100%;
   line-height: 40px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
   p {
-    font-size: 20px;
+    font-size: 25px;
     line-height: 30px;
     height: 30px;
   }
   h5 {
-    font-weight: 200;
-    text-indent: 8px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 40px;
   }
   span {
     font-size: 20px;
-    line-height: 30px;
+    line-height: 1px;
   }
 `;
+
 const Banner = styled.div`
   margin-top: 100px;
   background: linear-gradient(45deg, #bc93f9, #eb92ae);
@@ -125,14 +136,17 @@ const Banner = styled.div`
 
 const BackImg = styled.div`
   width: 100%;
-  height: fit-content;
-  position: absolute; // 위치를 고정하여 배경화면으로 사용
+  height: 100vh; // 뷰포트 높이에 맞춰 이미지의 높이를 설정
+  position: fixed; // 고정된 위치로 설정
   top: 0;
   left: 0;
   z-index: -1; // 다른 요소들보다 뒤에 배치
   display: flex;
   justify-content: center;
   align-items: center;
+  background-size: cover; // 배경 이미지를 컨테이너에 맞게 조정
+  background-repeat: no-repeat; // 이미지 반복 방지
+  background-position: center; // 이미지의 위치를 가운데로 설정
 `;
 
 const GameScreen = styled.div`
@@ -158,9 +172,9 @@ export function Intro() {
           <Aside>
             <Top>
               <span>
-                카페에 대한
+                카페에 대한 모두의 이야기
                 <br />
-                모두의 이야기.
+                MEMORIAL
               </span>
             </Top>
             <Middle>
@@ -172,6 +186,7 @@ export function Intro() {
                 <strong>참여</strong>, <strong>소통</strong>이 이루어지는
                 <br />
                 공간적인 의미를 부여하고 있습니다.
+                <br />
                 <br />
                 이곳에 오신 모두가 함께 <strong>소통</strong>하고{" "}
                 <strong>참여</strong>하며
@@ -186,13 +201,14 @@ export function Intro() {
                 <strong>
                   <h3>“순간이여 멈추어라! 너는 정말로 아름답구나!”</h3>
                 </strong>
-                {/* <br /> */}
+
                 <h5> Verweile doch! Du bist so schön!</h5>
+
+                <span>
+                  <h5>요한 볼프강 폰 괴테, 『파우스트』, 1828</h5>
+                </span>
               </p>
               <br />
-              <span>
-                <h5>요한 볼프강 폰 괴테, 『파우스트』, 1828</h5>
-              </span>
             </Bottom>
           </Aside>
         </Contents>

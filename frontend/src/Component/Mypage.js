@@ -70,6 +70,7 @@ const UserInfo = styled.div`
   /* border-right: 1px solid #db365a; */
   box-shadow: 10px 0px 5px -5px #fcd3e6;
   position: relative;
+  background-color: white;
 
   ul {
     width: fit-content;
@@ -175,6 +176,7 @@ const LectureBox = styled.div`
   margin-bottom: 15px;
   font-size: 25px;
   color: #333;
+  background-color: white;
   cursor: pointer;
   transition: 0.5s;
   button {
@@ -198,6 +200,7 @@ const BestLecture = styled.div`
   width: 100%;
   height: 300px;
 `;
+
 const BestLectureList = styled.ul`
   width: 100%;
   height: 300px;
@@ -360,6 +363,21 @@ const Btnwrap = styled.div`
   height: 50px;
   justify-content: space-around;
   align-items: center;
+`;
+
+const BackImg = styled.div`
+  width: 100%;
+  height: 100vh; // 뷰포트 높이에 맞춰 이미지의 높이를 설정
+  position: fixed; // 고정된 위치로 설정
+  top: 0;
+  left: 0;
+  z-index: -1; // 다른 요소들보다 뒤에 배치
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover; // 배경 이미지를 컨테이너에 맞게 조정
+  background-repeat: no-repeat; // 이미지 반복 방지
+  background-position: center; // 이미지의 위치를 가운데로 설정
 `;
 
 export function Mypage() {
@@ -756,6 +774,9 @@ export function Mypage() {
           )}
         </UserData>
       </User>
+      <BackImg>
+        <img src="/images/etc/webBackground.png" alt="info" />
+      </BackImg>
     </>
   );
 }

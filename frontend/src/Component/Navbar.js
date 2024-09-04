@@ -23,7 +23,6 @@ const StyledLink = styled(Link)`
     align-items: center;
     width: fit-content;
     height: 100px;
-    /* margin-left: 50px; */
     cursor: pointer;
   }
   &:hover {

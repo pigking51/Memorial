@@ -11,8 +11,9 @@ const Top = styled.div`
   display: flex;
   width: 100%;
   height: 100px;
-  border-bottom: 1px dashed #db365a;
+  border-bottom: 1px solid #eb92ae;
   justify-content: space-between;
+  background-color: white;
   span {
     width: 700px;
     height: 100px;
@@ -22,7 +23,7 @@ const Top = styled.div`
   }
 `;
 const Left = styled.div``;
-const Logo = styled.a`
+const Back = styled.a`
   float: left;
   width: 200px;
   height: 100px;
@@ -61,42 +62,42 @@ const SlideMenu = styled.div`
   flex-direction: column;
   height: 100%;
   width: 300px;
+  background-color: #fff;
   position: fixed;
-  background-color: #fde9f3;
   z-index: 5;
   display: flex;
   justify-content: center;
   align-items: center;
   right: 0;
   top: 0;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  border-radius: 20px 0 0 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 20px 20px;
   transition: all 2s linear;
 `;
 const CloseSideMenu = styled.div`
   width: 100%;
   height: 30px;
   margin-bottom: 50px;
-  background-color: #fde9f3;
-  button {
+  background-color: #fff;
+  a {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 10px;
+    height: 10px;
     float: right;
-    background-color: #fff;
-    color: #db365a;
-    border: 3px solid #db365a;
-    border-radius: 30px;
-    font-size: 15px;
-    line-height: 30px;
     cursor: pointer;
     margin-right: 20px;
     margin-top: 20px;
     font-weight: bold;
+    background-color: none;
     &:hover {
       opacity: 0.7;
+    }
+    img {
+      height: 50px;
+      width: 50px;
+      margin-top: 60px;
+      margin-right: 30px;
     }
   }
 `;
@@ -119,12 +120,12 @@ const Navi = styled.ul`
   }
 `;
 const StyledLink = styled(Link)`
-  color: #db365a;
+  color: #eb92ae;
   text-decoration: none;
 `;
 const Video = styled.div`
-  height: 80%;
-  width: 80%;
+  height: 50%;
+  width: 50%;
   margin: 50px auto 5% auto;
 `;
 
@@ -188,6 +189,31 @@ const Next = styled.span`
   }
 `;
 
+const BackImg = styled.div`
+  width: 100%;
+  height: 100vh; // 뷰포트 높이에 맞춰 이미지의 높이를 설정
+  position: fixed; // 고정된 위치로 설정
+  top: 0;
+  left: 0;
+  z-index: -1; // 다른 요소들보다 뒤에 배치
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover; // 배경 이미지를 컨테이너에 맞게 조정
+  background-repeat: no-repeat; // 이미지 반복 방지
+  background-position: center; // 이미지의 위치를 가운데로 설정
+`;
+
+const Logo = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 160px;
+    height: 160px;
+  }
+`;
+
 export function Streaming() {
   const { id } = useParams();
   const [lectureData, setLectureData] = useState();
@@ -224,9 +250,9 @@ export function Streaming() {
       <Container>
         <Top>
           <Left>
-            <Logo onClick={() => navigate(-1)}>
+            <Back onClick={() => navigate(-1)}>
               <img src="/images/icon/back.png" alt="뒤로가기" />
-            </Logo>
+            </Back>
             {lectureData && (
               <LectureTitle>{lectureData.lectureTitle}</LectureTitle>
             )}
@@ -239,7 +265,9 @@ export function Streaming() {
         </Top>
         <SlideMenu style={{ display: isNone }}>
           <CloseSideMenu>
-            <button onClick={hideSlide}>X</button>
+            <a onClick={hideSlide}>
+              <img src="/images/icon/close_rectangle.png" />
+            </a>
           </CloseSideMenu>
           <Navi>
             <li>
@@ -263,6 +291,9 @@ export function Streaming() {
             <li>
               <StyledLink to="/mypage">MYPAGE</StyledLink>
             </li>
+            <Logo>
+              <img src="/images/logo/memorialLogo.png" />
+            </Logo>
           </Navi>
         </SlideMenu>
         <Video>
@@ -306,6 +337,9 @@ export function Streaming() {
           </Console>
         </Video>
       </Container>
+      <BackImg>
+        <img src="/images/etc/webBackground.png" alt="info" />
+      </BackImg>
     </>
   );
 }
