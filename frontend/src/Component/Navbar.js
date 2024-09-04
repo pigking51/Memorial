@@ -10,6 +10,7 @@ const Container = styled.div`
   margin: 0 auto;
   align-items: center;
   justify-content: space-around;
+  padding: 0px 100px;
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;

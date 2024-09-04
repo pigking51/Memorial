@@ -24,6 +24,7 @@ const Background = styled.div`
   align-items: center;
   flex-direction: column;
   color: white;
+  position: relative; // 다른 요소들과의 위치를 지정하기 위해 relative 설정
 
   @keyframes gradient {
     0% {
@@ -96,11 +97,16 @@ const Button = styled.div`
   }
 `;
 
-const Unicon = styled.div`
+const BackImg = styled.div`
   width: 100%;
+  height: fit-content;
+  position: absolute; // 위치를 고정하여 배경화면으로 사용
+  top: 0;
+  left: 0;
+  z-index: -1; // 다른 요소들보다 뒤에 배치
   display: flex;
   justify-content: center;
-  margin: 10px 0;
+  align-items: center;
 `;
 
 const GameScreen = styled.div`
@@ -177,6 +183,9 @@ export function Home() {
       <GameScreen id="game-screen">
         <TopDownAction onStartGame={handleGameStart} />
       </GameScreen>
+      <BackImg>
+        <img src="/images/etc/webBackground.png" alt="info" />
+      </BackImg>
     </>
   );
 }

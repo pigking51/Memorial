@@ -122,6 +122,23 @@ const Banner = styled.div`
     margin: 0;
   }
 `;
+
+const BackImg = styled.div`
+  width: 100%;
+  height: fit-content;
+  position: absolute; // 위치를 고정하여 배경화면으로 사용
+  top: 0;
+  left: 0;
+  z-index: -1; // 다른 요소들보다 뒤에 배치
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const GameScreen = styled.div`
+  margin: 50px 0;
+`;
+
 export function Intro() {
   return (
     <>
@@ -191,6 +208,9 @@ export function Intro() {
           <feDisplacementMap scale="20" in="SourceGraphic" />
         </filter>
       </svg>
+      <BackImg>
+        <img src="/images/etc/webBackground.png" alt="info" />
+      </BackImg>
     </>
   );
 }
