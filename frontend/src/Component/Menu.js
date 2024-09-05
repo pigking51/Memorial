@@ -128,7 +128,7 @@ const ImageContainer = styled.div`
   height: 400px; /* Adjust height as needed */
   display: flex;
   align-items: center;
-  margin: 100px 0;
+  margin: 20px 0;
   transition: transform 0.3s ease-in-out;
 `;
 
