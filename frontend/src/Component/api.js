@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 // 로그인
 export function userLogin(data) {
-  const url = `http://localhost:8080/api/authenticate`;
+  const url = `/api/authenticate`;
 
   return axios.post(url, data);
 }
@@ -21,7 +21,7 @@ let headers = {
 
 // 현재 로그인한 유저정보
 export function getNowUser() {
-  const url = `http://localhost:8080/user/current`;
+  const url = `/user/current`;
 
   if (sessionStorage.length != 0) {
     console.log(sessionStorage.getItem("JWT-token"));
@@ -38,12 +38,12 @@ export function getNowUser() {
 }
 // 전체 유저정보
 export function showAllUser() {
-  const url = `http://localhost:8080/user/show`;
+  const url = `/user/show`;
 
   return axios.get(url, headers);
 }
 export function showAllLectures() {
-  const url = "http://localhost:8080/lectures/getalllectures";
+  const url = "/lectures/getalllectures";
 
   return axios.get(url);
 
@@ -53,7 +53,7 @@ export function showAllLectures() {
 
 export function getLectureDetailById(id) {
   // let resultLecture = "";
-  const url = `http://localhost:8080/lectures/getalllectures/${id}`;
+  const url = `/lectures/getalllectures/${id}`;
   // try {
   //   const response = await axios.get(url);
   //   console.log("데이터", response.data);
@@ -68,26 +68,26 @@ export function getLectureDetailById(id) {
 
 // 회원가입 관련 api
 export function userRegister(data) {
-  const url = `http://localhost:8080/user/signup`;
+  const url = `/user/signup`;
   return axios.post(url, data);
 }
 
 // 마이페이지 관련 api
 export function getMyLecture(id) {
-  const url = `http://localhost:8080/api/products/subscribe/${id}`;
+  const url = `/api/products/subscribe/${id}`;
   console.log(headers);
   return axios.get(url, headers);
 }
 
 // 인기강의
 export function getLectureTop4() {
-  const url = `http://localhost:8080/api/products/subscribe/top4`;
+  const url = `/api/products/subscribe/top4`;
   return axios.get(url, headers);
 }
 
 // 회원정보 수정
 export function modifyData(id, data) {
-  const url = `http://localhost:8080/user/modify/${id}`;
+  const url = `/user/modify/${id}`;
   return axios.patch(url, data, headers);
 }
 
@@ -103,14 +103,14 @@ export function showStock() {
 
 // 강의 구독하기
 export function saveLecture(data) {
-  const url = `http://localhost:8080/api/products/subscribe`;
+  const url = `/api/products/subscribe`;
 
   return axios.post(url, data, headers);
 }
 
 // 로그아웃
 export function userLogout() {
-  // const url = `http://localhost:8080/user/logout`;
+  // const url = `/user/logout`;
   // console.log(headers);
   sessionStorage.removeItem("JWT-token");
   window.location.reload();
@@ -119,14 +119,14 @@ export function userLogout() {
 
 // 게임정보 저장
 export function fetchGameData(id, data) {
-  const url = `http://localhost:8080/game/update/${id}`;
+  const url = `/game/update/${id}`;
 
   return axios.patch(url, data, headers);
 }
 
 // 게임정보 불러오기
 export function getMyGameData(id) {
-  const url = `http://localhost:8080/game/getmydata/${id}`;
+  const url = `/game/getmydata/${id}`;
   console.log(id);
 
   return axios.get(url, headers);
@@ -134,67 +134,80 @@ export function getMyGameData(id) {
 
 // 좋아요 저장
 export function saveLike(data) {
-  const url = `http://localhost:8080/like/save`;
+  const url = `/like/save`;
 
   return axios.post(url, data, headers);
 }
 // 좋아요 불러오기
 export function showLike() {
-  const url = `http://localhost:8080/like/all`;
+  const url = `/like/all`;
 
   return axios.get(url);
+}
+// 특정인의 좋아요 불러오기
+export function showSomeoneLike(id) {
+  const url = `/like/getsomeonelike/${id}`;
+
+  return axios.get(url, headers);
 }
 
 // 모든 게임 데이터 불러오기
 export function allGameData() {
-  const url = `http://localhost:8080/game/showall`;
+  const url = `/game/showall`;
 
   return axios.get(url, headers);
 }
 
 // 랜덤 게임 데이터 불러오기
 export function randomGameData(id) {
-  const url = `http://localhost:8080/game/randomvisit/${id}`;
+  const url = `/game/randomvisit/${id}`;
 
   return axios.get(url, headers);
 }
 
 // 특정 게임 데이터 불러오기
 export function someGameData(id) {
-  const url = `http://localhost:8080/game/visit/${id}`;
+  const url = `/game/visit/${id}`;
 
   return axios.get(url, headers);
 }
 
 // 메뉴정보 불러오기
 export function getMenuData() {
-  const url = `http://localhost:8080/menu/getallmenu`;
+  const url = `/menu/getallmenu`;
 
   return axios.get(url, headers);
 }
 
 // 창업문의 저장
 export function saveInquery(data) {
-  const url = `http://localhost:8080/inquery/save`;
+  const url = `/inquery/save`;
   return axios.post(url, data, headers);
 }
 
 // 최초 게임 실행 시 랜덤 레시피 부여
 export function initialRecipe(id) {
-  const url = `http://localhost:8080/recipe/initial/${id}`;
+  const url = `/recipe/initial/${id}`;
   return axios.get(url, headers);
 }
 
 // 타인 카페 방문하여 좋아요 누를 시 받게되는 랜덤 레시피
 export function getRandomRecipe(id, data) {
-  const url = `http://localhost:8080/recipe/addrandomrecipe/${id}`;
+  const url = `/recipe/addrandomrecipe/${id}`;
 
   return axios.post(url, data, headers);
 }
 
+// 게임에 보낼 내가 소유한 레시피
+export function myRecipe(id) {
+  const url = `/recipe/myrecipe/${id}`;
+
+  return axios.get(url, headers);
+}
+
 // 게임 내 초대메세지 보내기
 export function inviteMyCafe(data) {
-  const url = `http://localhost:8080/message/send`;
+  const url = `/message/send`;
 
   return axios.post(url, data, headers);
 }
@@ -202,14 +215,14 @@ export function inviteMyCafe(data) {
 // 게임 내 메세지 확인
 // 내가 보낸거
 export function checkMySendMessage(id) {
-  const url = `http://localhost:8080/message/getmysendmessage/${id}`;
+  const url = `/message/getmysendmessage/${id}`;
 
   return axios.get(url, headers);
 }
 
 // 받은거
 export function checkMyMessage(id) {
-  const url = `http://localhost:8080/message/getmymessage/${id}`;
+  const url = `/message/getmymessage/${id}`;
 
   return axios.get(url, headers);
 }

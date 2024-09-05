@@ -3,6 +3,8 @@ package dw.memorial.Model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -24,5 +26,10 @@ public class Like {
     @Column(name = "liked_user")
     private String likedUser;
 
+    @Column(name = "like_date")
+    private LocalDate likeDate;
+
+    @PrePersist
+    private void likeD(){this.likeDate = LocalDate.now();}
 
 }

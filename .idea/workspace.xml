@@ -6,7 +6,75 @@
   <component name="ChangeListManager">
     <list default="true" id="f2206d9c-3204-41df-9423-dea1ad507682" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Controller/LikeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Controller/LikeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Controller/MyRecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Controller/MyRecipeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Model/Like.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Model/Like.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Repository/LikeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Repository/LikeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Repository/MyRecipeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Repository/MyRecipeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Service/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Service/GameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Service/LikeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Service/LikeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Service/MyRecipeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/dw/memorial/Service/MyRecipeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/FAQ.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/js/FAQ.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/board.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/js/board.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/js/cart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/js/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/lecture.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/js/lecture.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/lectureDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/js/lectureDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/js/logout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/mypage.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/js/mypage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/postDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/js/postDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/js/signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/streaming.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/js/streaming.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/survey.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/js/survey.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/write.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/js/write.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/practice.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/practice.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/streaming.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/streaming.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/survey.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/survey.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Config/WebConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Config/WebConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/FAQController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/FAQController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/LectureController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/LectureController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/LikeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/LikeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/MyRecipeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/MyRecipeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/SubscribeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/SubscribeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/ViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Controller/ViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/BaseResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/BaseResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/LectureCounterDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/LectureCounterDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/LoginDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/LoginDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/SessionDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/SessionDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/TokenDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/TokenDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/UserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Dto/UserDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Enumstatus/ResultCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Enumstatus/ResultCode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/CustomExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/CustomExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/InvalidRequestException.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/InvalidRequestException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/MyAccessDeniedHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/MyAccessDeniedHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/MyAuthenticationEntryPoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/MyAuthenticationEntryPoint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/ResourceNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Exception/ResourceNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Jwt/JwtFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Jwt/JwtFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Jwt/TokenProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Jwt/TokenProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Authority.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Authority.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/FAQ.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/FAQ.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Lectures.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Lectures.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Subscribe.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/Subscribe.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/User$GenderEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/User$GenderEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/FAQRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/FAQRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/LectureRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/LectureRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/LikeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/LikeRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/SubscribeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/SubscribeRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/FAQService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/FAQService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/GameService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/GameService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/LectureService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/LectureService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/MyRecipeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/MyRecipeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/SubscribeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/SubscribeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/UserDetailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/UserDetailService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/Service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/dw/memorial/memorialApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/dw/memorial/memorialApplication.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +84,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -78,6 +146,13 @@
         <item itemvalue="Application.memorialApplication" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

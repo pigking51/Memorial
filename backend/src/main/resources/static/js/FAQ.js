@@ -12,7 +12,7 @@
 // let answer = "";
 
 // // 데이터 불러오기
-// const url = "http://localhost:8080/faq";
+// const url = "/faq";
 // function callFaq() {
 //   axios
 //     .get(url, { withCredentials: true })
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 데이터베이스에서 FAQ 데이터를 가져오는 함수
   function fetchFAQs() {
     axios
-      .get("http://localhost:8080/faq")
+      .get("/faq")
       .then((response) => {
         const faqs = response.data;
         renderFAQs(faqs);

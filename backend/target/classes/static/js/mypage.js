@@ -1,6 +1,6 @@
-const url = "http://localhost:8080/user/modify/";
-const urlCur = "http://localhost:8080/user/current";
-const urlShow = "http://localhost:8080/user/show";
+const url = "/user/modify/";
+const urlCur = "/user/current";
+const urlShow = "/user/show";
 
 // 모달 요소 선언
 // jQ 선언
@@ -164,8 +164,8 @@ document.querySelector(".register").addEventListener("click", () => {
 });
 
 // 강의 현황
-const purchaseUrl = "http://localhost:8080/api/products/purchase/current";
-const purchaseUrlAll = "http://localhost:8080/api/products/purchase";
+const purchaseUrl = "/api/products/purchase/current";
+const purchaseUrlAll = "/api/products/purchase";
 // let userId = "";
 
 // 검색 시 해당 강의구매목록부분 강조하는 기능
@@ -324,7 +324,7 @@ axios
   });
 
 // 구매이력 많은 순으로 강좌 나열(상위 4개만)
-const lectureUrl = "http://localhost:8080/lectures/getalllectures";
+const lectureUrl = "/lectures/getalllectures";
 axios
   .get(lectureUrl)
   .then((response) => {

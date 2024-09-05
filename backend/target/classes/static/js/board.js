@@ -1,7 +1,7 @@
-const url = "http://localhost:8080/post/getallposts";
-const urlTitle = "http://localhost:8080/post/getallpoststitle";
-const urlArr = "http://localhost:8080/post/getallpostsarrays";
-const urlpart = "http://localhost:8080/post/getallpostsparts";
+const url = "/post/getallposts";
+const urlTitle = "/post/getallpoststitle";
+const urlArr = "/post/getallpostsarrays";
+const urlpart = "/post/getallpostsparts";
 
 // 게시물 10개 넘었을때 다음페이지로 변경
 document.querySelector(".block").style.display = `table`;

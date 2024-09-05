@@ -1,11 +1,11 @@
-const url = "http://localhost:8080/lectures/getalllectures";
+const url = "/lectures/getalllectures";
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 console.log("Lecture ID: ", id);
 
-const urls = "http://localhost:8080/lectures/getalllectures/" + id;
-const purchaseUrl = "http://localhost:8080/api/products/purchase/current";
+const urls = "/lectures/getalllectures/" + id;
+const purchaseUrl = "/api/products/purchase/current";
 let isUser = "";
 
 // 모달 요소 선언
@@ -30,7 +30,7 @@ xbtn.classList.add("closebtn");
 
 function userOrNot() {
   axios
-    .get("http://localhost:8080/user/current", { widthCredentials: true })
+    .get("/user/current", { widthCredentials: true })
     .then((response) => {
       console.log("데이터: ", response.data);
       isUser = response.data.userId;
@@ -143,7 +143,7 @@ function displaylectureDetails(data) {
 
 function setlecture(data) {
   axios
-    .get("http://localhost:8080/user/current", { widthCredentials: true })
+    .get("/user/current", { widthCredentials: true })
     .then((response) => {
       console.log("데이터: ", response.data);
       if (response.status == 200) {

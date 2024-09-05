@@ -1,16 +1,16 @@
-const url = "http://localhost:8080/post/getallposts";
-const urlpart = "http://localhost:8080/post/getallpostsparts";
-const urlcomment = "http://localhost:8080/comment/write";
-const urlCoAll = "http://localhost:8080/comment/commentAll";
-const urlCur = "http://localhost:8080/user/current";
-const urlLike = "http://localhost:8080/like/save";
-const urlLikeAll = "http://localhost:8080/like/all";
+const url = "/post/getallposts";
+const urlpart = "/post/getallpostsparts";
+const urlcomment = "/comment/write";
+const urlCoAll = "/comment/commentAll";
+const urlCur = "/user/current";
+const urlLike = "/like/save";
+const urlLikeAll = "/like/all";
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 console.log("Post ID: ", id);
 
-const urls = "http://localhost:8080/post/getallpostsparts/" + id;
+const urls = "/post/getallpostsparts/" + id;
 const edit = document.querySelector(".edit-btn");
 
 let boardId = 1;
@@ -218,7 +218,7 @@ function displayBoardDetails(data) {
 // 현재 좋아요 수 표시
 let likeCount = 0;
 axios
-  .get("http://localhost:8080/like/all", { withCredentials: true })
+  .get("/like/all", { withCredentials: true })
   .then((response) => {
     console.log("데이터: ", response.data);
     // likeCount = response.data.length;
@@ -255,7 +255,7 @@ function plusLike(data) {
         nowUserData2 = response.data;
 
         axios
-          .get("http://localhost:8080/like/all", { withCredentials: true })
+          .get("/like/all", { withCredentials: true })
           .then((response) => {
             console.log("데이터: ", response.data);
             likeData = response.data;
@@ -394,11 +394,9 @@ function rewriteMyComment(myComment) {
               };
 
               axios
-                .patch(
-                  `http://localhost:8080/comment/changecomment2/${commentId}`,
-                  patchData,
-                  { withCredentials: true }
-                )
+                .patch(`/comment/changecomment2/${commentId}`, patchData, {
+                  withCredentials: true,
+                })
                 .then((response) => {
                   console.log("데이터: ", response.data);
                   console.log("갱신 성공!!");
@@ -524,7 +522,7 @@ let findPostId = parseInt(id, 10);
 // 본문 수정 함수
 function patchThePost(patchData) {
   axios
-    .patch(`http://localhost:8080/post/rewrite/${findPostId}`, patchData, {
+    .patch(`/post/rewrite/${findPostId}`, patchData, {
       withCredentials: true,
     })
     .then((response) => {
@@ -540,7 +538,7 @@ function patchThePost(patchData) {
 // 본문 삭제 함수
 function deleteThePost() {
   axios
-    .delete(`http://localhost:8080/post/delete/${findPostId}`, {
+    .delete(`/post/delete/${findPostId}`, {
       withCredentials: true,
     })
     .then((response) => {
@@ -556,7 +554,7 @@ function deleteThePost() {
 // 댓글 삭제
 function deleteMyComment(data) {
   axios
-    .delete(`http://localhost:8080/comment/deletecomment/${data}`, {
+    .delete(`/comment/deletecomment/${data}`, {
       withCredentials: true,
     })
     .then((response) => {

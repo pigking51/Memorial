@@ -33,4 +33,13 @@ public class LikeService {
     public List<Like> getAllLikes(){
         return likeRepository.findAll();
     }
+
+    public List<Like> getSomeoneLike(String id){
+
+//        User user = userRepository.findById(id)
+//                .orElseThrow(() -> new IllegalArgumentException("Invalid user ID"));
+
+        return likeRepository.findByUserUserId(id);
+    }
+
 }

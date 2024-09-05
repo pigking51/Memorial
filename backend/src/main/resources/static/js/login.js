@@ -1,6 +1,6 @@
-const urlLogin = "http://localhost:8080/user/login";
-const urlsignUp = "http://localhost:8080/user/signup";
-const urlShow = "http://localhost:8080/user/show";
+const urlLogin = "/user/login";
+const urlsignUp = "/user/signup";
+const urlShow = "/user/show";
 
 let userId = "";
 let password = "";

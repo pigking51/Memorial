@@ -12,9 +12,11 @@ import {
   inviteMyCafe,
   checkMyMessage,
   checkMySendMessage,
+  myRecipe,
+  showSomeoneLike,
 } from "./api";
 import "./TopDownAction.css"; // CSS 파일 import
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 1316px;
@@ -71,11 +73,13 @@ export function TopDownAction({ onStartGame }) {
   // 게임관련 함수
   const [playingGame, setPlayingGame] = useState(false);
   const [userName, setUserName] = useState("unknown");
+  const [yourName, setYourName] = useState("Guest");
+  // 좋아요 관련
   const [likeScore, setLikeScore] = useState(0);
   const [isSendLike, setIsSendLike] = useState(false);
   const [savedLike, setSavedLike] = useState(0);
+  // 게임데이터 관련
   const [jsonPart, setJsonPart] = useState(null);
-  const [yourName, setYourName] = useState("Guest");
   const [isSavedGame, setIsSavedGame] = useState(false);
   const [sendUnity, setSendUnity] = useState("null");
   const [sendUnity2, setSendUnity2] = useState("null");
@@ -85,12 +89,19 @@ export function TopDownAction({ onStartGame }) {
   const [randomUser, setRandomUser] = useState("null");
   const [sendRandom, setSendRandom] = useState("null");
   const [sendRandom2, setSendRandom2] = useState("null");
+  const [sendRandom3, setSendRandom3] = useState([]);
   // 내 화면 복귀 관련
   const [comeBackHome, setComeBackHome] = useState("null");
   // 로그인 유무 확인
   const [isGoToLogin, setIsGoToLogin] = useState(false);
   // 메시지 전송유무 확인
+  const [messageSignal, setMessageSignal] = useState();
   const [isSendMessage, setIsSendMessage] = useState(false);
+
+  // 레시피 관련
+  const [recipeSignal, setRecipeSignal] = useState(false);
+  const [recipe, setRecipe] = useState([]);
+  const [canSendData, setCanSendData] = useState(true);
 
   const navigate = useNavigate();
 
@@ -112,20 +123,33 @@ export function TopDownAction({ onStartGame }) {
     setIsSavedGame(false);
     setJsonPart(json);
   }
+
+  useEffect(() => {
+    nowUserInfo();
+  }, []);
+
   async function nowUserInfo() {
     if (sessionStorage.length !== 0) {
-      const userResponse = await getNowUser();
-      const URData = userResponse.data.data.userId;
-      setYourName(URData);
-      console.log(URData);
+      try {
+        const userResponse = await getNowUser();
+        const URData = userResponse.data.data.userId;
+        setYourName(URData);
+        console.log(URData);
+      } catch (error) {
+        console.log("로그인 오류", error);
+      }
     }
   }
   // 최초 게임 실행 시 랜덤 레시피 부여
   async function getInitialRecipe() {
-    if (sessionStorage.length !== 0) {
+    if (yourName != "Guest") {
       try {
-        const response = await initialRecipe(yourName);
-        console.log("랜덤 레시피 부여");
+        const MYRResponse = await myRecipe(yourName);
+        console.log(MYRResponse.data);
+        if (MYRResponse.data.length == 0) {
+          const response = await initialRecipe(yourName);
+          console.log(`${yourName}에게 랜덤 레시피 부여`);
+        }
       } catch (error) {
         console.log("랜덤 레시피 부여 실패", error);
       }
@@ -176,6 +200,19 @@ export function TopDownAction({ onStartGame }) {
       }
     }
   }
+  // 처음 게임 시작 시 받았던 좋아요 숫자 표시
+  async function getSomeoneLike() {
+    try {
+      const response = await showSomeoneLike(yourName);
+      console.log(response.data);
+    } catch (error) {
+      console.log("좋아요 갯수 호출 실패");
+    }
+  }
+  useEffect(() => {
+    getSomeoneLike();
+  }, [unityProvider, yourName]);
+
   // // 좋아요 저장
   // async function saveLikeScore() {
   //   try {
@@ -212,6 +249,11 @@ export function TopDownAction({ onStartGame }) {
   //   }
   // }
   // 저장된 데이터 불러오기
+
+  useEffect(() => {
+    callMyGameData();
+  }, []);
+
   async function callMyGameData() {
     try {
       if (sessionStorage.length !== 0) {
@@ -243,15 +285,12 @@ export function TopDownAction({ onStartGame }) {
     sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
     sendMessage(`CafeDecorator`, `ReceiveUnity`, `${userName}님 환영합니다!!!`);
     sendUnity3.forEach((su) => {
-      console.log(su.furnitureObject);
       sendMessage(
         `FurnitureManager`,
         `LoadSelectFurniture`,
         su.furnitureObject
       );
-      console.log(su.siteX, su.siteY);
       let arr = [su.siteX, su.siteY];
-      console.log(arr);
       sendMessage(
         `FurnitureManager`,
         `LoadPlaceFurniture`,
@@ -271,6 +310,7 @@ export function TopDownAction({ onStartGame }) {
   //   saveLikeScore();
   // }, [unityProvider, yourName, isSendLike]);
 
+  // 랜덤 유저정보 불러오기
   async function callRandomGameData() {
     try {
       const response = await randomGameData();
@@ -286,6 +326,7 @@ export function TopDownAction({ onStartGame }) {
       } else {
         setSendRandom2("붉은벽돌");
       }
+      setSendRandom3(data.furniture);
       setRandomUser(data.user.userId);
     } catch (error) {
       console.log("랜덤게임데이터 출력실패", error);
@@ -318,14 +359,6 @@ export function TopDownAction({ onStartGame }) {
     };
   }, [jsonPart]);
 
-  useEffect(() => {
-    callMyGameData();
-  }, []);
-
-  useEffect(() => {
-    nowUserInfo();
-  }, [unityProvider]);
-
   function random(randomBtn) {
     console.log(randomBtn);
     setSignal(randomBtn);
@@ -340,7 +373,7 @@ export function TopDownAction({ onStartGame }) {
 
   useEffect(() => {
     callRandomGameData(yourName);
-  }, [unityProvider, nowUserInfo, yourName, signal]);
+  }, [signal]);
 
   useEffect(() => {
     VisitRandomCafe();
@@ -359,6 +392,19 @@ export function TopDownAction({ onStartGame }) {
           `ReceiveUnity`,
           `${randomUser}님의 카페에 오신 것을 환영합니다!!!`
         );
+        sendRandom3.forEach((sr) => {
+          sendMessage(
+            `FurnitureManager`,
+            `LoadSelectFurniture`,
+            sr.furnitureObject
+          );
+          let arr = [sr.siteX, sr.siteY];
+          sendMessage(
+            `FurnitureManager`,
+            `LoadPlaceFurniture`,
+            JSON.stringify(arr)
+          );
+        });
       };
       send();
       setSignal("null");
@@ -386,8 +432,6 @@ export function TopDownAction({ onStartGame }) {
 
   async function homeSick() {
     if (comeBackHome != "null") {
-      console.log(sendRandom);
-      console.log(sendRandom2);
       const send = () => {
         sendMessage(`CafeDecorator`, `OldFloorData`, `${sendUnity}`);
         sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
@@ -438,7 +482,7 @@ export function TopDownAction({ onStartGame }) {
   // 받은 메세지 확인하기
   useEffect(() => {
     myMessage();
-  }, [inviteMessage]);
+  }, []);
 
   async function myMessage() {
     if (yourName != "Guest") {
@@ -448,6 +492,56 @@ export function TopDownAction({ onStartGame }) {
       } catch (error) {
         console.log("메세지 수신 실패", error);
       }
+    }
+  }
+  // 나의 레시피
+  useEffect(() => {
+    sendMyRecipeToGame();
+  }, [yourName]);
+
+  async function sendMyRecipeToGame() {
+    if (yourName != "Guest" && canSendData == true) {
+      try {
+        const response = await myRecipe(yourName);
+        console.log(response.data);
+        let recipeArr = [];
+        for (let i = 0; i < response.data.length; i++) {
+          recipeArr.push(response.data[i].recipe.recipeName);
+        }
+        console.log(recipeArr);
+        setRecipe(recipeArr);
+        setCanSendData(false);
+      } catch (error) {
+        console.log("나의 레시피 출력 실패!!", error);
+      }
+    } else {
+      console.log("로그인을 안했거나 레시피 데이터 오류일 것임");
+    }
+  }
+
+  function getMessage(message) {
+    console.log(message);
+    setRecipeSignal(true);
+  }
+  useEffect(() => {
+    addEventListener(`CanSendMessage`, getMessage);
+    return () => {
+      removeEventListener(`CanSendMessage`, getMessage);
+    };
+  }, [unityProvider]);
+
+  useEffect(() => {
+    sendRecipe();
+  }, [recipeSignal]);
+
+  function sendRecipe() {
+    if (canSendData == false && recipe.length != 0) {
+      const UnityRecipe = JSON.stringify(recipe);
+      const send = () => {
+        sendMessage(`EventSystem`, `LoadMyRecipe`, `${UnityRecipe}`);
+      };
+      send();
+      setCanSendData(true);
     }
   }
 

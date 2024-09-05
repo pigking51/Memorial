@@ -17,15 +17,22 @@ public class LikeController {
     @Autowired
     LikeService likeService;
 
+    // 좋아요 저장
     @PostMapping("/save")
-    ResponseEntity<LikeDto> saveAddLike(@RequestBody LikeDto likeDto){
+    public ResponseEntity<LikeDto> saveAddLike(@RequestBody LikeDto likeDto){
         return new ResponseEntity<>(likeService.saveAddLike(likeDto),
                 HttpStatus.OK);
     }
-
+    // 모든 좋아요 불러오기
     @GetMapping("/all")
-    ResponseEntity<List<Like>> getAllLikes(){
+    public ResponseEntity<List<Like>> getAllLikes(){
         return new ResponseEntity<>(likeService.getAllLikes(),
+                HttpStatus.OK);
+    }
+    // 특정인의 좋아요 불러오기
+    @GetMapping("/getsomeonelike/{id}")
+    public ResponseEntity<List<Like>> getSomeoneLike(@PathVariable String id){
+        return new ResponseEntity<>(likeService.getSomeoneLike(id),
                 HttpStatus.OK);
     }
 }

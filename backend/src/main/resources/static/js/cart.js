@@ -1,5 +1,5 @@
-const urlList = "http://localhost:8080/api/products/purchaseList";
-const urlPurAll = "http://localhost:8080/api/products/purchase";
+const urlList = "/api/products/purchaseList";
+const urlPurAll = "/api/products/purchase";
 
 // 모달 요소 선언
 // jQ 선언
@@ -31,7 +31,7 @@ document.querySelector(".lectureBtn").addEventListener("click", () => {
 
 function sessionCurrent() {
   axios
-    .get("http://localhost:8080/user/current", { withCredentials: true })
+    .get("/user/current", { withCredentials: true })
     .then((response) => {
       console.log("데이터: ", response.data.userId);
       if (response.status == 200) {
@@ -144,7 +144,7 @@ function displayCart(lectures) {
 
 function deleteIndex(Index) {
   axios
-    .get("http://localhost:8080/user/current", { withCredentials: true })
+    .get("/user/current", { withCredentials: true })
     .then((response) => {
       console.log("데이터:", response.data);
       if (response.status == 200) {
@@ -174,7 +174,7 @@ document.querySelector(".searchCart").addEventListener("change", (e) => {
 });
 document.querySelector(".searchBtn").addEventListener("click", () => {
   axios
-    .get("http://localhost:8080/user/current", { withCredentials: true })
+    .get("/user/current", { withCredentials: true })
     .then((response) => {
       console.log("데이터: ", response.data.userId);
       if (response.status == 200) {
@@ -217,7 +217,7 @@ function isRealPurchase(data) {
       return;
     }
     axios
-      .get("http://localhost:8080/user/current", { withCredentials: true })
+      .get("/user/current", { withCredentials: true })
       .then((response) => {
         console.log("데이터: ", response.data.userId);
         const userId = response.data.userId;

@@ -1,6 +1,6 @@
-const url = "http://localhost:8080/post/write";
-const urlcurrent = "http://localhost:8080/user/current";
-const urlBoard = "http://localhost:8080/board/allboards";
+const url = "/post/write";
+const urlcurrent = "/user/current";
+const urlBoard = "/board/allboards";
 
 let board = 1;
 let title = "";

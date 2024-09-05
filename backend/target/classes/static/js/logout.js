@@ -1,8 +1,8 @@
-const urlLogout = "http://localhost:8080/user/logout";
+const urlLogout = "/user/logout";
 
 function sessionCurrent() {
   axios
-    .get("http://localhost:8080/user/current", { withCredentials: true })
+    .get("/user/current", { withCredentials: true })
     .then((response) => {
       console.log("데이터: ", response.data);
       if (response.status == 200) {

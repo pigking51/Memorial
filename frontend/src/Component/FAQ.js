@@ -134,6 +134,7 @@ let isHidden = true;
 export function FAQ() {
   const [FAQ_Item, setFAQ_Item] = useState(null);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [isBlocked, setIsBlocked] = useState(null);
 
   useEffect(() => {
     fetchFAQs();
@@ -142,7 +143,7 @@ export function FAQ() {
 
   async function fetchFAQs() {
     try {
-      const response = await axios.get("http://localhost:8080/faq", {
+      const response = await axios.get("/faq", {
         headers: { "Access-Control-Allow-Origin": "*" },
       });
       const FAQData = response.data;
@@ -160,13 +161,8 @@ export function FAQ() {
       console.log(index);
       const answers = document.querySelectorAll(".answer");
       console.log(answers);
-      console.log(answers[index].style.display);
-
-      if (answers[index].style.display == `none`) {
-        answers[index].style.display = `block`;
-      } else {
-        answers[index].style.display = `none`;
-      }
+      setIsBlocked(isBlocked != index ? index : null);
+      console.log(isBlocked);
     } else {
       console.log("기다려!!");
     }
@@ -187,7 +183,9 @@ export function FAQ() {
                 <Question onClick={() => revealHidden(item, index)}>
                   {item.question}
                 </Question>
-                <div className="answer">{item.answer}</div>
+                {isBlocked == index && (
+                  <div className="answer">{item.answer}</div>
+                )}
               </div>
             ))}
         </FAQWrap>

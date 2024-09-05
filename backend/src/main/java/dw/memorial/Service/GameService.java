@@ -4,6 +4,7 @@ import dw.memorial.Dto.GameDto;
 import dw.memorial.Model.Furniture;
 import dw.memorial.Model.Game;
 import dw.memorial.Model.User;
+import dw.memorial.Repository.FurnitureRepository;
 import dw.memorial.Repository.GameRepository;
 import dw.memorial.Repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -27,6 +28,9 @@ public class GameService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    FurnitureRepository furnitureRepository;
 
     public GameDto updateGameData(String id, GameDto gameDto){
 
@@ -52,8 +56,12 @@ public class GameService {
         }
         if(!Objects.equals(gameDto.getFurniture(), "")){
             if(!gameDto.getFurniture().isEmpty()){
-                List<Furniture> updatedFurniture = gameDto.getFurniture();
-                game1.setFurniture(updatedFurniture);
+                if(!gameRepository.findByUserUserId(id).isEmpty()) {
+                    List<Furniture> Furnitures = gameRepository.findByUserUserId(id).get().getFurniture();
+                    List<Furniture> addFurniture = gameDto.getFurniture();
+                    Furnitures.addAll(addFurniture);
+                    game1.setFurniture(Furnitures);
+                }
             }else{
                 return null;
             }

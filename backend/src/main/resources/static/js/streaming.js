@@ -49,8 +49,8 @@ const id = urlParams.get("id");
 console.log("Lecture ID: ", id);
 console.log("User ID: ", uId);
 
-const url = "http://localhost:8080/lectures/getalllectures/" + id;
-const nowUrlPart = `http://localhost:8080/movieDic/streaming.html`;
+const url = "/lectures/getalllectures/" + id;
+const nowUrlPart = `/movieDic/streaming.html`;
 
 const changeId = parseInt(id, 10);
 
@@ -101,7 +101,7 @@ document
 
 function prevMyLecture(lecId) {
   axios
-    .get("http://localhost:8080/api/products/purchase/current")
+    .get("/api/products/purchase/current")
     .then((response) => {
       console.log("데이터: ", response.data);
       const lecList = response.data;
@@ -126,7 +126,7 @@ function prevMyLecture(lecId) {
 
 function nextMyLecture(lecId) {
   axios
-    .get("http://localhost:8080/api/products/purchase/current")
+    .get("/api/products/purchase/current")
     .then((response) => {
       console.log("데이터: ", response.data);
       const lecList = response.data;
@@ -220,11 +220,11 @@ function ifLastLecture() {
 }
 
 // 현재 로그인을 하지 않고 접속한 경우
-const urlCur = "http://localhost:8080/user/current";
+const urlCur = "/user/current";
 
 function sessionCurrent() {
   axios
-    .get("http://localhost:8080/user/current", { withCredentials: true })
+    .get("/user/current", { withCredentials: true })
     .then((response) => {
       console.log("데이터: ", response.data);
       if (response.status == 200) {

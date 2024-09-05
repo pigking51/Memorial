@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/lectures/getalllectures";
+const url = "/lectures/getalllectures";
 
 axios
   .get(url)

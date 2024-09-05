@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Transactional
 @Service
@@ -27,7 +28,8 @@ public class MyRecipeService {
 
     // 최초 접속 시 임의의 레시피 부여
     public MyRecipe initialRecipe(String id){
-        List<MyRecipe> MyRecipe = myRecipeRepository.findAll();
+//        List<MyRecipe> MyRecipe = myRecipeRepository.findAll();
+        List<MyRecipe> MyRecipe = myRecipeRepository.findByUserUserId(id);
         if(MyRecipe.isEmpty()){
             MyRecipe myRecipe1 = new MyRecipe();
             List<Recipe> allRecipe = recipeRepository.findAll();
@@ -57,5 +59,12 @@ public class MyRecipeService {
         myRecipe1.setFromUser(myRecipe.getFromUser());
 
         return myRecipeRepository.save(myRecipe1);
+    }
+
+    // 내가가진 레시피
+    public List<MyRecipe> myRecipe(String id){
+        return myRecipeRepository.findAll()
+                .stream().filter(recipe -> recipe.getUser().getUserId().equals(id))
+                .collect(Collectors.toList());
     }
 }

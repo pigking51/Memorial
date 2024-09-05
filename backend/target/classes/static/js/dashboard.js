@@ -1,5 +1,5 @@
-const url = "http://localhost:8080/user/show";
-const urlPart = "http://localhost:8080/user/getallusersparts";
+const url = "/user/show";
+const urlPart = "/user/getallusersparts";
 
 const clock = document.querySelector(".clock");
 const today = document.querySelector(".today");
@@ -29,7 +29,7 @@ let email = "";
 let adminD = [];
 
 axios
-  .get("http://localhost:8080/user/current")
+  .get("/user/current")
   .then((response) => {
     console.log("데이터: ", response.data);
     // 해당 부분 바깥에서 적용해서 아예 사이트 접근을 못하게 하기
@@ -45,7 +45,7 @@ axios
     }
 
     axios
-      .get("http://localhost:8080/user/show")
+      .get("/user/show")
       .then((response) => {
         console.log("데이터: ", response.data);
 
@@ -260,8 +260,8 @@ function getToday() {
 getToday();
 
 // 강의 구매순위
-const lectureUrl = "http://localhost:8080/lectures/getalllectures";
-const purchaseUrlAll = "http://localhost:8080/api/products/purchase";
+const lectureUrl = "/lectures/getalllectures";
+const purchaseUrlAll = "/api/products/purchase";
 axios
   .get(lectureUrl)
   .then((response) => {

@@ -1,5 +1,5 @@
-const url = "http://localhost:8080/csat/survey";
-const urlShow = "http://localhost:8080/user/show";
+const url = "/csat/survey";
+const urlShow = "/user/show";
 
 let answer1 = 0;
 let answer2 = "";
@@ -140,7 +140,7 @@ document.querySelector(".surveyBtn").addEventListener("click", () => {
   });
 
   axios
-    .get("http://localhost:8080/user/current", { withCredentials: true })
+    .get("/user/current", { withCredentials: true })
     .then((response) => {
       console.log("데이터: ", response);
       if (response.status == 200) {
@@ -163,7 +163,7 @@ document.querySelector(".surveyBtn").addEventListener("click", () => {
         };
         console.log(data);
         axios
-          .post("http://localhost:8080/csat/survey", data, {
+          .post("/csat/survey", data, {
             withCredentials: true,
           })
           .then((response) => {
