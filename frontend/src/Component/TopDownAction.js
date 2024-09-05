@@ -201,6 +201,9 @@ export function TopDownAction({ onStartGame }) {
     }
   }
   // 처음 게임 시작 시 받았던 좋아요 숫자 표시
+  useEffect(() => {
+    sendMessage(`Like Button`, `LoadUserLikes`, 100);
+  });
   async function getSomeoneLike() {
     try {
       const response = await showSomeoneLike(yourName);
