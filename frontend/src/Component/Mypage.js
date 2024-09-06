@@ -435,27 +435,33 @@ export function Mypage() {
   }
   async function modifyUser() {
     const data = {
-      password: CPassword,
-      email: CEmail,
-      gender: CGender,
-      realName: CName,
+      password: CPWRef.current.value,
+      email: CEmailRef.current.value,
+      gender: CGenderRef.current.value,
+      realName: CNameRef.current.value,
     };
-    if (CPassword != CHPassword) {
+    console.log(CPWRef.current.value);
+    console.log(CHPWRef.current.value);
+    if (CPWRef.current.value != CHPWRef.current.value) {
       window.alert(`비밀번호가 일치하지 않습니다!`);
       setPWborder(`3px solid #DB365A`);
+      console.log(CPassword);
+      console.log(CHPassword);
       return;
-    }
-    try {
-      const currentResponse = await getNowUser();
-      const CRUserId = currentResponse.data.data.userId;
-      console.log(CRUserId);
+    } else {
+      try {
+        const currentResponse = await getNowUser();
+        const CRUserId = currentResponse.data.data.userId;
+        console.log(CRUserId);
 
-      const modifyResponse = await modifyData(CRUserId, data);
-      if (modifyResponse) {
-        window.alert(`회원정보 수정 완료!`);
+        const modifyResponse = await modifyData(CRUserId, data);
+        if (modifyResponse) {
+          window.alert(`회원정보 수정 완료!`);
+          window.location.reload();
+        }
+      } catch (error) {
+        console.log("회원정보 수정 오류", error);
       }
-    } catch (error) {
-      console.log("회원정보 수정 오류", error);
     }
   }
 
@@ -475,6 +481,8 @@ export function Mypage() {
           )
         ) {
           CEmailRef.current.value = "";
+        } else {
+          setEmailborder(`2px solid #EB92AE`);
         }
       } else {
         window.confirm(`중복된 Email입니다! 다른 Email을 입력해주세요`);
