@@ -550,6 +550,19 @@ export function TopDownAction({ onStartGame }) {
 
   // 게임관련 함수 끝
 
+  // 게임 시작 버튼 클릭시 로그인이 되어있지 않았다면 로그인 화면으로 이동
+  function isLogined() {
+    console.log(`여기까진 인식`);
+    if (sessionStorage.length == 0) {
+      window.alert(
+        `게임을 즐기시려면 로그인을 해야합니다!!! \n로그인 화면으로 이동합니다.`
+      );
+      navigate(`/login`);
+    } else {
+      console.log(`게임하는데 이상없음!!!`);
+    }
+  }
+
   // 화면 스크롤
   function scrollToMiddle() {
     window.scrollTo({
@@ -565,6 +578,7 @@ export function TopDownAction({ onStartGame }) {
       <BtContainer>
         <StartButton
           onClick={() => {
+            isLogined();
             setPlayingGame(true);
             scrollToMiddle();
             onStartGame(); // 게임 시작 시 콜백 호출
