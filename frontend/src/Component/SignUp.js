@@ -348,12 +348,12 @@ export function SignUp() {
     }
     try {
       const data = {
-        userId: userId,
-        password: password,
-        birthday: birth,
-        userEmail: email,
-        realName: name,
-        gender: gender,
+        userId: IDRef.current.value,
+        password: PWRef.current.value,
+        birthday: BirthRef.current.value,
+        userEmail: EmailRef.current.value,
+        realName: NameRef.current.value,
+        gender: GenderRef.current.value,
       };
       const response = await userRegister(data);
       const result = response.data;
