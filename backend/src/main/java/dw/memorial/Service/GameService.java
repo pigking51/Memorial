@@ -61,6 +61,9 @@ public class GameService {
                     List<Furniture> addFurniture = gameDto.getFurniture();
                     Furnitures.addAll(addFurniture);
                     game1.setFurniture(Furnitures);
+                }else{
+                    List<Furniture> addFurniture = gameDto.getFurniture();
+                    game1.setFurniture(addFurniture);
                 }
             }else{
                 return null;
