@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { TopDownAction } from "./TopDownAction";
 import { Footer } from "./Footer";
+import { Typed } from "react-typed";
 
 const ImageWrap = styled.div`
   width: 100%;
@@ -156,6 +157,8 @@ export function Home() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  function Typed() {}
 
   return (
     <>

@@ -59,7 +59,7 @@ const Aside = styled.div`
   color: #333;
   background-color: white;
   padding: 40px;
-  border: 10px solid #eb92ae;
+  border: 5px solid #eb92ae;
   border-radius: 50px;
 `;
 const Top = styled.div`
@@ -86,6 +86,7 @@ const Bottom = styled.div`
     font-size: 25px;
     line-height: 30px;
     height: 30px;
+    background-color: #fde9f3;
   }
   h5 {
     font-weight: 400;
