@@ -14,6 +14,7 @@ import {
   checkMySendMessage,
   myRecipe,
   showSomeoneLike,
+  deleteMyFuniture,
 } from "./api";
 import "./TopDownAction.css"; // CSS 파일 import
 import { json, useNavigate } from "react-router-dom";
@@ -77,7 +78,8 @@ export function TopDownAction({ onStartGame }) {
   // 좋아요 관련
   const [likeScore, setLikeScore] = useState(0);
   const [isSendLike, setIsSendLike] = useState(false);
-  const [savedLike, setSavedLike] = useState(0);
+  const [savedLike, setSavedLike] = useState(10);
+  const [randomId, setRandomId] = useState("notYet");
   // 게임데이터 관련
   const [jsonPart, setJsonPart] = useState(null);
   const [isSavedGame, setIsSavedGame] = useState(false);
@@ -85,6 +87,8 @@ export function TopDownAction({ onStartGame }) {
   const [sendUnity2, setSendUnity2] = useState("null");
   const [sendUnity3, setSendUnity3] = useState([]);
   const [signal, setSignal] = useState("null");
+  // 가구 삭제관련
+  const [delJson, setDelJson] = useState([]);
   // 랜덤유저 방문 관련
   const [randomUser, setRandomUser] = useState("null");
   const [sendRandom, setSendRandom] = useState("null");
@@ -202,7 +206,7 @@ export function TopDownAction({ onStartGame }) {
   }
   // 처음 게임 시작 시 받았던 좋아요 숫자 표시
   useEffect(() => {
-    sendMessage(`Like Button`, `LoadUserLikes`, 100);
+    sendMessage(`Like Button`, `LoadUserLikes`, `${savedLike}`);
   });
   async function getSomeoneLike() {
     try {
@@ -216,43 +220,59 @@ export function TopDownAction({ onStartGame }) {
     getSomeoneLike();
   }, [unityProvider, yourName]);
 
-  // // 좋아요 저장
-  // async function saveLikeScore() {
-  //   try {
-  //     console.log(likeScore);
-  //     console.log(yourName);
-  //     const data = {
-  //       userId: yourName,
-  //       likedUser: yourName,
-  //     };
-  //     const response = await saveLike(data);
-  //     console.log(response.data);
-  //     setIsSendLike(false);
-  //   } catch (error) {
-  //     console.log("좋아요 저장 실패", error);
-  //   }
-  // }
-  // // 저장된 좋아요 불러오기
-  // async function showLikeScore() {
-  //   try {
-  //     const response = await showLike();
-  //     const data = response.data;
-  //     console.log(data);
-  //     // setSavedLike();
-  //     let i = 0;
-  //     let count = 0;
-  //     // for (i = 0; i < data.length; i++) {
-  //     //   if (data[i].user.userId === yourName) {
-  //     //     count++;
-  //     //   }
-  //     // }
-  //     console.log(count);
-  //   } catch (error) {
-  //     console.log("좋아요 호출 실패", error);
-  //   }
-  // }
-  // 저장된 데이터 불러오기
+  // 좋아요 저장
 
+  useEffect(() => {
+    setIsSendLike(true);
+    saveLikeScore();
+  }, [likeScore]);
+
+  async function saveLikeScore() {
+    if (isSendLike != false) {
+      try {
+        console.log(likeScore);
+        console.log(yourName);
+        console.log(randomId);
+        const data = {
+          userId: randomId,
+          likedUser: yourName,
+        };
+        const response = await saveLike(data);
+        console.log(response.data);
+        setIsSendLike(false);
+      } catch (error) {
+        console.log("좋아요 저장 실패", error);
+      }
+    }
+  }
+
+  // // 저장된 좋아요 불러오기(타인 카페 방문시에도 반응하게)
+
+  useEffect(() => {
+    showLikeScore();
+  }, [unityProvider, randomId]);
+
+  async function showLikeScore() {
+    if (randomId != "notYet") {
+      try {
+        const response = await showLike();
+        const data = response.data;
+        console.log(data);
+        let count = 0;
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].user.userId === randomId) {
+            count++;
+          }
+        }
+        console.log(count);
+        setSavedLike(count);
+      } catch (error) {
+        console.log("좋아요 호출 실패", error);
+      }
+    }
+  }
+
+  // 저장된 데이터 불러오기
   useEffect(() => {
     callMyGameData();
   }, []);
@@ -309,16 +329,14 @@ export function TopDownAction({ onStartGame }) {
     };
   }, [unityProvider, sendToken, addEventListener, removeEventListener]);
 
-  // useEffect(() => {
-  //   saveLikeScore();
-  // }, [unityProvider, yourName, isSendLike]);
-
   // 랜덤 유저정보 불러오기
   async function callRandomGameData() {
     try {
       const response = await randomGameData();
       const data = response.data;
       console.log(data);
+      setRandomId(data.user.userId);
+      console.log(randomId);
       if (data.tileObject != null) {
         setSendRandom(data.tileObject);
       } else {
@@ -342,16 +360,6 @@ export function TopDownAction({ onStartGame }) {
       removeEventListener("LikeScores", handleLike);
     };
   }, [unityProvider]);
-
-  // useEffect(() => {
-  //   showLikeScore();
-  // }, [unityProvider, yourName]);
-
-  useEffect(() => {
-    console.log("앞은 됨??");
-    sendMessage(`Like Button`, `CallLikeScore`, `100`);
-    console.log("실행은 됨??");
-  }, [unityProvider, likeScore]);
 
   useEffect(() => {
     addEventListener("ShowJson", handleJson);
@@ -438,7 +446,11 @@ export function TopDownAction({ onStartGame }) {
       const send = () => {
         sendMessage(`CafeDecorator`, `OldFloorData`, `${sendUnity}`);
         sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
-        sendMessage(`CafeDecorator`, `ReceiveUnity`, `${userName}사장님`);
+        sendMessage(
+          `CafeDecorator`,
+          `ReceiveUnity`,
+          `${userName}사장님 \n 환영합니다`
+        );
       };
       send();
       setComeBackHome("null");
@@ -545,6 +557,35 @@ export function TopDownAction({ onStartGame }) {
       };
       send();
       setCanSendData(true);
+    }
+  }
+
+  // 가구삭제
+  useEffect(() => {
+    addEventListener(`ShowDelJson`, delData);
+    return () => {
+      removeEventListener(`ShowDelJson`, delData);
+    };
+  }, []);
+
+  function delData(json) {
+    console.log(json);
+    setDelJson(json);
+  }
+
+  async function deleteFurniture() {
+    if (delJson != null && yourName != "Guest") {
+      try {
+        const data = {
+          furnitureObject: delJson.furnitureObject,
+          siteX: delJson.siteX,
+          siteY: delJson.siteY,
+        };
+        const response = await deleteMyFuniture(data, yourName);
+        console.log("삭제성공");
+      } catch (error) {
+        console.log("데이터삭제 실패", error);
+      }
     }
   }
 

@@ -132,6 +132,13 @@ export function getMyGameData(id) {
   return axios.get(url, headers);
 }
 
+// 가구 삭제(제대로 안됨)
+export function deleteMyFuniture(data, id) {
+  const url = `/game/delFurniture/${id}`;
+
+  return axios.delete(url, data, headers);
+}
+
 // 좋아요 저장
 export function saveLike(data) {
   const url = `/like/save`;

@@ -1,5 +1,6 @@
 package dw.memorial.Service;
 
+import dw.memorial.Dto.FurnitureDto;
 import dw.memorial.Dto.GameDto;
 import dw.memorial.Model.Furniture;
 import dw.memorial.Model.Game;
@@ -133,4 +134,19 @@ public class GameService {
                 .toList();
     }
 
+    public FurnitureDto deleteFurniture(String id, FurnitureDto furnitureDto){
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid UserId sob sob sob"));
+
+        Optional<Furniture> optionalFurniture = furnitureRepository.findByFurnitureObjectAndSiteXAndSiteY(
+                furnitureDto.getFurnitureObject(),
+                furnitureDto.getSiteX(),
+                furnitureDto.getSiteY()
+        );
+        if(optionalFurniture.isPresent()){
+            furnitureRepository.delete(optionalFurniture.get());
+        }else{
+            throw new IllegalArgumentException("Furniture not found");
+        }
+    }
 }

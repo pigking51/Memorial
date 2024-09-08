@@ -1,6 +1,8 @@
 package dw.memorial.Controller;
 
+import dw.memorial.Dto.FurnitureDto;
 import dw.memorial.Dto.GameDto;
+import dw.memorial.Model.Furniture;
 import dw.memorial.Model.Game;
 import dw.memorial.Service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ public class GameController {
 
     @Autowired
     GameService gameService;
+
 
     @PatchMapping("/update/{id}")
     public ResponseEntity<GameDto> updateGameData(@PathVariable String id,
@@ -45,6 +48,14 @@ public class GameController {
                 HttpStatus.OK);
     }
 
+    // 가구데이터 삭제
+
+    @DeleteMapping("/delFurniture/{id}")
+    public ResponseEntity<FurnitureDto> deleteFurniture(@PathVariable String id,
+                                                        @RequestBody FurnitureDto furnitureDto){
+        return new ResponseEntity<>(gameService.deleteFurniture(id, furnitureDto),
+                HttpStatus.OK);
+    }
 
 
 }
