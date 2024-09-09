@@ -15,6 +15,7 @@ import {
   myRecipe,
   showSomeoneLike,
   deleteMyFuniture,
+  callFurniture,
 } from "./api";
 import "./TopDownAction.css"; // CSS 파일 import
 import { json, useNavigate } from "react-router-dom";
@@ -206,7 +207,7 @@ export function TopDownAction({ onStartGame }) {
   }
   // 처음 게임 시작 시 받았던 좋아요 숫자 표시
   useEffect(() => {
-    sendMessage(`Like Button`, `LoadUserLikes`, `${savedLike}`);
+    sendMessage(`LikeButton`, `LoadUserLikes`, savedLike);
   });
   async function getSomeoneLike() {
     try {
@@ -246,7 +247,7 @@ export function TopDownAction({ onStartGame }) {
     }
   }
 
-  // // 저장된 좋아요 불러오기(타인 카페 방문시에도 반응하게)
+  // 저장된 좋아요 불러오기(타인 카페 방문시에도 반응하게)
 
   useEffect(() => {
     showLikeScore();
@@ -285,6 +286,7 @@ export function TopDownAction({ onStartGame }) {
         console.log(URData);
         setUserName(URData);
         const response = await getMyGameData(URData);
+        const furResponse = await callFurniture(URData);
         console.log(response.data);
         if (response.data == null) {
           return;
@@ -294,8 +296,8 @@ export function TopDownAction({ onStartGame }) {
           setSendUnity(response.data[0].tileObject);
           console.log(response.data[0].wallObject);
           setSendUnity2(response.data[0].wallObject);
-          console.log(response.data[0].furniture);
-          setSendUnity3(response.data[0].furniture);
+          console.log(furResponse.data);
+          setSendUnity3(furResponse.data);
         }
       }
     } catch (error) {
@@ -331,26 +333,29 @@ export function TopDownAction({ onStartGame }) {
 
   // 랜덤 유저정보 불러오기
   async function callRandomGameData() {
-    try {
-      const response = await randomGameData();
-      const data = response.data;
-      console.log(data);
-      setRandomId(data.user.userId);
-      console.log(randomId);
-      if (data.tileObject != null) {
-        setSendRandom(data.tileObject);
-      } else {
-        setSendRandom("에메랄드빛바다");
+    if (yourName != "Guest") {
+      try {
+        const response = await randomGameData();
+        const data = response.data;
+        console.log(data);
+        setRandomId(data.user.userId);
+        console.log(randomId);
+        const furResponse = await callFurniture(randomId);
+        if (data.tileObject != null) {
+          setSendRandom(data.tileObject);
+        } else {
+          setSendRandom("에메랄드빛바다");
+        }
+        if (data.wallObject != null) {
+          setSendRandom2(data.wallObject);
+        } else {
+          setSendRandom2("붉은벽돌");
+        }
+        setSendRandom3(furResponse.data);
+        setRandomUser(data.user.userId);
+      } catch (error) {
+        console.log("랜덤게임데이터 출력실패", error);
       }
-      if (data.wallObject != null) {
-        setSendRandom2(data.wallObject);
-      } else {
-        setSendRandom2("붉은벽돌");
-      }
-      setSendRandom3(data.furniture);
-      setRandomUser(data.user.userId);
-    } catch (error) {
-      console.log("랜덤게임데이터 출력실패", error);
     }
   }
 
@@ -572,6 +577,10 @@ export function TopDownAction({ onStartGame }) {
     console.log(json);
     setDelJson(json);
   }
+
+  useEffect(() => {
+    deleteFurniture();
+  }, [signal, comeBackHome]);
 
   async function deleteFurniture() {
     if (delJson != null && yourName != "Guest") {

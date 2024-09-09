@@ -23,7 +23,7 @@ public class LikeService {
     public LikeDto saveAddLike(LikeDto likeDto){
 
         User user = userRepository.findById(likeDto.getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user ID"));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user ID oTo"));
         Like like1= new Like();
         like1.setUser(user);
         like1.setLikedUser(likeDto.getLikedUser());
@@ -35,10 +35,6 @@ public class LikeService {
     }
 
     public List<Like> getSomeoneLike(String id){
-
-//        User user = userRepository.findById(id)
-//                .orElseThrow(() -> new IllegalArgumentException("Invalid user ID"));
-
         return likeRepository.findByUserUserId(id);
     }
 

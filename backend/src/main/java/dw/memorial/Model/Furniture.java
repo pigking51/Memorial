@@ -1,6 +1,7 @@
 package dw.memorial.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,5 +32,9 @@ public class Furniture {
     @Column(name = "site_y")
     private int siteY;
 
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "game_id")
+    private Game game;
 
 }

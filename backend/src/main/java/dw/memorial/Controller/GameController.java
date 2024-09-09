@@ -47,15 +47,18 @@ public class GameController {
         return new ResponseEntity<>(gameService.getSomeGameData(id),
                 HttpStatus.OK);
     }
-
-    // 가구데이터 삭제
-
-    @DeleteMapping("/delFurniture/{id}")
-    public ResponseEntity<FurnitureDto> deleteFurniture(@PathVariable String id,
-                                                        @RequestBody FurnitureDto furnitureDto){
-        return new ResponseEntity<>(gameService.deleteFurniture(id, furnitureDto),
+    // 가구데이터 불러오기
+    @GetMapping("/callfurniture/{id}")
+    public ResponseEntity<List<Furniture>> callFurniture(@PathVariable String id){
+        return new ResponseEntity<>(gameService.callFurniture(id),
                 HttpStatus.OK);
     }
 
-
+    // 가구데이터 삭제
+    @DeleteMapping("/delfurniture/{id}")
+    public ResponseEntity<Void> deleteFurniture(@PathVariable String id,
+                                                @RequestBody FurnitureDto furnitureDto){
+       gameService.deleteFurniture(id, furnitureDto);
+       return ResponseEntity.ok().build();
+    }
 }

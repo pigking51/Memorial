@@ -131,6 +131,12 @@ export function getMyGameData(id) {
 
   return axios.get(url, headers);
 }
+// 가구정보 불러오기
+export function callFurniture(id) {
+  const url = `/game/callfurniture/${id}`;
+
+  return axios.get(url, headers);
+}
 
 // 가구 삭제(제대로 안됨)
 export function deleteMyFuniture(data, id) {
