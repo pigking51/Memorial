@@ -335,16 +335,15 @@ export function TopDownAction({ onStartGame }) {
   async function callRandomGameData() {
     if (yourName != "Guest") {
       try {
-        const response = await randomGameData();
+        const response = await randomGameData(yourName);
         const data = response.data;
         console.log(data);
-        setRandomId(data.user.userId);
-        console.log(randomId);
-        const furResponse = await callFurniture(randomId);
+        setRandomUser(data.user.userId);
+        const furResponse = await callFurniture(data.user.userId);
         if (data.tileObject != null) {
           setSendRandom(data.tileObject);
         } else {
-          setSendRandom("에메랄드빛바다");
+          setSendRandom("얕은바다");
         }
         if (data.wallObject != null) {
           setSendRandom2(data.wallObject);
@@ -352,7 +351,7 @@ export function TopDownAction({ onStartGame }) {
           setSendRandom2("붉은벽돌");
         }
         setSendRandom3(furResponse.data);
-        setRandomUser(data.user.userId);
+        console.log(sendRandom3);
       } catch (error) {
         console.log("랜덤게임데이터 출력실패", error);
       }
@@ -388,18 +387,19 @@ export function TopDownAction({ onStartGame }) {
   }, [unityProvider]);
 
   useEffect(() => {
-    callRandomGameData(yourName);
+    callRandomGameData();
   }, [signal]);
 
   useEffect(() => {
     VisitRandomCafe();
-  }, [unityProvider, signal]);
+  }, [signal]);
 
   // 랜덤방문
   function VisitRandomCafe() {
     if (signal != "null") {
       console.log(sendRandom);
       console.log(sendRandom2);
+      console.log(sendRandom3);
       const send = () => {
         sendMessage(`CafeDecorator`, `OldFloorData`, `${sendRandom}`);
         sendMessage(`CafeDecorator`, `OldWallData`, `${sendRandom2}`);
@@ -408,6 +408,15 @@ export function TopDownAction({ onStartGame }) {
           `ReceiveUnity`,
           `${randomUser}님의 카페에 오신 것을 환영합니다!!!`
         );
+        sendUnity3.forEach((su) => {
+          let arr = [su.furnitureObject, su.siteX, su.siteY];
+          sendMessage(
+            `FurnitureManager`,
+            `RemoveFurnitureForVisit`,
+            JSON.stringify(arr)
+          );
+        });
+
         sendRandom3.forEach((sr) => {
           sendMessage(
             `FurnitureManager`,
@@ -585,10 +594,12 @@ export function TopDownAction({ onStartGame }) {
   async function deleteFurniture() {
     if (delJson != null && yourName != "Guest") {
       try {
+        const jsonDel = JSON.parse(delJson);
+        console.log(jsonDel);
         const data = {
-          furnitureObject: delJson.furnitureObject,
-          siteX: delJson.siteX,
-          siteY: delJson.siteY,
+          furnitureObject: jsonDel.furnitureObject,
+          siteX: jsonDel.siteX,
+          siteY: jsonDel.siteY,
         };
         const response = await deleteMyFuniture(data, yourName);
         console.log("삭제성공");

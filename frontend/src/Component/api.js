@@ -146,10 +146,13 @@ export function callFurniture(id) {
 }
 
 // 가구 삭제(제대로 안됨)
-export function deleteMyFuniture(data, id) {
+export function deleteMyFuniture(dataObj, id) {
   const url = `/game/delfurniture/${id}`;
-  console.log(headers);
-  return axios.delete(url, data, headers);
+  console.log(dataObj);
+  return axios.delete(url, {
+    headers: { Authorization: headers.headers.Authorization },
+    data: dataObj,
+  });
 }
 
 // 좋아요 저장

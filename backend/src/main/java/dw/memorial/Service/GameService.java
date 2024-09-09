@@ -107,7 +107,7 @@ public class GameService {
             game1.setWallObject(gameDto.getWallObject());
         }
         List<Furniture> newFurnitureList = gameDto.getFurniture();
-        if (newFurnitureList != null) {
+        if (!newFurnitureList.isEmpty()) {
             // 기존의 Furniture 목록을 가져온다
             List<Furniture> existingFurnitureList = game1.getFurniture();
 
