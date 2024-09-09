@@ -580,7 +580,7 @@ export function TopDownAction({ onStartGame }) {
 
   useEffect(() => {
     deleteFurniture();
-  }, [signal, comeBackHome]);
+  }, [delJson]);
 
   async function deleteFurniture() {
     if (delJson != null && yourName != "Guest") {

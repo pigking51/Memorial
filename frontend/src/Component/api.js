@@ -108,6 +108,13 @@ export function saveLecture(data) {
   return axios.post(url, data, headers);
 }
 
+// faq
+export function showFAQ() {
+  const url = `/api/faq`;
+
+  return axios.get(url, headers);
+}
+
 // 로그아웃
 export function userLogout() {
   // const url = `/user/logout`;
@@ -140,8 +147,8 @@ export function callFurniture(id) {
 
 // 가구 삭제(제대로 안됨)
 export function deleteMyFuniture(data, id) {
-  const url = `/game/delFurniture/${id}`;
-
+  const url = `/game/delfurniture/${id}`;
+  console.log(headers);
   return axios.delete(url, data, headers);
 }
 

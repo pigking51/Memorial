@@ -36,8 +36,6 @@ public class SecurityConfig {
         return http
                 .authorizeRequests(auth -> auth
                         .requestMatchers(
-//                                new AntPathRequestMatcher("/"),
-//                                new AntPathRequestMatcher("/**"),
                                 new AntPathRequestMatcher("/products/**"),
                                 new AntPathRequestMatcher("/memorial/**"),
                                 new AntPathRequestMatcher("/memorial/signup"),
@@ -64,7 +62,7 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/postDetail"),
                                 new AntPathRequestMatcher("/lecture"),
                                 new AntPathRequestMatcher("/lectureDetail"),
-                                new AntPathRequestMatcher("/faq"),
+                                new AntPathRequestMatcher("/api/faq"),
                                 new AntPathRequestMatcher("/*"),
 //                                // ↑ WAS까지 가서 통과해야되는 것들
                                 new AntPathRequestMatcher("/authenticate"),

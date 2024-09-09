@@ -100,14 +100,12 @@ public class GameService {
             game1 = new Game();
             game1.setUser(user);
         }
-
         if (!Objects.equals(gameDto.getTileObject(), "")) {
             game1.setTileObject(gameDto.getTileObject());
         }
         if (!Objects.equals(gameDto.getWallObject(), "")) {
             game1.setWallObject(gameDto.getWallObject());
         }
-
         List<Furniture> newFurnitureList = gameDto.getFurniture();
         if (newFurnitureList != null) {
             // 기존의 Furniture 목록을 가져온다
@@ -120,13 +118,10 @@ public class GameService {
                     existingFurnitureList.add(furniture);
                 }
             }
-
             // 기존 Furniture 중에서 새로운 목록에 없는 Furniture를 제거한다
             existingFurnitureList.removeIf(furniture -> !newFurnitureList.contains(furniture));
 
             game1.setFurniture(existingFurnitureList);
-        } else {
-            game1.setFurniture(new ArrayList<>());  // 비어있는 리스트로 설정
         }
 
         Game savedGame = gameRepository.save(game1);

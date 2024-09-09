@@ -2,6 +2,7 @@ import styled from "styled-components";
 import "./FAQ.css";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
+import { showFAQ } from "./api";
 
 const FAQTitle = styled.div`
   font-size: 32px;
@@ -143,9 +144,7 @@ export function FAQ() {
 
   async function fetchFAQs() {
     try {
-      const response = await axios.get("/faq", {
-        headers: { "Access-Control-Allow-Origin": "*" },
-      });
+      const response = await showFAQ();
       const FAQData = response.data;
 
       console.log(FAQData);
