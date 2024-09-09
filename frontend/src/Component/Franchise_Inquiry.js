@@ -307,6 +307,7 @@ const Etcwrap = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  background-color: white;
 `;
 
 const InfoAgree1 = styled.div`
@@ -805,7 +806,7 @@ export function Franchise_Inquiry() {
             </Etc>
             <EtcWrite>
               <textarea
-                cols="72"
+                cols="68"
                 rows="10"
                 placeholder="점포를 보유하셨거나 입점희망 점포에 대한 사전정보가 있을 경우, 점포의 평수/임대료 등 구체적인 정보를 남겨주시면 조금 더 정확한 상담이 가능합니다."
                 onChange={(e) => inputETC(e)}

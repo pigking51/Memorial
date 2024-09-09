@@ -118,23 +118,23 @@ const BtContentTitle = styled.div`
     width: auto;
     height: auto;
     border-bottom: 2px solid #eb92ae;
-    color: #666;
+    color: #333;
   }
 `;
 
 const ImageContainer = styled.div`
   position: relative;
   overflow: hidden;
-  height: 400px; /* Adjust height as needed */
+  height: 400px;
   display: flex;
   align-items: center;
-  margin: 20px 0;
+  margin: 0px 0px 100px 0px;
   transition: transform 0.3s ease-in-out;
 `;
 
 const ImageBox = styled.div`
-  width: 300px; /* Width of each item */
-  margin: 0 20px; /* Adjusted margin */
+  width: 300px;
+  margin: 0 20px;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
   transform: ${({ translateValue }) => `translateX(${translateValue}px)`};
