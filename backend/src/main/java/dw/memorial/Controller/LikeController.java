@@ -35,4 +35,10 @@ public class LikeController {
         return new ResponseEntity<>(likeService.getSomeoneLike(id),
                 HttpStatus.OK);
     }
+    // 검색대상의 좋아요 불러오기
+    @GetMapping("/getsearchlike/{id}")
+    public ResponseEntity<List<Like>> getSearchLike(@PathVariable String id){
+        return new ResponseEntity<>(likeService.getSearchLike(id),
+                HttpStatus.OK);
+    }
 }

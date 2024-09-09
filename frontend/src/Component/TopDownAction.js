@@ -16,6 +16,7 @@ import {
   showSomeoneLike,
   deleteMyFuniture,
   callFurniture,
+  showSearchSomeone,
 } from "./api";
 import "./TopDownAction.css"; // CSS 파일 import
 import { json, useNavigate } from "react-router-dom";
@@ -95,6 +96,8 @@ export function TopDownAction({ onStartGame }) {
   const [sendRandom, setSendRandom] = useState("null");
   const [sendRandom2, setSendRandom2] = useState("null");
   const [sendRandom3, setSendRandom3] = useState([]);
+  const [sendCallReady, setSendCallReady] = useState(false);
+  const [randomFurniture, setRandomFurniture] = useState("null");
   // 내 화면 복귀 관련
   const [comeBackHome, setComeBackHome] = useState("null");
   // 로그인 유무 확인
@@ -102,6 +105,11 @@ export function TopDownAction({ onStartGame }) {
   // 메시지 전송유무 확인
   const [messageSignal, setMessageSignal] = useState();
   const [isSendMessage, setIsSendMessage] = useState(false);
+  // id검색
+  const [searchID, setSearchID] = useState("null");
+  const [resultLike, setResultLike] = useState("null");
+  const [resultID, setResultID] = useState("null");
+  const [canResultID, setCanResultID] = useState(false);
 
   // 레시피 관련
   const [recipeSignal, setRecipeSignal] = useState(false);
@@ -331,7 +339,27 @@ export function TopDownAction({ onStartGame }) {
     };
   }, [unityProvider, sendToken, addEventListener, removeEventListener]);
 
+  useEffect(() => {
+    addEventListener("LikeScores", handleLike);
+    return () => {
+      removeEventListener("LikeScores", handleLike);
+    };
+  }, [unityProvider]);
+
+  useEffect(() => {
+    addEventListener("ShowJson", handleJson);
+    updateGameData();
+    return () => {
+      removeEventListener("ShowJson", handleJson);
+      updateGameData();
+    };
+  }, [jsonPart]);
+
   // 랜덤 유저정보 불러오기
+  useEffect(() => {
+    callRandomGameData();
+  }, [signal]);
+
   async function callRandomGameData() {
     if (yourName != "Guest") {
       try {
@@ -352,27 +380,12 @@ export function TopDownAction({ onStartGame }) {
         }
         setSendRandom3(furResponse.data);
         console.log(sendRandom3);
+        setSendCallReady(true);
       } catch (error) {
         console.log("랜덤게임데이터 출력실패", error);
       }
     }
   }
-
-  useEffect(() => {
-    addEventListener("LikeScores", handleLike);
-    return () => {
-      removeEventListener("LikeScores", handleLike);
-    };
-  }, [unityProvider]);
-
-  useEffect(() => {
-    addEventListener("ShowJson", handleJson);
-    updateGameData();
-    return () => {
-      removeEventListener("ShowJson", handleJson);
-      updateGameData();
-    };
-  }, [jsonPart]);
 
   function random(randomBtn) {
     console.log(randomBtn);
@@ -385,10 +398,6 @@ export function TopDownAction({ onStartGame }) {
       removeEventListener(`VisitRandom`, random);
     };
   }, [unityProvider]);
-
-  useEffect(() => {
-    callRandomGameData();
-  }, [signal]);
 
   useEffect(() => {
     VisitRandomCafe();
@@ -432,7 +441,9 @@ export function TopDownAction({ onStartGame }) {
         });
       };
       send();
+      setRandomFurniture(sendRandom3);
       setSignal("null");
+      setSendCallReady(false);
     } else {
       console.log("랜덤방문 실패");
     }
@@ -458,6 +469,14 @@ export function TopDownAction({ onStartGame }) {
   async function homeSick() {
     if (comeBackHome != "null") {
       const send = () => {
+        randomFurniture.forEach((su) => {
+          let arr = [su.furnitureObject, su.siteX, su.siteY];
+          sendMessage(
+            `FurnitureManager`,
+            `RemoveFurnitureForVisit`,
+            JSON.stringify(arr)
+          );
+        });
         sendMessage(`CafeDecorator`, `OldFloorData`, `${sendUnity}`);
         sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
         sendMessage(
@@ -467,7 +486,7 @@ export function TopDownAction({ onStartGame }) {
         );
       };
       send();
-      setComeBackHome("null");
+      // setComeBackHome("null");
     } else {
       console.log("내 카페 복귀 실패");
     }
@@ -523,6 +542,56 @@ export function TopDownAction({ onStartGame }) {
       }
     }
   }
+  // id or 이름 검색
+  function sendText(sendText) {
+    if (searchID != sendText);
+    {
+      console.log(sendText);
+      setSearchID(sendText);
+    }
+  }
+  useEffect(() => {
+    addEventListener(`SendSearch`, sendText);
+    return () => {
+      removeEventListener(`SendSearch`, sendText);
+    };
+  }, []);
+
+  useEffect(() => {
+    searchSomeone();
+  }, [searchID]);
+
+  async function searchSomeone() {
+    if (searchID != "null") {
+      try {
+        const likeResponse = await showSomeoneLike(searchID);
+        const response = await showSearchSomeone(searchID);
+        console.log(likeResponse.data);
+        console.log(response.data);
+        setResultLike(likeResponse.data.length); // 해당 좋아요 방식 변경필수!!!
+        setResultID(response.data.userId);
+        setCanResultID(true);
+      } catch (error) {
+        console.log("사람찾기 실패", error);
+      }
+    }
+  }
+
+  useEffect(() => {}, []);
+
+  function resultIDToUnity() {
+    if (canResultID != false) {
+      console.log(resultID);
+      console.log(resultLike);
+      const resultJson = JSON.stringify(resultID);
+      const send = () => {
+        sendMessage(`EventSystem`, `LoadMyRecipe`, `${resultJson}`);
+      };
+      send();
+      setCanSendData(true);
+    }
+  }
+
   // 나의 레시피
   useEffect(() => {
     sendMyRecipeToGame();

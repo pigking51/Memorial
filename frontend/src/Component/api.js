@@ -249,3 +249,10 @@ export function checkMyMessage(id) {
 
   return axios.get(url, headers);
 }
+
+// 유저검색
+export function showSearchSomeone(id) {
+  const url = `/user/showsomeone/${id}`;
+
+  return axios.get(url, headers);
+}

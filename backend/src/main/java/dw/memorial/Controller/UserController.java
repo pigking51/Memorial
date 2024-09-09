@@ -148,6 +148,13 @@ public class UserController {
                 HttpStatus.OK);
     }
 
+    // 유저 검색
+    @GetMapping("showsomeone/{id}")
+    public ResponseEntity<List<User>> showSomeone(@PathVariable String id){
+        return new ResponseEntity<>(userService.showSomeone(id),
+                HttpStatus.OK);
+    }
+
 
 
 }

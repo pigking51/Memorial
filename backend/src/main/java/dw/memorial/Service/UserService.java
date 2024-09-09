@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -64,6 +65,13 @@ public class UserService {
     // 대시보드에 사용자 관리를 위한 유저 정보 불러오기 비즈니스 로직
     public List<Object[]> getAllUsersParts(){
         return userRepository.getUserInfo();
+    }
+
+    public List<User> showSomeone(String id){
+        return userRepository.findAll()
+                .stream().filter(user -> user.getUserId().contains(id) ||
+                        user.getRealName().contains(id))
+                .collect(Collectors.toList());
     }
 
 }
