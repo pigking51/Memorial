@@ -91,7 +91,7 @@ export function TopDownAction({ onStartGame }) {
   const [signal, setSignal] = useState("null");
   // 가구 삭제관련
   const [delJson, setDelJson] = useState([]);
-  const [oldFurniture, setOldFurniture] = useState();
+  const [oldFurniture, setOldFurniture] = useState("null");
   // 랜덤유저 방문 관련
   const [randomUser, setRandomUser] = useState("null");
   const [sendRandom, setSendRandom] = useState("null");
@@ -492,7 +492,7 @@ export function TopDownAction({ onStartGame }) {
           });
         };
         send();
-        setOldFurniture();
+        setOldFurniture(sendUnity3);
         setSignal("null");
         setComeBackHome("null");
       } else if (comeBackHome != "null" && randomUser == "null") {
