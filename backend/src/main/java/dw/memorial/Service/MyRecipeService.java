@@ -47,19 +47,33 @@ public class MyRecipeService {
     }
 
     // 타인카페 방문시 좋아요 눌렀을때 받는 레시피(중복포함)
-    public MyRecipe addRandomRecipe(String id, MyRecipe myRecipe){
-        
+    public MyRecipe addRandomRecipe(String id, String target){
         MyRecipe myRecipe1 = new MyRecipe();
         List<Recipe> allRecipe = recipeRepository.findAll();
-        List<MyRecipe> allMyRecipe = myRecipeRepository.findAll();
+        List<MyRecipe> targetAllRecipe = myRecipeRepository.findAll()
+                .stream().filter(myRecipe -> myRecipe.getUser().getUserId().equals(target))
+                .collect(Collectors.toList());
+        List<MyRecipe> allMyRecipe = myRecipeRepository.findAll()
+                .stream().filter(myRecipe -> myRecipe.getUser().getUserId().equals(id))
+                .collect(Collectors.toList());
+        // 이미 받았는지 확인
+        List<MyRecipe> MyRecipeFromTarget = allMyRecipe
+                .stream().filter(myRecipe -> myRecipe.getFromUser().equals(target))
+                .collect(Collectors.toList());
+
         User user = userRepository.findByUserId(id)
                 .orElseThrow(() -> new IllegalArgumentException("invalid user Id"));
+        if(MyRecipeFromTarget.isEmpty())
+        {
+            myRecipe1.setRecipe(targetAllRecipe.get((int)(Math.random()*targetAllRecipe.size())).getRecipe());
+            myRecipe1.setUser(user);
+            myRecipe1.setFromUser(target);
 
-        myRecipe1.setRecipe(allRecipe.get((int)(Math.random()*allRecipe.size())));
-        myRecipe1.setUser(user);
-        myRecipe1.setFromUser(myRecipe.getFromUser());
+            return myRecipeRepository.save(myRecipe1);
+        }else{
+            throw new IllegalArgumentException("you already receive recipe!!");
+        }
 
-        return myRecipeRepository.save(myRecipe1);
     }
 
     // 내가가진 레시피

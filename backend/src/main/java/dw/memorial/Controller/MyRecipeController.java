@@ -23,10 +23,10 @@ public class MyRecipeController {
                 HttpStatus.OK);
     }
 
-    @GetMapping("/addrandomrecipe/{id}")
+    @GetMapping("/addrandomrecipe/{id}/{target}")
     public ResponseEntity<MyRecipe> addRandomRecipe(@PathVariable String id,
-                                                    @RequestBody MyRecipe myRecipe){
-        return new ResponseEntity<>(myRecipeService.addRandomRecipe(id, myRecipe),
+                                                    @PathVariable String target){
+        return new ResponseEntity<>(myRecipeService.addRandomRecipe(id, target),
                 HttpStatus.OK);
     }
 

@@ -17,6 +17,7 @@ import {
   deleteMyFuniture,
   callFurniture,
   showSearchSomeone,
+  getRandomRecipe,
 } from "./api";
 import "./TopDownAction.css"; // CSS 파일 import
 import { json, useNavigate } from "react-router-dom";
@@ -91,7 +92,7 @@ export function TopDownAction({ onStartGame }) {
   const [signal, setSignal] = useState("null");
   // 가구 삭제관련
   const [delJson, setDelJson] = useState([]);
-  const [oldFurniture, setOldFurniture] = useState("null");
+  const [oldFurniture, setOldFurniture] = useState([]);
   // 랜덤유저 방문 관련
   const [randomUser, setRandomUser] = useState("null");
   const [sendRandom, setSendRandom] = useState("null");
@@ -240,6 +241,7 @@ export function TopDownAction({ onStartGame }) {
         };
         const response = await saveLike(data);
         console.log(response.data);
+        const newRecipe = await getRandomRecipe(yourName, randomId);
         setIsSendLike(false);
       } catch (error) {
         console.log("좋아요 저장 실패", error);

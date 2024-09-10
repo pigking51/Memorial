@@ -215,10 +215,10 @@ export function initialRecipe(id) {
 }
 
 // 타인 카페 방문하여 좋아요 누를 시 받게되는 랜덤 레시피
-export function getRandomRecipe(id, data) {
-  const url = `/recipe/addrandomrecipe/${id}`;
+export function getRandomRecipe(id, target) {
+  const url = `/recipe/addrandomrecipe/${id}/${target}`;
 
-  return axios.post(url, data, headers);
+  return axios.get(url, headers);
 }
 
 // 게임에 보낼 내가 소유한 레시피

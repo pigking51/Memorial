@@ -19,9 +19,16 @@ public class FranchiseInqueryService {
     @Autowired
     UserRepository userRepository;
 
-    public FranchiseInqueryDto saveInquery(FranchiseInqueryDto franchiseInqueryDto){
+    @Autowired
+    RegisterMail registerMail;
+
+    public FranchiseInqueryDto saveInquery(FranchiseInqueryDto franchiseInqueryDto) throws Exception {
         User user = userRepository.findById(franchiseInqueryDto.getUserId())
                 .orElseThrow(() -> new IllegalStateException("Invalid user ID"));
+
+        String address = franchiseInqueryDto.getEmail();
+        System.out.println(address);
+        sendMessage(address);
 
         FranchiseInquery franchiseInquery = new FranchiseInquery();
         franchiseInquery.setUser(user);
@@ -41,6 +48,12 @@ public class FranchiseInqueryService {
         FranchiseInquery savedFranchiseInquery = franchiseInqueryRepository.save(franchiseInquery);
 
         return franchiseInqueryDto.toFranchiseInqueryDtoFromFranchiseInqueryDto(savedFranchiseInquery);
+    }
+
+    // 메일 보내는 방법???
+    private void sendMessage(String to) throws Exception {
+
+        registerMail.sendSimpleMessage(to);
     }
 
 }
