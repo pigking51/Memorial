@@ -69,8 +69,8 @@ public class UserService {
 
     public List<User> showSomeone(String id){
         return userRepository.findAll()
-                .stream().filter(user -> user.getUserId().contains(id) ||
-                        user.getRealName().contains(id))
+                .stream().filter(user -> user.getUserId().equals(id) ||
+                        user.getRealName().equals(id))
                 .collect(Collectors.toList());
     }
 

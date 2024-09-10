@@ -91,6 +91,7 @@ export function TopDownAction({ onStartGame }) {
   const [signal, setSignal] = useState("null");
   // 가구 삭제관련
   const [delJson, setDelJson] = useState([]);
+  const [oldFurniture, setOldFurniture] = useState();
   // 랜덤유저 방문 관련
   const [randomUser, setRandomUser] = useState("null");
   const [sendRandom, setSendRandom] = useState("null");
@@ -306,6 +307,8 @@ export function TopDownAction({ onStartGame }) {
           setSendUnity2(response.data[0].wallObject);
           console.log(furResponse.data);
           setSendUnity3(furResponse.data);
+          // 이전 가구를 oldFurniture에 저장
+          setOldFurniture(furResponse.data);
         }
       }
     } catch (error) {
@@ -414,7 +417,7 @@ export function TopDownAction({ onStartGame }) {
         sendMessage(`CafeDecorator`, `OldFloorData`, `${sendRandom}`);
         sendMessage(`CafeDecorator`, `OldWallData`, `${sendRandom2}`);
         sendMessage(`CafeDecorator`, `ReceiveUnity`, `${randomUser}`);
-        sendUnity3.forEach((su) => {
+        oldFurniture.forEach((su) => {
           let arr = [su.furnitureObject, su.siteX, su.siteY];
           sendMessage(
             `FurnitureManager`,
@@ -438,6 +441,7 @@ export function TopDownAction({ onStartGame }) {
         });
       };
       send();
+      setOldFurniture(sendRandom3);
       setRandomFurniture(sendRandom3);
       setSignal("null");
       setComeBackHome("null");
@@ -470,7 +474,7 @@ export function TopDownAction({ onStartGame }) {
       const URData = response.data.data.userId;
       if (comeBackHome != "null" && randomUser != "null") {
         const send = () => {
-          randomFurniture.forEach((su) => {
+          oldFurniture.forEach((su) => {
             let arr = [su.furnitureObject, su.siteX, su.siteY];
             sendMessage(
               `FurnitureManager`,
@@ -481,8 +485,22 @@ export function TopDownAction({ onStartGame }) {
           sendMessage(`CafeDecorator`, `OldFloorData`, `${sendUnity}`);
           sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
           sendMessage(`CafeDecorator`, `ReceiveUnity`, `${userName}`);
+          sendUnity3.forEach((su) => {
+            sendMessage(
+              `FurnitureManager`,
+              `LoadSelectFurniture`,
+              su.furnitureObject
+            );
+            let arr = [su.siteX, su.siteY];
+            sendMessage(
+              `FurnitureManager`,
+              `LoadPlaceFurniture`,
+              JSON.stringify(arr)
+            );
+          });
         };
         send();
+        setOldFurniture();
         setSignal("null");
         setComeBackHome("null");
       } else if (comeBackHome != "null" && randomUser == "null") {
