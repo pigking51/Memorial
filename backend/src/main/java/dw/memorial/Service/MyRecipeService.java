@@ -48,6 +48,7 @@ public class MyRecipeService {
 
     // 타인카페 방문시 좋아요 눌렀을때 받는 레시피(중복포함)
     public MyRecipe addRandomRecipe(String id, MyRecipe myRecipe){
+        
         MyRecipe myRecipe1 = new MyRecipe();
         List<Recipe> allRecipe = recipeRepository.findAll();
         List<MyRecipe> allMyRecipe = myRecipeRepository.findAll();

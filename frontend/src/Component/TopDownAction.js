@@ -91,7 +91,7 @@ export function TopDownAction({ onStartGame }) {
   const [signal, setSignal] = useState("null");
   // 가구 삭제관련
   const [delJson, setDelJson] = useState([]);
-  const [oldFurniture, setOldFurniture] = useState("null");
+  const [oldFurniture, setOldFurniture] = useState();
   // 랜덤유저 방문 관련
   const [randomUser, setRandomUser] = useState("null");
   const [sendRandom, setSendRandom] = useState("null");
@@ -103,15 +103,6 @@ export function TopDownAction({ onStartGame }) {
   const [comeBackHome, setComeBackHome] = useState("null");
   // 로그인 유무 확인
   const [isGoToLogin, setIsGoToLogin] = useState(false);
-  // 메시지 전송유무 확인
-  const [messageSignal, setMessageSignal] = useState();
-  const [isSendMessage, setIsSendMessage] = useState(false);
-  // id검색
-  const [searchID, setSearchID] = useState("null");
-  const [resultLike, setResultLike] = useState("null");
-  const [resultID, setResultID] = useState("null");
-  const [canResultID, setCanResultID] = useState(false);
-
   // 레시피 관련
   const [recipeSignal, setRecipeSignal] = useState(false);
   const [recipe, setRecipe] = useState([]);
@@ -126,6 +117,10 @@ export function TopDownAction({ onStartGame }) {
       frameworkUrl: "Build/testProject.framework.js",
       codeUrl: "Build/testProject.wasm",
     });
+
+  function handleLike(likeScore) {
+    setLikeScore(likeScore);
+  }
 
   function handleJson(json) {
     console.log(json);
@@ -210,23 +205,10 @@ export function TopDownAction({ onStartGame }) {
       }
     }
   }
-
-  function handleLike(likeScore) {
-    setLikeScore(likeScore);
-  }
-
-  useEffect(() => {
-    addEventListener("LikeScores", handleLike);
-    return () => {
-      removeEventListener("LikeScores", handleLike);
-    };
-  }, [unityProvider]);
-
   // 처음 게임 시작 시 받았던 좋아요 숫자 표시
   useEffect(() => {
     sendMessage(`LikeButton`, `LoadUserLikes`, savedLike);
-  }, [unityProvider]);
-
+  });
   async function getSomeoneLike() {
     try {
       const response = await showSomeoneLike(yourName);
@@ -352,6 +334,13 @@ export function TopDownAction({ onStartGame }) {
   }, [unityProvider, sendToken, addEventListener, removeEventListener]);
 
   useEffect(() => {
+    addEventListener("LikeScores", handleLike);
+    return () => {
+      removeEventListener("LikeScores", handleLike);
+    };
+  }, [unityProvider]);
+
+  useEffect(() => {
     addEventListener("ShowJson", handleJson);
     updateGameData();
     return () => {
@@ -420,10 +409,6 @@ export function TopDownAction({ onStartGame }) {
         sendMessage(`CafeDecorator`, `OldFloorData`, `${sendRandom}`);
         sendMessage(`CafeDecorator`, `OldWallData`, `${sendRandom2}`);
         sendMessage(`CafeDecorator`, `ReceiveUnity`, `${randomUser}`);
-        if (oldFurniture == "null") {
-          console.log("뭔가 안됨");
-          return;
-        }
         oldFurniture.forEach((su) => {
           let arr = [su.furnitureObject, su.siteX, su.siteY];
           sendMessage(
@@ -507,7 +492,7 @@ export function TopDownAction({ onStartGame }) {
           });
         };
         send();
-        setOldFurniture(sendUnity3);
+        setOldFurniture();
         setSignal("null");
         setComeBackHome("null");
       } else if (comeBackHome != "null" && randomUser == "null") {
@@ -518,106 +503,6 @@ export function TopDownAction({ onStartGame }) {
       }
     } catch (error) {
       console.log("복귀 유효성 검사 실패", error);
-    }
-  }
-
-  // 초대 메세지 발송
-  useEffect(() => {
-    inviteMessage();
-  }, [yourName]);
-
-  async function inviteMessage() {
-    if (yourName != "Guest" && isSendMessage != true) {
-      try {
-        const data = {
-          sendUser: yourName,
-          messageText: `넌 이미 죽어있다`,
-          targetUser: `sampleID123`,
-        };
-
-        const response = await inviteMyCafe(data);
-        console.log(response.data);
-        setIsSendMessage(true);
-      } catch (error) {
-        console.log("메세지 전송 실패", error);
-      }
-    }
-  }
-
-  // 내가 보낸 메세지 확인하기
-  async function mySendMessage() {
-    if (yourName != "Guset") {
-      try {
-        const response = await checkMySendMessage(yourName);
-        console.log(response.data);
-      } catch (error) {
-        console.log("보낸 메세지 확인 실패", error);
-      }
-    }
-  }
-
-  // 받은 메세지 확인하기
-  useEffect(() => {
-    myMessage();
-  }, []);
-
-  async function myMessage() {
-    if (yourName != "Guest") {
-      try {
-        const response = await checkMyMessage(yourName);
-        console.log(response.data);
-      } catch (error) {
-        console.log("메세지 수신 실패", error);
-      }
-    }
-  }
-  // id or 이름 검색
-  function sendText(sendText) {
-    if (searchID != sendText);
-    {
-      console.log(sendText);
-      setSearchID(sendText);
-    }
-  }
-  useEffect(() => {
-    addEventListener(`SendSearch`, sendText);
-    return () => {
-      removeEventListener(`SendSearch`, sendText);
-    };
-  }, []);
-
-  useEffect(() => {
-    searchSomeone();
-  }, [searchID]);
-
-  async function searchSomeone() {
-    if (searchID != "null") {
-      try {
-        const likeResponse = await showSomeoneLike(searchID);
-        const response = await showSearchSomeone(searchID);
-        console.log(likeResponse.data);
-        console.log(response.data);
-        setResultLike(likeResponse.data.length); // 해당 좋아요 방식 변경필수!!!
-        setResultID(response.data.userId);
-        setCanResultID(true);
-      } catch (error) {
-        console.log("사람찾기 실패", error);
-      }
-    }
-  }
-
-  useEffect(() => {}, []);
-
-  function resultIDToUnity() {
-    if (canResultID != false) {
-      console.log(resultID);
-      console.log(resultLike);
-      const resultJson = JSON.stringify(resultID);
-      const send = () => {
-        sendMessage(`EventSystem`, `LoadMyRecipe`, `${resultJson}`);
-      };
-      send();
-      setCanSendData(true);
     }
   }
 
