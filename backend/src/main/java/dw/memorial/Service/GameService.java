@@ -119,7 +119,7 @@ public class GameService {
                 }
             }
             // 기존 Furniture 중에서 새로운 목록에 없는 Furniture를 제거한다
-            existingFurnitureList.removeIf(furniture -> !newFurnitureList.contains(furniture));
+            //existingFurnitureList.removeIf(furniture -> !newFurnitureList.contains(furniture));
 
             game1.setFurniture(existingFurnitureList);
         }

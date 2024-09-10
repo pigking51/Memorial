@@ -91,7 +91,7 @@ export function TopDownAction({ onStartGame }) {
   const [signal, setSignal] = useState("null");
   // 가구 삭제관련
   const [delJson, setDelJson] = useState([]);
-  const [oldFurniture, setOldFurniture] = useState();
+  const [oldFurniture, setOldFurniture] = useState("null");
   // 랜덤유저 방문 관련
   const [randomUser, setRandomUser] = useState("null");
   const [sendRandom, setSendRandom] = useState("null");
@@ -126,10 +126,6 @@ export function TopDownAction({ onStartGame }) {
       frameworkUrl: "Build/testProject.framework.js",
       codeUrl: "Build/testProject.wasm",
     });
-
-  function handleLike(likeScore) {
-    setLikeScore(likeScore);
-  }
 
   function handleJson(json) {
     console.log(json);
@@ -214,10 +210,23 @@ export function TopDownAction({ onStartGame }) {
       }
     }
   }
+
+  function handleLike(likeScore) {
+    setLikeScore(likeScore);
+  }
+
+  useEffect(() => {
+    addEventListener("LikeScores", handleLike);
+    return () => {
+      removeEventListener("LikeScores", handleLike);
+    };
+  }, [unityProvider]);
+
   // 처음 게임 시작 시 받았던 좋아요 숫자 표시
   useEffect(() => {
     sendMessage(`LikeButton`, `LoadUserLikes`, savedLike);
-  });
+  }, [unityProvider]);
+
   async function getSomeoneLike() {
     try {
       const response = await showSomeoneLike(yourName);
@@ -343,13 +352,6 @@ export function TopDownAction({ onStartGame }) {
   }, [unityProvider, sendToken, addEventListener, removeEventListener]);
 
   useEffect(() => {
-    addEventListener("LikeScores", handleLike);
-    return () => {
-      removeEventListener("LikeScores", handleLike);
-    };
-  }, [unityProvider]);
-
-  useEffect(() => {
     addEventListener("ShowJson", handleJson);
     updateGameData();
     return () => {
@@ -371,6 +373,7 @@ export function TopDownAction({ onStartGame }) {
         const data = response.data;
         console.log(data);
         setRandomUser(data.user.userId);
+        setRandomId(data.user.userId);
         const furResponse = await callFurniture(data.user.userId);
         if (data.tileObject != null) {
           setSendRandom(data.tileObject);
@@ -417,6 +420,10 @@ export function TopDownAction({ onStartGame }) {
         sendMessage(`CafeDecorator`, `OldFloorData`, `${sendRandom}`);
         sendMessage(`CafeDecorator`, `OldWallData`, `${sendRandom2}`);
         sendMessage(`CafeDecorator`, `ReceiveUnity`, `${randomUser}`);
+        if (oldFurniture == "null") {
+          console.log("뭔가 안됨");
+          return;
+        }
         oldFurniture.forEach((su) => {
           let arr = [su.furnitureObject, su.siteX, su.siteY];
           sendMessage(
