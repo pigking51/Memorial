@@ -316,7 +316,7 @@ export function TopDownAction({ onStartGame }) {
   const sendToken = useCallback(() => {
     sendMessage(`CafeDecorator`, `OldFloorData`, `${sendUnity}`);
     sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
-    sendMessage(`CafeDecorator`, `ReceiveUnity`, `${userName}님 환영합니다!!!`);
+    sendMessage(`CafeDecorator`, `ReceiveUnity`, `${userName}`);
     sendUnity3.forEach((su) => {
       sendMessage(
         `FurnitureManager`,
@@ -358,6 +358,7 @@ export function TopDownAction({ onStartGame }) {
   // 랜덤 유저정보 불러오기
   useEffect(() => {
     callRandomGameData();
+    setSendCallReady(false);
   }, [signal]);
 
   async function callRandomGameData() {
@@ -401,22 +402,18 @@ export function TopDownAction({ onStartGame }) {
 
   useEffect(() => {
     VisitRandomCafe();
-  }, [signal]);
+  }, [sendCallReady]);
 
   // 랜덤방문
   function VisitRandomCafe() {
-    if (signal != "null") {
+    if (signal != "null" && sendCallReady == true) {
       console.log(sendRandom);
       console.log(sendRandom2);
       console.log(sendRandom3);
       const send = () => {
         sendMessage(`CafeDecorator`, `OldFloorData`, `${sendRandom}`);
         sendMessage(`CafeDecorator`, `OldWallData`, `${sendRandom2}`);
-        sendMessage(
-          `CafeDecorator`,
-          `ReceiveUnity`,
-          `${randomUser}님의 카페에 오신 것을 환영합니다!!!`
-        );
+        sendMessage(`CafeDecorator`, `ReceiveUnity`, `${randomUser}`);
         sendUnity3.forEach((su) => {
           let arr = [su.furnitureObject, su.siteX, su.siteY];
           sendMessage(
@@ -443,6 +440,7 @@ export function TopDownAction({ onStartGame }) {
       send();
       setRandomFurniture(sendRandom3);
       setSignal("null");
+      setComeBackHome("null");
       setSendCallReady(false);
     } else {
       console.log("랜덤방문 실패");
@@ -467,28 +465,34 @@ export function TopDownAction({ onStartGame }) {
   }, [comeBackHome]);
 
   async function homeSick() {
-    if (comeBackHome != "null") {
-      const send = () => {
-        randomFurniture.forEach((su) => {
-          let arr = [su.furnitureObject, su.siteX, su.siteY];
-          sendMessage(
-            `FurnitureManager`,
-            `RemoveFurnitureForVisit`,
-            JSON.stringify(arr)
-          );
-        });
-        sendMessage(`CafeDecorator`, `OldFloorData`, `${sendUnity}`);
-        sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
-        sendMessage(
-          `CafeDecorator`,
-          `ReceiveUnity`,
-          `${userName}사장님 \n 환영합니다`
-        );
-      };
-      send();
-      // setComeBackHome("null");
-    } else {
-      console.log("내 카페 복귀 실패");
+    try {
+      const response = await getNowUser();
+      const URData = response.data.data.userId;
+      if (comeBackHome != "null" && randomUser != "null") {
+        const send = () => {
+          randomFurniture.forEach((su) => {
+            let arr = [su.furnitureObject, su.siteX, su.siteY];
+            sendMessage(
+              `FurnitureManager`,
+              `RemoveFurnitureForVisit`,
+              JSON.stringify(arr)
+            );
+          });
+          sendMessage(`CafeDecorator`, `OldFloorData`, `${sendUnity}`);
+          sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
+          sendMessage(`CafeDecorator`, `ReceiveUnity`, `${userName}`);
+        };
+        send();
+        setSignal("null");
+        setComeBackHome("null");
+      } else if (comeBackHome != "null" && randomUser == "null") {
+        window.alert(`이미 홈 화면입니다!`);
+        return;
+      } else {
+        console.log("홈 화면 복귀 실패");
+      }
+    } catch (error) {
+      console.log("복귀 유효성 검사 실패", error);
     }
   }
 
