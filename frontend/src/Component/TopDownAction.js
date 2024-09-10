@@ -507,7 +507,7 @@ export function TopDownAction({ onStartGame }) {
           });
         };
         send();
-        setOldFurniture();
+        setOldFurniture(sendUnity3);
         setSignal("null");
         setComeBackHome("null");
       } else if (comeBackHome != "null" && randomUser == "null") {

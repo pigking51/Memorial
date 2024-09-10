@@ -556,7 +556,7 @@ export function Mypage() {
   }
 
   const Cafe_Arr = [
-    "CaffeBene",
+    "Memorial",
     "StarBucks",
     "Angel in us",
     "Drop Top",
