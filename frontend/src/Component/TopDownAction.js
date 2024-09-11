@@ -81,7 +81,7 @@ export function TopDownAction({ onStartGame }) {
   // 좋아요 관련
   const [likeScore, setLikeScore] = useState(0);
   const [isSendLike, setIsSendLike] = useState(false);
-  const [savedLike, setSavedLike] = useState(10);
+  const [savedLike, setSavedLike] = useState(-1);
   const [randomId, setRandomId] = useState("notYet");
   // 게임데이터 관련
   const [jsonPart, setJsonPart] = useState(null);
@@ -180,11 +180,14 @@ export function TopDownAction({ onStartGame }) {
           const StJsonPart = JSON.parse(jsonPart);
           console.log(StJsonPart);
           console.log(StJsonPart.furniture);
-
+          const wall = StJsonPart.wall != "" ? StJsonPart.wall : "붉은벽돌";
+          const floor = StJsonPart.floor != "" ? StJsonPart.floor : "얕은바다";
+          console.log(wall);
+          console.log(floor);
           const data = {
             userId: yourName,
-            wallObject: StJsonPart.wall,
-            tileObject: StJsonPart.floor,
+            wallObject: wall,
+            tileObject: floor,
             furniture: StJsonPart.furniture,
           };
 
@@ -208,21 +211,6 @@ export function TopDownAction({ onStartGame }) {
       }
     }
   }
-  // 처음 게임 시작 시 받았던 좋아요 숫자 표시
-  useEffect(() => {
-    sendMessage(`Like Button`, `LoadUserLikes`, savedLike);
-  }, [savedLike]);
-  async function getSomeoneLike() {
-    try {
-      const response = await showSomeoneLike(yourName);
-      console.log(response.data);
-    } catch (error) {
-      console.log("좋아요 갯수 호출 실패");
-    }
-  }
-  useEffect(() => {
-    getSomeoneLike();
-  }, [unityProvider, yourName]);
 
   // 좋아요 저장
 
@@ -258,18 +246,28 @@ export function TopDownAction({ onStartGame }) {
 
   useEffect(() => {
     showLikeScore();
-  }, [unityProvider, randomId, savedLike]);
+  }, [unityProvider, randomId, savedLike, comeBackHome]);
 
   async function showLikeScore() {
-    if (randomId != "notYet") {
+    if (randomId != "notYet" || yourName != "Guest") {
       try {
         const response = await showLike();
         const data = response.data;
         console.log(data);
+        console.log(randomId);
+        console.log(randomUser);
         let count = 0;
-        for (let i = 0; i < data.length; i++) {
-          if (data[i].user.userId === randomId) {
-            count++;
+        if (comeBackHome == "showMyHome") {
+          for (let i = 0; i < data.length; i++) {
+            if (data[i].user.userId == yourName) {
+              count++;
+            }
+          }
+        } else {
+          for (let i = 0; i < data.length; i++) {
+            if (data[i].user.userId == randomId) {
+              count++;
+            }
           }
         }
         console.log(count);
@@ -279,6 +277,24 @@ export function TopDownAction({ onStartGame }) {
       }
     }
   }
+
+  // 처음 게임 시작 시 받았던 좋아요 숫자 표시
+  useEffect(() => {
+    sendMessage(`Like Button`, `LoadUserLikes`, savedLike);
+    console.log(`현재 유저의 좋아요:  ${savedLike}`);
+  }, [savedLike]);
+
+  async function getSomeoneLike() {
+    try {
+      const response = await showSomeoneLike(yourName);
+      console.log(response.data);
+    } catch (error) {
+      console.log("좋아요 갯수 호출 실패");
+    }
+  }
+  useEffect(() => {
+    getSomeoneLike();
+  }, [unityProvider, yourName]);
 
   // 저장된 데이터 불러오기
   useEffect(() => {
@@ -363,7 +379,7 @@ export function TopDownAction({ onStartGame }) {
   }, [signal]);
 
   async function callRandomGameData() {
-    if (yourName != "Guest") {
+    if (yourName != "Guest" && signal != "null") {
       try {
         const response = await randomGameData(yourName);
         const data = response.data;
@@ -507,6 +523,8 @@ export function TopDownAction({ onStartGame }) {
           });
         };
         send();
+        const myLikeResponse = await showSomeoneLike(yourName);
+        console.log(myLikeResponse.data);
         setOldFurniture(sendUnity3);
         setRandomId("notYet");
         setSignal("null");
@@ -525,10 +543,10 @@ export function TopDownAction({ onStartGame }) {
   // 나의 레시피
   useEffect(() => {
     sendMyRecipeToGame();
-  }, [yourName, comeBackHome]);
+  }, [showRecipe]);
 
   async function sendMyRecipeToGame() {
-    if (yourName != "Guest" && canSendData == true) {
+    if (yourName != "Guest") {
       try {
         const response = await myRecipe(yourName);
         console.log(response.data);
@@ -536,9 +554,8 @@ export function TopDownAction({ onStartGame }) {
         for (let i = 0; i < response.data.length; i++) {
           recipeArr.push(response.data[i].recipe.recipeName);
         }
-        console.log(recipeArr);
         setRecipe(recipeArr);
-        setCanSendData(false);
+        setRecipeSignal(true);
       } catch (error) {
         console.log("나의 레시피 출력 실패!!", error);
       }
@@ -572,11 +589,10 @@ export function TopDownAction({ onStartGame }) {
 
   useEffect(() => {
     sendRecipe();
-  }, [showRecipe]);
+  }, [recipe]);
 
   function sendRecipe() {
-    console.log(recipe);
-    if (canSendData == false && recipe.length != 0) {
+    if (recipe.length != 0 && recipeSignal == true) {
       console.log(recipe);
       const UnityRecipe = JSON.stringify(recipe);
       const send = () => {
@@ -585,7 +601,6 @@ export function TopDownAction({ onStartGame }) {
       send();
       console.log("전송완료");
       setShowRecipe(null);
-      setCanSendData(true);
       setRecipeSignal(false);
     }
   }

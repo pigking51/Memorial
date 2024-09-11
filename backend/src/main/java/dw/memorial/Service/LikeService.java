@@ -36,7 +36,10 @@ public class LikeService {
     }
 
     public List<Like> getSomeoneLike(String id){
-        return likeRepository.findByUserUserId(id);
+
+        return likeRepository.findAll()
+                .stream().filter(like -> like.getUser().getUserId().equals(id))
+                .collect(Collectors.toList());
     }
 
     public List<Like> getSearchLike(String id)

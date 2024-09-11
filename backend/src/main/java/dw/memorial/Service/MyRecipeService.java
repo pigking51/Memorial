@@ -68,6 +68,7 @@ public class MyRecipeService {
             System.out.println(MyRecipeFromTarget);
             System.out.println(targetAllRecipe.stream().toString());
             myRecipe1.setRecipe(targetAllRecipe.get((int)(Math.random()*targetAllRecipe.size())).getRecipe());
+            System.out.println(targetAllRecipe.get((int)(Math.random()*targetAllRecipe.size())).getRecipe());
             myRecipe1.setUser(user);
             myRecipe1.setFromUser(target);
 
@@ -75,7 +76,7 @@ public class MyRecipeService {
         }else{
             System.out.println(allMyRecipe.stream().toString());
             System.out.println(MyRecipeFromTarget.stream().toString());
-            throw new IllegalArgumentException("you already receive recipe!!");
+            throw new IllegalArgumentException("you already receive target's recipe!!");
         }
 
     }
