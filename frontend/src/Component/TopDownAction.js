@@ -106,6 +106,7 @@ export function TopDownAction({ onStartGame }) {
   const [isGoToLogin, setIsGoToLogin] = useState(false);
   // 레시피 관련
   const [recipeSignal, setRecipeSignal] = useState(false);
+  const [showRecipe, setShowRecipe] = useState(null);
   const [recipe, setRecipe] = useState([]);
   const [canSendData, setCanSendData] = useState(true);
 
@@ -120,6 +121,7 @@ export function TopDownAction({ onStartGame }) {
     });
 
   function handleLike(likeScore) {
+    setIsSendLike(true);
     setLikeScore(likeScore);
   }
 
@@ -208,8 +210,8 @@ export function TopDownAction({ onStartGame }) {
   }
   // 처음 게임 시작 시 받았던 좋아요 숫자 표시
   useEffect(() => {
-    sendMessage(`LikeButton`, `LoadUserLikes`, savedLike);
-  });
+    sendMessage(`Like Button`, `LoadUserLikes`, savedLike);
+  }, [savedLike]);
   async function getSomeoneLike() {
     try {
       const response = await showSomeoneLike(yourName);
@@ -225,7 +227,6 @@ export function TopDownAction({ onStartGame }) {
   // 좋아요 저장
 
   useEffect(() => {
-    setIsSendLike(true);
     saveLikeScore();
   }, [likeScore]);
 
@@ -257,7 +258,7 @@ export function TopDownAction({ onStartGame }) {
 
   useEffect(() => {
     showLikeScore();
-  }, [unityProvider, randomId]);
+  }, [unityProvider, randomId, savedLike]);
 
   async function showLikeScore() {
     if (randomId != "notYet") {
@@ -480,8 +481,16 @@ export function TopDownAction({ onStartGame }) {
               JSON.stringify(arr)
             );
           });
-          sendMessage(`CafeDecorator`, `OldFloorData`, `${sendUnity}`);
-          sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
+          sendMessage(
+            `CafeDecorator`,
+            `OldFloorData`,
+            sendUnity != "null" ? `${sendUnity}` : `얕은바다`
+          );
+          sendMessage(
+            `CafeDecorator`,
+            `OldWallData`,
+            sendUnity2 != "null" ? `${sendUnity2}` : `붉은벽돌`
+          );
           sendMessage(`CafeDecorator`, `ReceiveUnity`, `${userName}`);
           sendUnity3.forEach((su) => {
             sendMessage(
@@ -516,7 +525,7 @@ export function TopDownAction({ onStartGame }) {
   // 나의 레시피
   useEffect(() => {
     sendMyRecipeToGame();
-  }, [yourName]);
+  }, [yourName, comeBackHome]);
 
   async function sendMyRecipeToGame() {
     if (yourName != "Guest" && canSendData == true) {
@@ -549,11 +558,24 @@ export function TopDownAction({ onStartGame }) {
     };
   }, [unityProvider]);
 
+  function openRecipe(sign) {
+    console.log(sign);
+    setShowRecipe(sign);
+  }
+
+  useEffect(() => {
+    addEventListener(`ShowRecipe`, openRecipe);
+    return () => {
+      removeEventListener(`ShowRecipe`, openRecipe);
+    };
+  }, [unityProvider]);
+
   useEffect(() => {
     sendRecipe();
-  }, [recipeSignal]);
+  }, [showRecipe]);
 
   function sendRecipe() {
+    console.log(recipe);
     if (canSendData == false && recipe.length != 0) {
       console.log(recipe);
       const UnityRecipe = JSON.stringify(recipe);
@@ -561,7 +583,10 @@ export function TopDownAction({ onStartGame }) {
         sendMessage(`EventSystem`, `LoadMyRecipe`, `${UnityRecipe}`);
       };
       send();
+      console.log("전송완료");
+      setShowRecipe(null);
       setCanSendData(true);
+      setRecipeSignal(false);
     }
   }
 

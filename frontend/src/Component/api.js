@@ -24,7 +24,7 @@ export function getNowUser() {
   const url = `/user/current`;
 
   if (sessionStorage.length != 0) {
-    console.log(sessionStorage.getItem("JWT-token"));
+    //console.log(sessionStorage.getItem("JWT-token"));
     chanBear = sessionStorage.getItem("JWT-token");
     headers = {
       headers: {

@@ -63,14 +63,18 @@ public class MyRecipeService {
 
         User user = userRepository.findByUserId(id)
                 .orElseThrow(() -> new IllegalArgumentException("invalid user Id"));
-        if(MyRecipeFromTarget.isEmpty())
+        if(!(targetAllRecipe.isEmpty()) && MyRecipeFromTarget.isEmpty())
         {
+            System.out.println(MyRecipeFromTarget);
+            System.out.println(targetAllRecipe.stream().toString());
             myRecipe1.setRecipe(targetAllRecipe.get((int)(Math.random()*targetAllRecipe.size())).getRecipe());
             myRecipe1.setUser(user);
             myRecipe1.setFromUser(target);
 
             return myRecipeRepository.save(myRecipe1);
         }else{
+            System.out.println(allMyRecipe.stream().toString());
+            System.out.println(MyRecipeFromTarget.stream().toString());
             throw new IllegalArgumentException("you already receive recipe!!");
         }
 
