@@ -44,7 +44,7 @@ public class RegisterMail implements MailServiceInter {
         msgg += "<div align=`center` style =`border: 1px solid black`>";
         msgg += "<h3 style=`color:blue> 진행사항......</h3>";
         msgg += "<div style=`font-size: 130%`>";
-        msgg += "<strong> 귀하의 문의의 대한 답변은 약" + LocalDate.now()+7 +"일 이내에 보내드릴 예정입니다.";
+        msgg += "<strong> 귀하의 문의의 대한 답변은 약" + LocalDate.now().plusDays(7) +"일 이내에 보내드릴 예정입니다.";
         msgg += "</div>";
         //msgg += "<img src=../resources/static/image/emailfooter.jpg/>"; // footer image
 

@@ -492,12 +492,12 @@ export function Franchise_Inquiry() {
   const [SPNum, setSPNum] = useState(0);
   // Email 담기
   const [EInput1, setEInput1] = useState("");
-  const [EInput2, setEInput2] = useState("");
+  const [EInput2, setEInput2] = useState("@gmail.com");
   const [EInput3, setEInput3] = useState("");
   const [SEInput, setSEInput] = useState("");
   const SelEmail = document.querySelector(".selEmail");
   // 창업 가능 시기 담기
-  const [Savailable, setAvailable] = useState("empty");
+  const [Savailable, setAvailable] = useState("always");
   // 희망지역점포 담기
   const [Swish, setWish] = useState("empty");
   // 주소 담기

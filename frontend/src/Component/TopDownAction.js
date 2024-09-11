@@ -230,6 +230,10 @@ export function TopDownAction({ onStartGame }) {
   }, [likeScore]);
 
   async function saveLikeScore() {
+    // if (playingGame && randomId == "notYet") {
+    //   window.alert("자추금지!!!!!");
+    //   return;
+    // }
     if (isSendLike != false) {
       try {
         console.log(likeScore);
@@ -495,6 +499,7 @@ export function TopDownAction({ onStartGame }) {
         };
         send();
         setOldFurniture(sendUnity3);
+        setRandomId("notYet");
         setSignal("null");
         setComeBackHome("null");
       } else if (comeBackHome != "null" && randomUser == "null") {
@@ -550,6 +555,7 @@ export function TopDownAction({ onStartGame }) {
 
   function sendRecipe() {
     if (canSendData == false && recipe.length != 0) {
+      console.log(recipe);
       const UnityRecipe = JSON.stringify(recipe);
       const send = () => {
         sendMessage(`EventSystem`, `LoadMyRecipe`, `${UnityRecipe}`);

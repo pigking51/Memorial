@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 public class FranchiseInquery {
     @Id
     @Column(name = "fi_num")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long FINum;
     @ManyToOne
     @JoinColumn(name = "user_id")
