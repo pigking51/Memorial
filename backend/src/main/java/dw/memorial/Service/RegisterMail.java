@@ -30,21 +30,21 @@ public class RegisterMail implements MailServiceInter {
         MimeMessage message = emailSender.createMimeMessage();
 
         message.addRecipients(MimeMessage.RecipientType.TO, to); // 메일 받을 사용자
-        message.setSubject("[Memorial][문의안내] Memorial에 문의를 남겨주셔서 감사합니다."); // 이메일 제목
+        message.setSubject("[Memorial 문의안내] Memorial에 문의를 남겨주셔서 감사합니다."); // 이메일 제목
 
         String msgg = "";
-        // msgg += "<img src=../resources/static/image/emailheader.jpg/>" // header image
 
-        msgg += "<h1>안녕하세요</h1>";
-        msgg += "<h1>모두가 기억해주기를 바라는 커피 프랜차이즈 Memorial 입니다</h1>";
+        msgg += "<img src=\"https://ifh.cc/g/PD02zD.png\">";
+        msgg += "<h2>Hello, Memorial! ☕️</h2>";
+        msgg += "<h2>모두가 기억해주기를 바라는 커피 프랜차이즈</h2><h1><strong>Memorial<strong> 입니다 😌</h1>";
         msgg += "<br>";
         msgg += "<p>저희 사이트에 문의를 남겨주셔서 감사합니다.</p>";
         msgg += "<br>";
         msgg += "<br>";
-        msgg += "<div align=`center` style =`border: 1px solid black`>";
-        msgg += "<h3 style=`color:blue> 진행사항......</h3>";
+        msgg += "<div align=\"center\" style=\"border: 3px solid #eb92ae; border-radius: 50px; padding: 30px\">";
+        msgg += "<h3 style=\"color:#DB365A\"> 진행사항..</h3>";
         msgg += "<div style=`font-size: 130%`>";
-        msgg += "<strong> 귀하의 문의의 대한 답변은 약" + LocalDate.now().plusDays(7) +"일 이내에 보내드릴 예정입니다.";
+        msgg += "<strong> 문의의 대한 답변은 약 " + LocalDate.now().plusDays(7) +"일 이내에 보내드릴 예정입니다.";
         msgg += "</div>";
         //msgg += "<img src=../resources/static/image/emailfooter.jpg/>"; // footer image
 
