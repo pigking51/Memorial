@@ -7,16 +7,11 @@ import {
   getMyGameData,
   randomGameData,
   saveLike,
-  showLike,
   initialRecipe,
-  inviteMyCafe,
-  checkMyMessage,
-  checkMySendMessage,
   myRecipe,
   showSomeoneLike,
   deleteMyFuniture,
   callFurniture,
-  showSearchSomeone,
   getRandomRecipe,
 } from "./api";
 import "./TopDownAction.css"; // CSS 파일 import
@@ -82,7 +77,6 @@ export function TopDownAction({ onStartGame }) {
   const [likeScore, setLikeScore] = useState(0);
   const [isSendLike, setIsSendLike] = useState(false);
   const [randomId, setRandomId] = useState("notYet");
-  const [isLikeChange, setIsLikeChange] = useState(false);
   const [initLikeCount, setInitLikeCount] = useState(0); // 최초 접속 or 내 카페로 복귀 시 사용하는 나의 좋아요 count
   const [otherUserLikeCount, setOtherUserLikeCount] = useState(0); // 랜덤방문 시 사용하는 해당 유저의 좋아요 count
   // 게임데이터 관련
@@ -471,16 +465,13 @@ export function TopDownAction({ onStartGame }) {
               JSON.stringify(arr)
             );
           });
-          sendMessage(
-            `CafeDecorator`,
-            `OldFloorData`,
-            sendUnity != "null" ? `${sendUnity}` : `얕은바다`
-          );
-          sendMessage(
-            `CafeDecorator`,
-            `OldWallData`,
-            sendUnity2 != "null" ? `${sendUnity2}` : `붉은벽돌`
-          );
+          if (sendUnity == "null" || sendUnity2 == "null") {
+            sendMessage(`CafeDecorator`, `OldFloorData`, `얕은바다`);
+            sendMessage(`CafeDecorator`, `OldWallData`, `붉은벽돌`);
+          } else {
+            sendMessage(`CafeDecorator`, `OldFloorData`, `${sendUnity}`);
+            sendMessage(`CafeDecorator`, `OldWallData`, `${sendUnity2}`);
+          }
           sendMessage(`CafeDecorator`, `ReceiveUnity`, `${userName}`);
           sendUnity3.forEach((su) => {
             sendMessage(
