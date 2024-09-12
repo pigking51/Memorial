@@ -33,10 +33,10 @@ public class RegisterMail implements MailServiceInter {
         message.setSubject("[Memorial 문의안내] Memorial에 문의를 남겨주셔서 감사합니다 :)"); // 이메일 제목
 
         String msgg = "";
-
-        msgg += "<img align=\"center\" src=\"https://ifh.cc/g/kGDSMg.jpg style=\"width: 40%\">";
-        msgg += "<h1>Hello, Memorial! ☕️</h1>";
-        msgg += "<h1>모두가 기억해주기를 바라는 커피 프랜차이즈<br/><strong>Memorial<strong> 입니다 😊</h1>";
+        msgg += "<div align=\"center\">";
+        msgg += "<div align=\"center\" style=\"border: 10px solid #eb92ae; width: 800px\">";
+        msgg += "<img src=\"https://ifh.cc/g/kGDSMg.jpg\" style=\"width: 100%\">";
+        msgg += "<h1>모두가 기억해주기를 바라는 커피 프랜차이즈<br/><strong>Memorial<strong> 입니다 😊☕</h1>";
         msgg += "<br>";
         msgg += "<p>안녕하세요. 먼저, 저희 Memorial 커피 프랜차이즈에 관심을 가져주신 것에 깊이 감사드립니다.</p>";
         msgg += "<p>고객님께서 보내주신 문의는 저희에게 큰 의미가 있으며,</p>";
@@ -57,14 +57,16 @@ public class RegisterMail implements MailServiceInter {
         msgg += "<p>다시 한 번, 저희 Memorial에 대한 애정과 관심에 깊이 감사드리며, </p>";
         msgg += "<p>앞으로도 많은 사랑과 응원 부탁드립니다.</p>";
         msgg += "<br>";
-        msgg += "<p>감사합니다.</p>";
+        msgg += "<p>감사합니다. 😌</p>";
+        msgg += "</div>";
+        msgg += "</div>";
 
 
 
-        msgg += "<div align=\"center\" style=\"border: 2px solid #eb92ae; border-radius: 10px; padding: 30px; margin: 0px 20%\">";
-        msgg += "<h3 style=\"color:#DB365A; font-size: 40px; margin-top: 0\"> 진행사항..</h3>";
+        msgg += "<div align=\"center\" style=\"border: 2px solid #eb92ae; border-radius: 20px; padding: 30px; margin: 100px 30%\">";
+        msgg += "<h3 style=\"color:#DB365A; font-size: 40px; margin-top: 0\"> 진행사항</h3>";
         msgg += "<div style=\"font-size: 20px\">";
-        msgg += "<strong> 문의의 대한 답변은 약 " + LocalDate.now().plusDays(7) +"일 이내에 보내드릴 예정입니다.";
+        msgg += "<strong> 답변은 " + LocalDate.now().plusDays(7) +"일 전으로 보내드릴 예정입니다.";
         msgg += "<br>";
         msgg += "<strong> 많은 사랑과 관심 감사합니다 😌";
         msgg += "</div>";
