@@ -158,8 +158,12 @@ export function TopDownAction({ onStartGame }) {
     try {
       const likeResponse = await showSomeoneLike(yourName);
       console.log(likeResponse);
-      const yourLike = likeResponse.data.length;
-      setInitLikeCount(yourLike);
+      if (likeResponse.data.length != 0) {
+        const yourLike = likeResponse.data.length;
+        setInitLikeCount(yourLike);
+      } else {
+        console.log("왜 반복되는데");
+      }
     } catch (error) {
       console.log("이래도 안된다면 정말 유감입니다.", error);
     }
@@ -653,9 +657,6 @@ export function TopDownAction({ onStartGame }) {
         >
           ✨ Game Start ✨
         </StartButton>
-        {playingGame && (
-          <p>{`${userName}! You've scored ${likeScore} points.`}</p>
-        )}
       </BtContainer>
       <Container>
         {playingGame ? (
