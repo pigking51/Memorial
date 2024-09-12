@@ -14,6 +14,9 @@ const Container = styled.div`
   width: 60%;
   height: 100vh;
   margin: 0 20% 100px;
+  span {
+    color: red;
+  }
 `;
 
 const Brand = styled.div`
@@ -300,6 +303,9 @@ const EtcWrite = styled.div`
   background-color: white;
   p {
     margin-left: 50px;
+  }
+  textarea {
+    resize: none;
   }
 `;
 
