@@ -148,6 +148,7 @@ export function TopDownAction({ onStartGame }) {
       }
     }
   }
+
   // 최초 게임 실행 시 랜덤 레시피 부여
   async function getInitialRecipe() {
     if (yourName != "Guest") {
@@ -180,14 +181,11 @@ export function TopDownAction({ onStartGame }) {
           const StJsonPart = JSON.parse(jsonPart);
           console.log(StJsonPart);
           console.log(StJsonPart.furniture);
-          const wall = StJsonPart.wall != "" ? StJsonPart.wall : "붉은벽돌";
-          const floor = StJsonPart.floor != "" ? StJsonPart.floor : "얕은바다";
-          console.log(wall);
-          console.log(floor);
+
           const data = {
             userId: yourName,
-            wallObject: wall,
-            tileObject: floor,
+            wallObject: StJsonPart.wall,
+            tileObject: StJsonPart.floor,
             furniture: StJsonPart.furniture,
           };
 
@@ -541,21 +539,35 @@ export function TopDownAction({ onStartGame }) {
   }
 
   // 나의 레시피
+  function showRecipeSignal(message) {
+    console.log(message);
+    setRecipeSignal(true);
+  }
+  useEffect(() => {
+    addEventListener(`RecipeOpen`, showRecipeSignal);
+    return () => {
+      removeEventListener(`RecipeOpen`, showRecipeSignal);
+    };
+  }, [unityProvider]);
+
   useEffect(() => {
     sendMyRecipeToGame();
-  }, [showRecipe]);
+  }, [recipeSignal]);
 
   async function sendMyRecipeToGame() {
-    if (yourName != "Guest") {
+    if (yourName != "Guest" && recipeSignal == true) {
       try {
         const response = await myRecipe(yourName);
         console.log(response.data);
+        response.data.sort(function (a, b) {
+          return a.recipe.recipeNo - b.recipe.recipeNo;
+        });
         let recipeArr = [];
+        let temp = "";
         for (let i = 0; i < response.data.length; i++) {
           recipeArr.push(response.data[i].recipe.recipeName);
         }
         setRecipe(recipeArr);
-        setRecipeSignal(true);
       } catch (error) {
         console.log("나의 레시피 출력 실패!!", error);
       }
@@ -575,24 +587,12 @@ export function TopDownAction({ onStartGame }) {
     };
   }, [unityProvider]);
 
-  function openRecipe(sign) {
-    console.log(sign);
-    setShowRecipe(sign);
-  }
-
-  useEffect(() => {
-    addEventListener(`ShowRecipe`, openRecipe);
-    return () => {
-      removeEventListener(`ShowRecipe`, openRecipe);
-    };
-  }, [unityProvider]);
-
   useEffect(() => {
     sendRecipe();
   }, [recipe]);
 
   function sendRecipe() {
-    if (recipe.length != 0 && recipeSignal == true) {
+    if (recipe.length != 0) {
       console.log(recipe);
       const UnityRecipe = JSON.stringify(recipe);
       const send = () => {
