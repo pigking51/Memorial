@@ -1,3 +1,5 @@
+<img src="https://capsule-render.vercel.app/api?type=waving&color=EB92AE&height=150&section=header" />
+
 # Memorial
 ## 2차프로젝트용
 
